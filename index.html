@@ -8,15 +8,77 @@
         body {
             font-size: 16px;
             text-align: center;
-            background-color: #f4f4f4;  
+            /* تغيير لون الخلفية ليكون داكن لظهور الألوان */
+            background-color: #050511;  
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
             position: relative;
             overflow-x: hidden;
+            /* لضمان تغطية الشاشة بالكامل */
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
+
+        /* --- كود الخلفية المتحركة (Animated Blobs) --- */
+        .animated-bg {
+            position: fixed; /* ثابت في الخلفية */
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            z-index: -1; /* خلف كل شيء */
+            overflow: hidden;
+            background: #0b0b15;
+        }
+
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px); /* التمويه يجعلها تندمج بشكل جميل */
+            opacity: 0.6;
+            animation: moveBlob 25s infinite alternate ease-in-out;
+        }
+
+        /* الكرة البنفسجي */
+        .blob-1 {
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, #a855f7, #7c3aed);
+            top: -100px; left: -100px;
+            animation-duration: 20s;
+        }
+
+        /* الكرة الزرقاء */
+        .blob-2 {
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, #3b82f6, #2563eb);
+            bottom: -150px; right: -100px;
+            animation: moveBlob 22s infinite alternate-reverse ease-in-out;
+            animation-delay: -5s;
+        }
+
+        /* الكرة الوردية */
+        .blob-3 {
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, #ec4899, #db2777);
+            top: 40%; left: 60%;
+            filter: blur(100px);
+            animation: pulseBlob 18s infinite ease-in-out;
+        }
+
+        @keyframes moveBlob {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(100px, 50px) scale(1.3); }
+        }
+
+        @keyframes pulseBlob {
+            0%, 100% { transform: translate(-50%, -50%) scale(1) translate(0, 0); }
+            50% { transform: translate(-50%, -50%) scale(1.5) translate(-50px, -50px); }
+        }
+        /* -------------------------------------------------- */
+
         .top-section {
-            background-color: #1a1a2e;
+            background-color: rgba(26, 26, 46, 0.9); /* جعل الخلفية شبه شفافة لرؤية الحركة */
+            backdrop-filter: blur(5px); /* تمويه خفيف للهيدر */
             padding: 15px;
             position: sticky;
             top: 0;
@@ -115,6 +177,7 @@
             gap: 10px;
             padding: 15px;
             max-width: 100%;
+            flex: 1; /* لملء المساحة */
         }
         .image-card {
             border-radius: 10px;
@@ -235,6 +298,13 @@
     </style>
 </head>
 <body>
+    <!-- هذا هو كود الخلفية المتحركة -->
+    <div class="animated-bg">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
     <div class="top-section">
         <h1 class="main-title"><span id="home-title">CKS Wallpaper</span></h1>
         <div class="search-container">
@@ -261,7 +331,7 @@
     </div>
 
     <div class="footer">
-        CK5 Wallpaper powered by SFOGO.SCHNEIDER. All rights reserved © 2026
+        CK5 Wallpaper powered by SFOGO.SCHNEIDER. All rights reserved ©2026
     </div>
 
     <script>
@@ -287,7 +357,7 @@
         async function fetchAllCategories() {
             for(let i = 0; i < categories.length; i++) {
                 try {
-                    const response = await fetch(categories[i]);
+                    const response = await fetch(categories[i]); // ✅ تصحيح الخطأ هنا
                     const htmlText = await response.text();
                     const parser = new DOMParser();
                     const doc = parser.parseFromString(htmlText, 'text/html');
