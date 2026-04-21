@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CKS Wallpaper - Anime</title>
+    <style>
+        body { font-size: 16px; text-align: center; background-color: #f4f4f4; margin: 0; padding: 0; font-family: Arial, sans-serif; overflow-x: hidden; }
+        .top-section { background-color: #1a1a2e; padding: 15px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+        .main-title { text-align: center; color: #e755f7; font-family: Arial, sans-serif; font-size: 28px; text-shadow: 0 0 10px #a855f7, 0 0 20px #a855f7; margin: 0 auto 15px auto; animation: fadeUp 1s ease forwards; }
+        .main-title a { color: #e755f7; text-decoration: none; transition: text-shadow 0.3s ease; }
+        .main-title a:hover { text-shadow: 0 0 20px #fff, 0 0 30px #a855f7; }
+        .search-container { display: flex; justify-content: center; align-items: center; }
+        .search-box { display: flex; align-items: center; background-color: #ffffff; border-radius: 25px; width: 90%; max-width: 800px; overflow: hidden; animation: fadeUp 1s ease 0.3s forwards; opacity: 0; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .search-box input { flex: 1; padding: 10px 15px; font-size: 14px; border: none; outline: none; background-color: transparent; color: #333; text-align: center; }
+        .search-box button { padding: 10px 15px; font-size: 16px; border: none; background-color: transparent; color: #4a90e2; cursor: pointer; }
+        .nav-menu { display: flex; list-style: none; padding: 10px 0 5px 0; margin: 0; justify-content: flex-start; overflow-x: auto; animation: fadeUp 1s ease 0.6s forwards; opacity: 0; }
+        .nav-menu::-webkit-scrollbar { display: none; }
+        .nav-menu li { margin-right: 15px; flex-shrink: 0; }
+        .nav-menu li a, .nav-menu li span { color: white; text-decoration: none; font-size: 13px; padding: 6px 12px; border-radius: 20px; transition: all 0.3s ease; white-space: nowrap; display: inline-block; cursor: pointer; }
+        .nav-menu li a:hover, .nav-menu li span:hover { background-color: #ffffff; color: #1a1a2e; box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2); }
+        .nav-menu li span.active { background-color: #a855f7; color: white; font-weight: bold; pointer-events: none; }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .wallpapers-section { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 15px; max-width: 100%; min-height: 50vh; }
+        .image-card { border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); transition: all 0.4s ease; background-color: #000; aspect-ratio: 16 / 9; position: relative; opacity: 0; animation: fadeUpImages 0.5s ease forwards; }
+        .image-card img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .image-text { position: absolute; top: 8px; right: 8px; background-color: rgba(0, 0, 0, 0.6); color: #ffffff; padding: 4px 10px; border-radius: 20px; font-size: 10px; font-weight: bold; pointer-events: none; z-index: 10; }
+        .download-icon { position: absolute; bottom: 8px; right: 8px; background-color: rgba(168, 85, 247, 0.8); color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; z-index: 10; transition: all 0.3s ease; box-shadow: 0 2px 5px rgba(0,0,0,0.3); cursor: pointer; }
+        .download-icon:hover { background-color: #a855f7; transform: scale(1.1); }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .download-icon.loading { pointer-events: none; background-color: rgba(255, 255, 255, 0.3); }
+        .download-icon.loading::after { content: ""; width: 14px; height: 14px; border: 2px solid rgba(255,255,255,0.3); border-top-color: white; border-radius: 50%; animation: spin 0.6s linear infinite; }
+        .image-card:hover { transform: translateY(-4px); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); z-index: 10; }
+        .image-card:hover img { transform: scale(1.05); }
+        @keyframes fadeUpImages { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .footer { background-color: #1a1a2e; color: #a855f7; text-align: center; padding: 15px; font-size: 12px; font-family: 'Courier New', Courier, monospace; letter-spacing: 1px; text-transform: uppercase; text-shadow: 0 0 8px rgba(168, 85, 247, 0.6); }
+        @media (min-width: 769px) { .top-section { padding: 20px; } .main-title { font-size: 35px; margin: 0 auto 20px auto; } .search-box input { font-size: 16px; padding: 12px 15px; } .nav-menu { justify-content: center; padding: 15px 0 10px 0; } .nav-menu li { margin-right: 20px; } .nav-menu li a, .nav-menu li span { font-size: 14px; padding: 8px 16px; } .wallpapers-section { grid-template-columns: repeat(4, 1fr); gap: 15px; padding: 25px; } .image-text { top: 10px; right: 10px; font-size: 12px; padding: 5px 12px; } .download-icon { width: 35px; height: 35px; font-size: 16px; bottom: 10px; right: 10px; } .image-card:hover { transform: translateY(-6px); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3); } .image-card:hover img { transform: scale(1.1); } .footer { padding: 20px; font-size: 14px; } }
+    </style>
+</head>
+<body>
+    <div class="top-section">
+        <h1 class="main-title"><a href="index.html">CKS Wallpaper</a></h1>
+        <div class="search-container">
+            <div class="search-box">
+                <button id="search-btn">🔍</button>
+                <input type="text" id="search-input" placeholder="search anime...">
+            </div>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="game.html">Game</a></li>
+            <li><span class="active">Anime</span></li>
+            <li><a href="movie.html">Movie</a></li>
+            <li><a href="space.html">Space</a></li>
+            <li><a href="animals.html">Animals</a></li>
+        </ul>
+    </div>
+    
+    <div class="wallpapers-section">
+        <div class="image-card">
+            <div class="image-text">Demon Slayer</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://images.pexels.com/photos/2881370/pexels-photo-2881370.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Demon Slayer Anime">
+        </div>
+        <div class="image-card">
+            <div class="image-text">Attack on Titan</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://images.pexels.com/photos/3160930/pexels-photo-3160930.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Attack on Titan Wallpaper">
+        </div>
+        <div class="image-card">
+            <div class="image-text">Naruto</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://images.pexels.com/photos/2098427/pexels-photo-2098427.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Naruto Uzumaki">
+        </div>
+        <div class="image-card">
+            <div class="image-text">One Piece</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://images.pexels.com/photos/2875273/pexels-photo-2875273.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="One Piece Luffy">
+        </div>
+    </div>
+
+    <div class="footer">CK4 Wallpaper powered by SFOGO.SCHNEIDER. All rights reserved © 2026</div>
+    <script>
+        const searchInput = document.getElementById('search-input'); const searchBtn = document.getElementById('search-btn'); const imageCards = document.querySelectorAll('.image-card');
+        function performSearch() { const query = searchInput.value.trim().toLowerCase(); imageCards.forEach(card => { const imageName = card.querySelector('img').alt.toLowerCase(); card.style.display = (query === '' || imageName.includes(query)) ? 'block' : 'none'; }); }
+        searchBtn.addEventListener('click', performSearch); searchInput.addEventListener('keyup', function(event) { if (event.key === 'Enter') performSearch(); });
+        document.querySelectorAll('.download-icon').forEach(icon => { icon.addEventListener('click', async function(e) { e.preventDefault(); e.stopPropagation(); const imgElement = this.closest('.image-card').querySelector('img'); const imgSrc = imgElement.src; const imgAlt = imgElement.alt || 'CK4-Wallpaper'; this.classList.add('loading'); this.innerHTML = ''; try { const response = await fetch(imgSrc); const blob = await response.blob(); const blobUrl = window.URL.createObjectURL(blob); const tempLink = document.createElement('a'); tempLink.href = blobUrl; tempLink.download = `${imgAlt}.${blob.type.includes('png') ? 'png' : 'jpg'}`; tempLink.style.display = 'none'; document.body.appendChild(tempLink); tempLink.click(); setTimeout(() => { document.body.removeChild(tempLink); window.URL.revokeObjectURL(blobUrl); }, 200); } catch (error) { window.open(imgSrc, '_blank'); } finally { setTimeout(() => { this.classList.remove('loading'); this.innerHTML = '⬇'; }, 800); } }); });
+    </script>
+</body>
+</html>
