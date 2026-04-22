@@ -8,7 +8,6 @@
         body {
             font-size: 16px;
             text-align: center;
-            /* تغيير لون الخلفية ليكون داكن */
             background-color: #050511;
             margin: 0;
             padding: 0;
@@ -20,7 +19,6 @@
             flex-direction: column;
         }
 
-        /* --- كود الخلفية المتحركة الجديدة --- */
         .animated-bg {
             position: fixed;
             top: 0; left: 0;
@@ -70,7 +68,6 @@
             0%, 100% { transform: translate(-50%, -50%) scale(1) translate(0, 0); }
             50% { transform: translate(-50%, -50%) scale(1.5) translate(-50px, -50px); }
         }
-        /* -------------------------------------------------- */
 
         .top-section {
             background-color: rgba(26, 26, 46, 0.9);
@@ -97,6 +94,24 @@
         @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         .wallpapers-section { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 15px; max-width: 100%; flex: 1; }
         .image-card { border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); transition: all 0.4s ease; background-color: #000; aspect-ratio: 16 / 9; position: relative; opacity: 0; animation: fadeUpImages 0.5s ease forwards; }
+        .image-card:nth-child(1) { animation-delay: 0.05s; }
+        .image-card:nth-child(2) { animation-delay: 0.1s; }
+        .image-card:nth-child(3) { animation-delay: 0.15s; }
+        .image-card:nth-child(4) { animation-delay: 0.2s; }
+        .image-card:nth-child(5) { animation-delay: 0.25s; }
+        .image-card:nth-child(6) { animation-delay: 0.3s; }
+        .image-card:nth-child(7) { animation-delay: 0.35s; }
+        .image-card:nth-child(8) { animation-delay: 0.4s; }
+        .image-card:nth-child(9) { animation-delay: 0.45s; }
+        .image-card:nth-child(10) { animation-delay: 0.5s; }
+        .image-card:nth-child(11) { animation-delay: 0.55s; }
+        .image-card:nth-child(12) { animation-delay: 0.6s; }
+        .image-card:nth-child(13) { animation-delay: 0.65s; }
+        .image-card:nth-child(14) { animation-delay: 0.7s; }
+        .image-card:nth-child(15) { animation-delay: 0.75s; }
+        .image-card:nth-child(16) { animation-delay: 0.8s; }
+        .image-card:nth-child(17) { animation-delay: 0.85s; }
+        .image-card:nth-child(18) { animation-delay: 0.9s; }
         .image-card img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
         .image-text { position: absolute; top: 8px; right: 8px; background-color: rgba(0, 0, 0, 0.6); color: #ffffff; padding: 4px 10px; border-radius: 20px; font-size: 10px; font-weight: bold; pointer-events: none; z-index: 10; }
         .download-icon { position: absolute; bottom: 8px; right: 8px; background-color: rgba(168, 85, 247, 0.8); color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; z-index: 10; transition: all 0.3s ease; box-shadow: 0 2px 5px rgba(0,0,0,0.3); cursor: pointer; }
@@ -107,17 +122,31 @@
         .image-card:hover { transform: translateY(-4px); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); z-index: 10; }
         .image-card:hover img { transform: scale(1.05); }
         @keyframes fadeUpImages { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+        .toast {
+            position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(80px);
+            background: rgba(168, 85, 247, 0.95); color: #fff; padding: 12px 24px;
+            border-radius: 25px; font-size: 13px; font-weight: bold; z-index: 9999;
+            box-shadow: 0 6px 20px rgba(168, 85, 247, 0.4);
+            opacity: 0; transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+            pointer-events: none;
+        }
+        .toast.show {
+            opacity: 1; transform: translateX(-50%) translateY(0);
+        }
+
         .footer { background-color: #1a1a2e; color: #a855f7; text-align: center; padding: 15px; font-size: 12px; font-family: 'Courier New', Courier, monospace; letter-spacing: 1px; text-transform: uppercase; text-shadow: 0 0 8px rgba(168, 85, 247, 0.6); position: relative; z-index: 1; }
         @media (min-width: 769px) { .top-section { padding: 20px; } .main-title { font-size: 35px; margin: 0 auto 20px auto; } .search-box input { font-size: 16px; padding: 12px 15px; } .nav-menu { justify-content: center; padding: 15px 0 10px 0; } .nav-menu li { margin-right: 20px; } .nav-menu li a, .nav-menu li span { font-size: 14px; padding: 8px 16px; } .wallpapers-section { grid-template-columns: repeat(4, 1fr); gap: 15px; padding: 25px; } .image-text { top: 10px; right: 10px; font-size: 12px; padding: 5px 12px; } .download-icon { width: 35px; height: 35px; font-size: 16px; bottom: 10px; right: 10px; } .image-card:hover { transform: translateY(-6px); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3); } .image-card:hover img { transform: scale(1.1); } .footer { padding: 20px; font-size: 14px; } }
     </style>
 </head>
 <body>
-    <!-- كود الخلفية المتحركة -->
     <div class="animated-bg">
         <div class="blob blob-1"></div>
         <div class="blob blob-2"></div>
         <div class="blob blob-3"></div>
     </div>
+
+    <div class="toast" id="toast"></div>
 
     <div class="top-section">
         <h1 class="main-title"><a href="index.html">CKS Wallpaper</a></h1>
@@ -139,34 +168,163 @@
     
     <div class="wallpapers-section">
         <div class="image-card">
-            <div class="image-text">Red Fox</div>
+            <div class="image-text">Falcon</div>
             <div class="download-icon">⬇</div>
-            <img src="https://images.pexels.com/photos/2295744/pexels-photo-2295744.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Red Fox in Snow">
+            <img src="https://z-cdn-media.chatglm.cn/files/c648d899-3c6a-4c52-93a1-4961b61e5ff2.jpg?auth_key=1876851092-f9c27198c5bf4313be73cb68c83597f9-0-d06d1897678285011a9c7bc383885b58" alt="Falcon Close Up">
         </div>
         <div class="image-card">
-            <div class="image-text">Tiger</div>
+            <div class="image-text">Cyber Shark</div>
             <div class="download-icon">⬇</div>
-            <img src="https://images.pexels.com/photos/145939/pexels-photo-145939.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Bengal Tiger">
+            <img src="https://z-cdn-media.chatglm.cn/files/c3006955-13aa-49e5-a374-f49d38237f2e.jpg?auth_key=1876851092-e907bafac2b949dc86a00c376c0ba3e6-0-c381a52d91bf65b2efcf8fedb1895aa1" alt="Cyber Shark Digital Art">
         </div>
         <div class="image-card">
-            <div class="image-text">Wolf</div>
+            <div class="image-text">Butterfly</div>
             <div class="download-icon">⬇</div>
-            <img src="https://images.pexels.com/photos/2362306/pexels-photo-2362306.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Grey Wolf">
+            <img src="https://z-cdn-media.chatglm.cn/files/e6c16275-bb53-4962-b470-d6a11f824eda.jpg?auth_key=1876851092-fba7da10d3e4463697cb979b899d7b94-0-e8531a41a7274d959eaeac9a38218423" alt="Butterfly on Flower">
         </div>
         <div class="image-card">
-            <div class="image-text">Eagle</div>
+            <div class="image-text">Jungle Tiger</div>
             <div class="download-icon">⬇</div>
-            <img src="https://images.pexels.com/photos/162203/eagle-bird-raptor-bill-162203.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Bald Eagle">
+            <img src="https://z-cdn-media.chatglm.cn/files/2b267af9-04b3-47c7-a54d-a9391b8bb451.jpg?auth_key=1876851092-536f37f96ecb4c1db3750132063947c7-0-019a67070ab1fda3ea38b74606a7cfcd" alt="Jungle Tiger Fantasy">
+        </div>
+        <div class="image-card">
+            <div class="image-text">Snowy Owl</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/620137b5-8fd1-4981-9a98-f2d59658db49.jpg?auth_key=1876851092-61f3e69c92bd4c23aca5e2cd2938ed57-0-dec79c4f0b8ac919c4806abfd39d7f9e" alt="Snowy Owl Winter">
+        </div>
+        <div class="image-card">
+            <div class="image-text">Crystal Tiger</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/5d1bebb0-3952-43c4-9242-1426915ef658.jpg?auth_key=1876851092-a0a8c68d49bc4fab8e7b79f047cb7476-0-c74c3981f2821f8db79d89abc8fa25c6" alt="Crystal Tiger Sci-Fi">
+        </div>
+        <div class="image-card">
+            <div class="image-text">Black Cat</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/211d69e3-bbbe-4ec2-b08c-20a84bffbbf9.jpg?auth_key=1876851092-c2b24c3b964e4a7b9465ad3a4e10b2a3-0-e6de14be65b5c472739ab75bf5c866e1" alt="Black Cat Yellow Eyes">
+        </div>
+        <div class="image-card">
+            <div class="image-text">Blue Snake</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/56c17447-8349-4aa1-b34e-eb0aae21e589.jpg?auth_key=1876851092-4b8037c61f0b40f0a5ecb6fc102b326f-0-22643f2699897e3cdbb2e9ea38813ba5" alt="Blue Snake Dark">
+        </div>
+        <div class="image-card">
+            <div class="image-text">Beach Dog</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/65b43656-7d99-4d69-9a65-a936fbf4ca8f.jpg?auth_key=1876851092-d3edb187ec3344af8e27e99bb7ea6cef-0-2567e108b54e228499cf5016f29e6bce" alt="Beach Dog Sunset">
+        </div>
+        <div class="image-card">
+            <div class="image-text">White Tiger</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/9515f61c-420a-4294-9249-4b9939538c43.jpg?auth_key=1876851092-a8a8207f3ff2482e872f50c25c3cfc90-0-a2d336c61aa247ae28d1654ed923e7f3" alt="White Tiger Black White">
+        </div>
+        <div class="image-card">
+            <div class="image-text">Twin Lions</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/edcbb2bc-9966-4c26-b631-1f7a80cb056f.jpg?auth_key=1876851901-5d36dea3f1204a3d9c904c1ae0759722-0-44609df187f0bf7b36492e38288b4ac5" alt="Twin Lions Face to Face">
+        </div>
+        <div class="image-card">
+            <div class="image-text">Falcon Hunting</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/c6a570e0-b129-44a0-8896-66d9ca026676.jpg?auth_key=1876851901-a1052a23ed1f41afb8eaefacde1130ac-0-35656c791d989f3e04da918b52dfaf89" alt="Falcon Hunting Flying">
+        </div>
+        <div class="image-card">
+            <div class="image-text">Panda Cubs</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/389c36be-4544-4bf4-98bf-fa496f2145eb.jpg?auth_key=1876851901-1b213eb474fc44c1ad5a3ea4c319277f-0-42e098d48ffc0e64deb0de829474ef63" alt="Panda Cubs on Tree">
+        </div>
+        <div class="image-card">
+            <div class="image-text">Lion Family</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/f54b9538-b5b2-460a-97cb-bc27bc830e6f.jpg?auth_key=1876851901-bf2a15cb4d1e461fa2a68c056494d771-0-c136a896120fca4c04c3fa8165a56848" alt="Lion with Cubs">
+        </div>
+        <div class="image-card">
+            <div class="image-text">Mountain Panda</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/7e230602-3b6c-4868-b046-f5df8f8364b4.jpg?auth_key=1876851901-8ed9da8b9ca846afa71fadb7c4d876d9-0-e20d02e19682fcd51e3ddb3c11d3c0c3" alt="Panda on Tree Misty Mountains">
+        </div>
+        <div class="image-card">
+            <div class="image-text">Arctic Walrus</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/ec875c0f-8448-4dca-8dce-d821f6bf83ff.jpg?auth_key=1876851901-8cb99306eb264161a098936a3786f0da-0-c3bc93f4f653848da08145572c701de0" alt="Walrus Arctic Ocean">
+        </div>
+        <div class="image-card">
+            <div class="image-text">Snow Explorer</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/ab27ae94-53b2-4b85-a3ca-1d5f0ab1ba73.jpg?auth_key=1876851901-c9907052835f41f085f5b19fc16b5bbb-0-a35a4c3d369da559e940fc99fa33c493" alt="Snow Explorer Walking Alone">
+        </div>
+        <div class="image-card">
+            <div class="image-text">Cat Silhouette</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/37a4b41a-0fb5-43b4-bf0e-c7db4254c0cf.jpg?auth_key=1876851901-14484dfcc713458d95f4d910b3c6f268-0-a15ad3fa73bca6c24c78e53cda4405e8" alt="Black Cat Silhouette Art">
         </div>
     </div>
 
     <div class="footer">CK5 Wallpaper powered by SFOGO.SCHNEIDER. All rights reserved © 2026</div>
     
     <script>
-        const searchInput = document.getElementById('search-input'); const searchBtn = document.getElementById('search-btn'); const imageCards = document.querySelectorAll('.image-card');
-        function performSearch() { const query = searchInput.value.trim().toLowerCase(); imageCards.forEach(card => { const imageName = card.querySelector('img').alt.toLowerCase(); card.style.display = (query === '' || imageName.includes(query)) ? 'block' : 'none'; }); }
-        searchBtn.addEventListener('click', performSearch); searchInput.addEventListener('keyup', function(event) { if (event.key === 'Enter') performSearch(); });
-        document.querySelectorAll('.download-icon').forEach(icon => { icon.addEventListener('click', async function(e) { e.preventDefault(); e.stopPropagation(); const imgElement = this.closest('.image-card').querySelector('img'); const imgSrc = imgElement.src; const imgAlt = imgElement.alt || 'CK4-Wallpaper'; this.classList.add('loading'); this.innerHTML = ''; try { const response = await fetch(imgSrc); const blob = await response.blob(); const blobUrl = window.URL.createObjectURL(blob); const tempLink = document.createElement('a'); tempLink.href = blobUrl; tempLink.download = `${imgAlt}.${blob.type.includes('png') ? 'png' : 'jpg'}`; tempLink.style.display = 'none'; document.body.appendChild(tempLink); tempLink.click(); setTimeout(() => { document.body.removeChild(tempLink); window.URL.revokeObjectURL(blobUrl); }, 200); } catch (error) { window.open(imgSrc, '_blank'); } finally { setTimeout(() => { this.classList.remove('loading'); this.innerHTML = '⬇'; }, 800); } }); });
+        const searchInput = document.getElementById('search-input');
+        const searchBtn = document.getElementById('search-btn');
+        const imageCards = document.querySelectorAll('.image-card');
+        const toast = document.getElementById('toast');
+
+        function showToast(msg) {
+            toast.textContent = msg;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2500);
+        }
+
+        function performSearch() {
+            const query = searchInput.value.trim().toLowerCase();
+            let found = 0;
+            imageCards.forEach(card => {
+                const img = card.querySelector('img');
+                const text = card.querySelector('.image-text');
+                if (img) {
+                    const imageName = img.alt.toLowerCase();
+                    const textName = text ? text.textContent.toLowerCase() : '';
+                    const match = (query === '' || imageName.includes(query) || textName.includes(query));
+                    card.style.display = match ? 'block' : 'none';
+                    if (match) found++;
+                }
+            });
+            if (query !== '' && found === 0) {
+                showToast('No results found for "' + query + '"');
+            }
+        }
+
+        searchBtn.addEventListener('click', performSearch);
+        searchInput.addEventListener('keyup', function(event) {
+            if (event.key === 'Enter') performSearch();
+        });
+
+        document.querySelectorAll('.download-icon').forEach(icon => {
+            icon.addEventListener('click', async function(e) {
+                e.preventDefault(); e.stopPropagation(); 
+                const imgElement = this.closest('.image-card').querySelector('img');
+                const textEl = this.closest('.image-card').querySelector('.image-text');
+                const imgSrc = imgElement.src;
+                const imgAlt = textEl ? textEl.textContent.trim() : 'CKS-Wallpaper';
+                this.classList.add('loading'); this.innerHTML = ''; 
+                try {
+                    const response = await fetch(imgSrc);
+                    const blob = await response.blob();
+                    const blobUrl = window.URL.createObjectURL(blob);
+                    const tempLink = document.createElement('a');
+                    tempLink.href = blobUrl;
+                    tempLink.download = `${imgAlt}.${blob.type.includes('png') ? 'png' : 'jpg'}`;
+                    tempLink.style.display = 'none';
+                    document.body.appendChild(tempLink);
+                    tempLink.click();
+                    setTimeout(() => { document.body.removeChild(tempLink); window.URL.revokeObjectURL(blobUrl); }, 200);
+                    showToast('Downloading "' + imgAlt + '"');
+                } catch (error) {
+                    window.open(imgSrc, '_blank');
+                    showToast('Opened in new tab');
+                } finally {
+                    setTimeout(() => { this.classList.remove('loading'); this.innerHTML = '⬇'; }, 800);
+                }
+            });
+        });
     </script>
 </body>
 </html>
