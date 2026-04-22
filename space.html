@@ -8,7 +8,6 @@
         body {
             font-size: 16px;
             text-align: center;
-            /* تغيير لون الخلفية ليكون داكن */
             background-color: #050511;
             margin: 0;
             padding: 0;
@@ -20,7 +19,6 @@
             flex-direction: column;
         }
 
-        /* --- كود الخلفية المتحركة --- */
         .animated-bg {
             position: fixed;
             top: 0; left: 0;
@@ -70,7 +68,6 @@
             0%, 100% { transform: translate(-50%, -50%) scale(1) translate(0, 0); }
             50% { transform: translate(-50%, -50%) scale(1.5) translate(-50px, -50px); }
         }
-        /* -------------------------------------------------- */
 
         .top-section {
             background-color: rgba(26, 26, 46, 0.9);
@@ -118,6 +115,25 @@
         .image-card {
             border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); transition: all 0.4s ease; background-color: #000; aspect-ratio: 16 / 9; position: relative; opacity: 0; animation: fadeUpImages 0.5s ease forwards;
         }
+        .image-card:nth-child(1) { animation-delay: 0.05s; }
+        .image-card:nth-child(2) { animation-delay: 0.1s; }
+        .image-card:nth-child(3) { animation-delay: 0.15s; }
+        .image-card:nth-child(4) { animation-delay: 0.2s; }
+        .image-card:nth-child(5) { animation-delay: 0.25s; }
+        .image-card:nth-child(6) { animation-delay: 0.3s; }
+        .image-card:nth-child(7) { animation-delay: 0.35s; }
+        .image-card:nth-child(8) { animation-delay: 0.4s; }
+        .image-card:nth-child(9) { animation-delay: 0.45s; }
+        .image-card:nth-child(10) { animation-delay: 0.5s; }
+        .image-card:nth-child(11) { animation-delay: 0.55s; }
+        .image-card:nth-child(12) { animation-delay: 0.6s; }
+        .image-card:nth-child(13) { animation-delay: 0.65s; }
+        .image-card:nth-child(14) { animation-delay: 0.7s; }
+        .image-card:nth-child(15) { animation-delay: 0.75s; }
+        .image-card:nth-child(16) { animation-delay: 0.8s; }
+        .image-card:nth-child(17) { animation-delay: 0.85s; }
+        .image-card:nth-child(18) { animation-delay: 0.9s; }
+        .image-card:nth-child(19) { animation-delay: 0.95s; }
         .image-card img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
         .image-text {
             position: absolute; top: 8px; right: 8px; background-color: rgba(0, 0, 0, 0.6); color: #ffffff; padding: 4px 10px; border-radius: 20px; font-size: 10px; font-weight: bold; pointer-events: none; z-index: 10;
@@ -134,6 +150,19 @@
         .image-card:hover { transform: translateY(-4px); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); z-index: 10; }
         .image-card:hover img { transform: scale(1.05); }
         @keyframes fadeUpImages { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+        .toast {
+            position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(80px);
+            background: rgba(168, 85, 247, 0.95); color: #fff; padding: 12px 24px;
+            border-radius: 25px; font-size: 13px; font-weight: bold; z-index: 9999;
+            box-shadow: 0 6px 20px rgba(168, 85, 247, 0.4);
+            opacity: 0; transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+            pointer-events: none;
+        }
+        .toast.show {
+            opacity: 1; transform: translateX(-50%) translateY(0);
+        }
+
         .footer {
             background-color: #1a1a2e; color: #a855f7; text-align: center; padding: 15px; font-size: 12px; font-family: 'Courier New', Courier, monospace; letter-spacing: 1px; text-transform: uppercase; text-shadow: 0 0 8px rgba(168, 85, 247, 0.6); position: relative; z-index: 1;
         }
@@ -154,12 +183,13 @@
     </style>
 </head>
 <body>
-    <!-- كود الخلفية المتحركة -->
     <div class="animated-bg">
         <div class="blob blob-1"></div>
         <div class="blob blob-2"></div>
         <div class="blob blob-3"></div>
     </div>
+
+    <div class="toast" id="toast"></div>
 
     <div class="top-section">
         <h1 class="main-title"><a href="index.html">CKS Wallpaper</a></h1>
@@ -181,34 +211,168 @@
     
     <div class="wallpapers-section">
         <div class="image-card">
-            <div class="image-text">Milky Way</div>
+            <div class="image-text">Moon Lifter</div>
             <div class="download-icon">⬇</div>
-            <img src="https://images.pexels.com/photos/1257860/pexels-photo-1257860.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Milky Way Galaxy">
+            <img src="https://z-cdn-media.chatglm.cn/files/7f332cb4-7858-4933-8d71-4fd6a14b4fd4.jpg?auth_key=1876850554-fc6817bdd94a4c8485a5f49c960dc2b4-0-0ce7798a2f92234683bd4ab2b9fc7e94" alt="Moon Lifter Astronaut">
         </div>
         <div class="image-card">
-            <div class="image-text">Nebula</div>
+            <div class="image-text">Vortex Drift</div>
             <div class="download-icon">⬇</div>
-            <img src="https://images.pexels.com/photos/1257869/pexels-photo-1257869.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Colorful Nebula">
+            <img src="https://z-cdn-media.chatglm.cn/files/06b9eb07-e854-4487-8971-fa0e4029149c.jpg?auth_key=1876850554-9bfaa09067a24e54b01ef1e9faacd00f-0-03d02e984fe411d9b7068caed450210a" alt="Vortex Drift Black Hole">
         </div>
         <div class="image-card">
-            <div class="image-text">Earth from Space</div>
+            <div class="image-text">Cosmic Symphony</div>
             <div class="download-icon">⬇</div>
-            <img src="https://images.pexels.com/photos/73873/star-clusters-rosette-nebula-star-galaxies-73873.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Earth View from Space">
+            <img src="https://z-cdn-media.chatglm.cn/files/57810ab6-9265-4e51-85df-811f112a4868.jpg?auth_key=1876850554-e833d1852e874230921341925c483b2e-0-9cac1a67bcbd4149ca8f8872d2a6d0ff" alt="Cosmic Symphony Music">
         </div>
         <div class="image-card">
-            <div class="image-text">Astronaut</div>
+            <div class="image-text">Black Hole Fury</div>
             <div class="download-icon">⬇</div>
-            <img src="https://images.pexels.com/photos/2156/sky-earth-space-working.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Astronaut in Space">
+            <img src="https://z-cdn-media.chatglm.cn/files/f7208f37-5a43-40f1-823e-1660f97c7313.jpg?auth_key=1876850554-60b3a8e2ecde48258e774bcd3628f261-0-68442d1be2904705a323696edc5d9645" alt="Black Hole Fury Space">
+        </div>
+        <div class="image-card">
+            <div class="image-text">ROG Cosmos</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/db866881-092e-4c55-b17e-2fca5fec10bc.jpg?auth_key=1876850554-516026dcbf84435eb29d1f6a6c2ccd83-0-a789cdf59b568ff91c014c336bc14da5" alt="ROG Cosmos Space">
+        </div>
+        <div class="image-card">
+            <div class="image-text">Skull Warrior</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/f62919c6-d371-4f2d-8c36-a6fc1c370d05.jpg?auth_key=1876850554-8a8e6804c4264dd5b6dab1c971f9bae1-0-b8172534d905b47559af7395e86fa939" alt="Skull Warrior Armor">
+        </div>
+        <div class="image-card">
+            <div class="image-text">Blue Vortex</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/1dd0279b-4904-435b-8066-72f1a0f35237.jpg?auth_key=1876850554-6d893af6384e453e920ba9892a59a3de-0-6ec987d82de93ff028cd9c6c94a00be2" alt="Blue Vortex Cosmos">
+        </div>
+        <div class="image-card">
+            <div class="image-text">Alien Worlds</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/577a35ab-adf3-4a63-a8d3-17ec85780ab6.jpg?auth_key=1876850554-b599497768fb49e789aa09e205b07117-0-e4887f01be6e757d786bd490503e75fb" alt="Alien Worlds Planets">
+        </div>
+        <div class="image-card">
+            <div class="image-text">Blue Spiral</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/4508838b-0bda-4e8d-bde1-00f671340a0d.jpg?auth_key=1876850554-37d3d4be1c1a40d4b424343de9acc7a5-0-474303fc154313f641a6f26df20c2be6" alt="Blue Spiral Galaxy">
+        </div>
+        <div class="image-card">
+            <div class="image-text">Spiral Galaxy</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/a8b7d97c-88e4-4bc5-9175-6dd12e44980c.jpg?auth_key=1876850128-dbfed8c69ca942cf9dcd8987a3762c5e-0-2cb9f95974933806d6357f601967c977" alt="Spiral Galaxy Space">
+        </div>
+        <div class="image-card">
+            <div class="image-text">Space Walker</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/cd1208d8-0136-4077-8106-84278ec2b786.jpg?auth_key=1876850128-f16453dfa419429c8a1a30e8b77127ed-0-32b24c5a6695070c5aa3b825971ea00d" alt="Space Walker Girl">
+        </div>
+        <div class="image-card">
+            <div class="image-text">Sci-Fi Warrior</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/684e8778-b1bb-4ead-8cf8-42ccf3500b57.jpg?auth_key=1876850128-3f30e0e9d76e4c308d95f6ab07133530-0-eef92db077293d772bca2007538161c5" alt="Sci-Fi Warrior Battle">
+        </div>
+        <div class="image-card">
+            <div class="image-text">Blue Nebula Core</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/9eee4b37-8216-4478-8be1-18b17e46cd0d.jpg?auth_key=1876850128-3128e5f87445467eb79de2c456cb27d6-0-52f4e3521adff54bd1891d2172294a71" alt="Blue Nebula Core Space">
+        </div>
+        <div class="image-card">
+            <div class="image-text">Black Hole</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/27e06bf4-db4c-4d46-93af-24381e37238e.jpg?auth_key=1876850128-b4917335b25641a69b9cb8dde36319ef-0-081d4b850996fad2b54299da64271e57" alt="Black Hole Observer">
+        </div>
+        <div class="image-card">
+            <div class="image-text">Ring World</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/5e796acb-dba0-4d09-b91c-feb25b4d7002.jpg?auth_key=1876850128-536e1708825744d6b7cb6d789da85005-0-7c3aa68a368c09ccbf880ea661942534" alt="Ring World Explorer">
+        </div>
+        <div class="image-card">
+            <div class="image-text">Twin Planets</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/7cdb07dd-ca09-4427-b180-ca99ffe0adcc.jpg?auth_key=1876850128-c7e3005b0ff34d4a87510bf578432d2f-0-46d844c2a83f3a1510a25b7296f2ea36" alt="Twin Planets Space">
+        </div>
+        <div class="image-card">
+            <div class="image-text">Moon Watchers</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/c6dbb842-98dd-478a-8c29-c7bbeb37b5c5.jpg?auth_key=1876850128-12f90abee74440eb9a583ac2c77a74f1-0-86c64e86c5e2aa959f31606fd02bb180" alt="Moon Watchers Anime">
+        </div>
+        <div class="image-card">
+            <div class="image-text">Golden Archangel</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/95d0ad28-2fbf-4e5f-b59c-fb337285b824.jpg?auth_key=1876850128-57eb6f48eed548f08bceafaf580bf322-0-8d76c1f5c8c2f95afc90dd504f6c1285" alt="Golden Archangel Epic">
+        </div>
+        <div class="image-card">
+            <div class="image-text">War Zone</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/34074b69-8e85-4607-a922-3bba06ece205.jpg?auth_key=1876850128-07e1660bf50d4d1a97a0085cfcae1783-0-27cf7b5f0d090e303dc4195b261d0852" alt="War Zone Battle">
         </div>
     </div>
 
     <div class="footer">CK5 Wallpaper powered by SFOGO.SCHNEIDER. All rights reserved © 2026</div>
     
     <script>
-        const searchInput = document.getElementById('search-input'); const searchBtn = document.getElementById('search-btn'); const imageCards = document.querySelectorAll('.image-card');
-        function performSearch() { const query = searchInput.value.trim().toLowerCase(); imageCards.forEach(card => { const img = card.querySelector('img'); if(img) { const imageName = img.alt.toLowerCase(); card.style.display = (query === '' || imageName.includes(query)) ? 'block' : 'none'; } }); }
-        searchBtn.addEventListener('click', performSearch); searchInput.addEventListener('keyup', function(event) { if (event.key === 'Enter') performSearch(); });
-        document.querySelectorAll('.download-icon').forEach(icon => { icon.addEventListener('click', async function(e) { e.preventDefault(); e.stopPropagation(); const imgElement = this.closest('.image-card').querySelector('img'); const imgSrc = imgElement.src; const imgAlt = imgElement.alt || 'CK4-Wallpaper'; this.classList.add('loading'); this.innerHTML = ''; try { const response = await fetch(imgSrc); const blob = await response.blob(); const blobUrl = window.URL.createObjectURL(blob); const tempLink = document.createElement('a'); tempLink.href = blobUrl; tempLink.download = `${imgAlt}.${blob.type.includes('png') ? 'png' : 'jpg'}`; tempLink.style.display = 'none'; document.body.appendChild(tempLink); tempLink.click(); setTimeout(() => { document.body.removeChild(tempLink); window.URL.revokeObjectURL(blobUrl); }, 200); } catch (error) { window.open(imgSrc, '_blank'); } finally { setTimeout(() => { this.classList.remove('loading'); this.innerHTML = '⬇'; }, 800); } }); });
+        const searchInput = document.getElementById('search-input');
+        const searchBtn = document.getElementById('search-btn');
+        const imageCards = document.querySelectorAll('.image-card');
+        const toast = document.getElementById('toast');
+
+        function showToast(msg) {
+            toast.textContent = msg;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2500);
+        }
+
+        function performSearch() {
+            const query = searchInput.value.trim().toLowerCase();
+            let found = 0;
+            imageCards.forEach(card => {
+                const img = card.querySelector('img');
+                const text = card.querySelector('.image-text');
+                if (img) {
+                    const imageName = img.alt.toLowerCase();
+                    const textName = text ? text.textContent.toLowerCase() : '';
+                    const match = (query === '' || imageName.includes(query) || textName.includes(query));
+                    card.style.display = match ? 'block' : 'none';
+                    if (match) found++;
+                }
+            });
+            if (query !== '' && found === 0) {
+                showToast('No results found for "' + query + '"');
+            }
+        }
+
+        searchBtn.addEventListener('click', performSearch);
+        searchInput.addEventListener('keyup', function(event) {
+            if (event.key === 'Enter') performSearch();
+        });
+
+        document.querySelectorAll('.download-icon').forEach(icon => {
+            icon.addEventListener('click', async function(e) {
+                e.preventDefault(); e.stopPropagation(); 
+                const imgElement = this.closest('.image-card').querySelector('img');
+                const textEl = this.closest('.image-card').querySelector('.image-text');
+                const imgSrc = imgElement.src;
+                const imgAlt = textEl ? textEl.textContent.trim() : 'CKS-Wallpaper';
+                this.classList.add('loading'); this.innerHTML = ''; 
+                try {
+                    const response = await fetch(imgSrc);
+                    const blob = await response.blob();
+                    const blobUrl = window.URL.createObjectURL(blob);
+                    const tempLink = document.createElement('a');
+                    tempLink.href = blobUrl;
+                    tempLink.download = `${imgAlt}.${blob.type.includes('png') ? 'png' : 'jpg'}`;
+                    tempLink.style.display = 'none';
+                    document.body.appendChild(tempLink);
+                    tempLink.click();
+                    setTimeout(() => { document.body.removeChild(tempLink); window.URL.revokeObjectURL(blobUrl); }, 200);
+                    showToast('Downloading "' + imgAlt + '"');
+                } catch (error) {
+                    window.open(imgSrc, '_blank');
+                    showToast('Opened in new tab');
+                } finally {
+                    setTimeout(() => { this.classList.remove('loading'); this.innerHTML = '⬇'; }, 800);
+                }
+            });
+        });
     </script>
 </body>
 </html>
