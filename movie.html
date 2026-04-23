@@ -5,367 +5,84 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CKS Wallpaper - Movies</title>
     <style>
-        body {
-            font-size: 16px;
-            text-align: center;
-            background-color: #050511;
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            position: relative;
-            overflow-x: hidden;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .animated-bg {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100vw; height: 100vh;
-            z-index: -1;
-            overflow: hidden;
-            background: #0b0b15;
-        }
-
-        .blob {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.6;
-            animation: moveBlob 25s infinite alternate ease-in-out;
-        }
-
-        .blob-1 {
-            width: 500px; height: 500px;
-            background: radial-gradient(circle, #a855f7, #7c3aed);
-            top: -100px; left: -100px;
-            animation-duration: 20s;
-        }
-
-        .blob-2 {
-            width: 600px; height: 600px;
-            background: radial-gradient(circle, #3b82f6, #2563eb);
-            bottom: -150px; right: -100px;
-            animation: moveBlob 22s infinite alternate-reverse ease-in-out;
-            animation-delay: -5s;
-        }
-
-        .blob-3 {
-            width: 400px; height: 400px;
-            background: radial-gradient(circle, #ec4899, #db2777);
-            top: 40%; left: 60%;
-            filter: blur(100px);
-            animation: pulseBlob 18s infinite ease-in-out;
-        }
-
-        @keyframes moveBlob {
-            0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(100px, 50px) scale(1.3); }
-        }
-
-        @keyframes pulseBlob {
-            0%, 100% { transform: translate(-50%, -50%) scale(1) translate(0, 0); }
-            50% { transform: translate(-50%, -50%) scale(1.5) translate(-50px, -50px); }
-        }
-
-        .top-section {
-            background-color: rgba(26, 26, 46, 0.9);
-            backdrop-filter: blur(5px);
-            padding: 15px;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-        }
-        .main-title {
-            text-align: center; color: #e755f7; font-family: Arial, sans-serif; font-size: 28px; text-shadow: 0 0 10px #a855f7, 0 0 20px #a855f7; margin: 0 auto 15px auto; animation: fadeUp 1s ease forwards;
-        }
-        .main-title a { color: #e755f7; text-decoration: none; transition: text-shadow 0.3s ease; }
-        .main-title a:hover { text-shadow: 0 0 20px #fff, 0 0 30px #a855f7; }
+        /* نفس الأنماط */
+        body { font-size: 16px; text-align: center; background-color: #050511; margin: 0; padding: 0; font-family: Arial, sans-serif; position: relative; overflow-x: hidden; min-height: 100vh; display: flex; flex-direction: column; }
+        .animated-bg { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; overflow: hidden; background: #0b0b15; }
+        .blob { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.6; animation: moveBlob 25s infinite alternate ease-in-out; }
+        .blob-1 { width: 500px; height: 500px; background: radial-gradient(circle, #a855f7, #7c3aed); top: -100px; left: -100px; animation-duration: 20s; }
+        .blob-2 { width: 600px; height: 600px; background: radial-gradient(circle, #3b82f6, #2563eb); bottom: -150px; right: -100px; animation: moveBlob 22s infinite alternate-reverse ease-in-out; animation-delay: -5s; }
+        .blob-3 { width: 400px; height: 400px; background: radial-gradient(circle, #ec4899, #db2777); top: 40%; left: 60%; filter: blur(100px); animation: pulseBlob 18s infinite ease-in-out; }
+        @keyframes moveBlob { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(100px, 50px) scale(1.3); } }
+        @keyframes pulseBlob { 0%, 100% { transform: translate(-50%, -50%) scale(1) translate(0, 0); } 50% { transform: translate(-50%, -50%) scale(1.5) translate(-50px, -50px); } }
+        .top-section { background-color: rgba(26, 26, 46, 0.9); backdrop-filter: blur(5px); padding: 15px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+        .main-title { text-align: center; color: #e755f7; font-family: Arial, sans-serif; font-size: 28px; text-shadow: 0 0 10px #a855f7, 0 0 20px #a855f7; margin: 0 auto 15px auto; animation: fadeUp 1s ease forwards; }
+        .main-title a { color: #e755f7; text-decoration: none; transition: text-shadow 0.3s ease; } .main-title a:hover { text-shadow: 0 0 20px #fff, 0 0 30px #a855f7; }
         .search-container { display: flex; justify-content: center; align-items: center; }
-        .search-box {
-            display: flex; align-items: center; background-color: #ffffff; border-radius: 25px; width: 90%; max-width: 800px; overflow: hidden; animation: fadeUp 1s ease 0.3s forwards; opacity: 0; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-        .search-box input {
-            flex: 1; padding: 10px 15px; font-size: 14px; border: none; outline: none; background-color: transparent; color: #333; text-align: center;
-        } 
+        .search-box { display: flex; align-items: center; background-color: #ffffff; border-radius: 25px; width: 90%; max-width: 800px; overflow: hidden; animation: fadeUp 1s ease 0.3s forwards; opacity: 0; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .search-box input { flex: 1; padding: 10px 15px; font-size: 14px; border: none; outline: none; background-color: transparent; color: #333; text-align: center; }
         .search-box button { padding: 10px 15px; font-size: 16px; border: none; background-color: transparent; color: #4a90e2; cursor: pointer; }
-        .nav-menu {
-            display: flex; list-style: none; padding: 10px 0 5px 0; margin: 0; justify-content: flex-start; overflow-x: auto; animation: fadeUp 1s ease 0.6s forwards; opacity: 0;
-        }
-        .nav-menu::-webkit-scrollbar { display: none; }
-        .nav-menu li { margin-right: 15px; flex-shrink: 0; }
-        .nav-menu li a, .nav-menu li span {
-            color: white; text-decoration: none; font-size: 13px; padding: 6px 12px; border-radius: 20px; transition: all 0.3s ease; white-space: nowrap; display: inline-block; cursor: pointer;
-        }
-        .nav-menu li a:hover, .nav-menu li span:hover {
-            background-color: #ffffff; color: #1a1a2e; box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
-        }
+        .nav-menu { display: flex; list-style: none; padding: 10px 0 5px 0; margin: 0; justify-content: flex-start; overflow-x: auto; animation: fadeUp 1s ease 0.6s forwards; opacity: 0; }
+        .nav-menu::-webkit-scrollbar { display: none; } .nav-menu li { margin-right: 15px; flex-shrink: 0; }
+        .nav-menu li a, .nav-menu li span { color: white; text-decoration: none; font-size: 13px; padding: 6px 12px; border-radius: 20px; transition: all 0.3s ease; white-space: nowrap; display: inline-block; cursor: pointer; }
+        .nav-menu li a:hover, .nav-menu li span:hover { background-color: #ffffff; color: #1a1a2e; box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2); }
         .nav-menu li span.active { background-color: #a855f7; color: white; font-weight: bold; pointer-events: none; }
         @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        .wallpapers-section {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-            padding: 15px;
-            max-width: 100%;
-            flex: 1;
-        }
-        .image-card {
-            border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); transition: all 0.4s ease; background-color: #000; aspect-ratio: 16 / 9; position: relative; opacity: 0; animation: fadeUpImages 0.5s ease forwards;
-        }
-        .image-card:nth-child(1) { animation-delay: 0.05s; }
-        .image-card:nth-child(2) { animation-delay: 0.1s; }
-        .image-card:nth-child(3) { animation-delay: 0.15s; }
-        .image-card:nth-child(4) { animation-delay: 0.2s; }
-        .image-card:nth-child(5) { animation-delay: 0.25s; }
-        .image-card:nth-child(6) { animation-delay: 0.3s; }
-        .image-card:nth-child(7) { animation-delay: 0.35s; }
-        .image-card:nth-child(8) { animation-delay: 0.4s; }
-        .image-card:nth-child(9) { animation-delay: 0.45s; }
-        .image-card:nth-child(10) { animation-delay: 0.5s; }
-        .image-card:nth-child(11) { animation-delay: 0.55s; }
-        .image-card:nth-child(12) { animation-delay: 0.6s; }
-        .image-card:nth-child(13) { animation-delay: 0.65s; }
-        .image-card:nth-child(14) { animation-delay: 0.7s; }
-        .image-card:nth-child(15) { animation-delay: 0.75s; }
-        .image-card:nth-child(16) { animation-delay: 0.8s; }
-        .image-card:nth-child(17) { animation-delay: 0.85s; }
+        .wallpapers-section { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 15px; max-width: 100%; flex: 1; }
+        .image-card { border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); transition: all 0.4s ease; background-color: #000; aspect-ratio: 16 / 9; position: relative; opacity: 0; animation: fadeUpImages 0.5s ease forwards; }
+        .image-card:nth-child(1) { animation-delay: 0.05s; } .image-card:nth-child(2) { animation-delay: 0.1s; } .image-card:nth-child(3) { animation-delay: 0.15s; } .image-card:nth-child(4) { animation-delay: 0.2s; } .image-card:nth-child(5) { animation-delay: 0.25s; } .image-card:nth-child(6) { animation-delay: 0.3s; } .image-card:nth-child(7) { animation-delay: 0.35s; } .image-card:nth-child(8) { animation-delay: 0.4s; } .image-card:nth-child(9) { animation-delay: 0.45s; } .image-card:nth-child(10) { animation-delay: 0.5s; } .image-card:nth-child(11) { animation-delay: 0.55s; } .image-card:nth-child(12) { animation-delay: 0.6s; } .image-card:nth-child(13) { animation-delay: 0.65s; } .image-card:nth-child(14) { animation-delay: 0.7s; } .image-card:nth-child(15) { animation-delay: 0.75s; } .image-card:nth-child(16) { animation-delay: 0.8s; } .image-card:nth-child(17) { animation-delay: 0.85s; }
         .image-card img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
-        .image-text {
-            position: absolute; top: 8px; right: 8px; background-color: rgba(0, 0, 0, 0.6); color: #ffffff; padding: 4px 10px; border-radius: 20px; font-size: 10px; font-weight: bold; pointer-events: none; z-index: 10;
-        }
-        .download-icon {
-            position: absolute; bottom: 8px; right: 8px; background-color: rgba(168, 85, 247, 0.8); color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; z-index: 10; transition: all 0.3s ease; box-shadow: 0 2px 5px rgba(0,0,0,0.3); cursor: pointer;
-        }
+        .image-text { position: absolute; top: 8px; right: 8px; background-color: rgba(0, 0, 0, 0.6); color: #ffffff; padding: 4px 10px; border-radius: 20px; font-size: 10px; font-weight: bold; pointer-events: none; z-index: 10; }
+        .download-icon { position: absolute; bottom: 8px; right: 8px; background-color: rgba(168, 85, 247, 0.8); color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; z-index: 10; transition: all 0.3s ease; box-shadow: 0 2px 5px rgba(0,0,0,0.3); cursor: pointer; }
         .download-icon:hover { background-color: #a855f7; transform: scale(1.1); }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
         .download-icon.loading { pointer-events: none; background-color: rgba(255, 255, 255, 0.3); }
-        .download-icon.loading::after {
-            content: ""; width: 14px; height: 14px; border: 2px solid rgba(255,255,255,0.3); border-top-color: white; border-radius: 50%; animation: spin 0.6s linear infinite;
-        }
+        .download-icon.loading::after { content: ""; width: 14px; height: 14px; border: 2px solid rgba(255,255,255,0.3); border-top-color: white; border-radius: 50%; animation: spin 0.6s linear infinite; }
         .image-card:hover { transform: translateY(-4px); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); z-index: 10; }
         .image-card:hover img { transform: scale(1.05); }
         @keyframes fadeUpImages { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-
-        .toast {
-            position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(80px);
-            background: rgba(168, 85, 247, 0.95); color: #fff; padding: 12px 24px;
-            border-radius: 25px; font-size: 13px; font-weight: bold; z-index: 9999;
-            box-shadow: 0 6px 20px rgba(168, 85, 247, 0.4);
-            opacity: 0; transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-            pointer-events: none;
-        }
-        .toast.show {
-            opacity: 1; transform: translateX(-50%) translateY(0);
-        }
-
-        .footer {
-            background-color: #1a1a2e; color: #a855f7; text-align: center; padding: 15px; font-size: 12px; font-family: 'Courier New', Courier, monospace; letter-spacing: 1px; text-transform: uppercase; text-shadow: 0 0 8px rgba(168, 85, 247, 0.6); position: relative; z-index: 1;
-        }
-        @media (min-width: 769px) {
-            .top-section { padding: 20px; }
-            .main-title { font-size: 35px; margin: 0 auto 20px auto; }
-            .search-box input { font-size: 16px; padding: 12px 15px; }
-            .nav-menu { justify-content: center; padding: 15px 0 10px 0; }
-            .nav-menu li { margin-right: 20px; }
-            .nav-menu li a, .nav-menu li span { font-size: 14px; padding: 8px 16px; }
-            .wallpapers-section { grid-template-columns: repeat(3, 1fr); gap: 15px; padding: 25px; max-width: 1400px; margin: 0 auto; }
-            .image-text { top: 10px; right: 10px; font-size: 12px; padding: 5px 12px; }
-            .download-icon { width: 35px; height: 35px; font-size: 16px; bottom: 10px; right: 10px; }
-            .image-card:hover { transform: translateY(-6px); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3); }
-            .image-card:hover img { transform: scale(1.1); }
-            .footer { padding: 20px; font-size: 14px; }
-        }
-        @media (min-width: 1200px) {
-            .wallpapers-section { grid-template-columns: repeat(3, 1fr); }
-        }
+        .toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(80px); background: rgba(168, 85, 247, 0.95); color: #fff; padding: 12px 24px; border-radius: 25px; font-size: 13px; font-weight: bold; z-index: 9999; box-shadow: 0 6px 20px rgba(168, 85, 247, 0.4); opacity: 0; transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1); pointer-events: none; }
+        .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+        .footer { background-color: #1a1a2e; color: #a855f7; text-align: center; padding: 15px; font-size: 12px; font-family: 'Courier New', Courier, monospace; letter-spacing: 1px; text-transform: uppercase; text-shadow: 0 0 8px rgba(168, 85, 247, 0.6); position: relative; z-index: 1; }
+        @media (min-width: 769px) { .top-section { padding: 20px; } .main-title { font-size: 35px; margin: 0 auto 20px auto; } .search-box input { font-size: 16px; padding: 12px 15px; } .nav-menu { justify-content: center; padding: 15px 0 10px 0; } .nav-menu li { margin-right: 20px; } .nav-menu li a, .nav-menu li span { font-size: 14px; padding: 8px 16px; } .wallpapers-section { grid-template-columns: repeat(3, 1fr); gap: 15px; padding: 25px; max-width: 1400px; margin: 0 auto; } .image-text { top: 10px; right: 10px; font-size: 12px; padding: 5px 12px; } .download-icon { width: 35px; height: 35px; font-size: 16px; bottom: 10px; right: 10px; } .image-card:hover { transform: translateY(-6px); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3); } .image-card:hover img { transform: scale(1.1); } .footer { padding: 20px; font-size: 14px; } }
+        @media (min-width: 1200px) { .wallpapers-section { grid-template-columns: repeat(3, 1fr); } }
     </style>
 </head>
 <body>
-    <div class="animated-bg">
-        <div class="blob blob-1"></div>
-        <div class="blob blob-2"></div>
-        <div class="blob blob-3"></div>
-    </div>
-
+    <div class="animated-bg"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div></div>
     <div class="toast" id="toast"></div>
-
     <div class="top-section">
         <h1 class="main-title"><a href="index.html">CKS Wallpaper</a></h1>
-        <div class="search-container">
-            <div class="search-box">
-                <button id="search-btn">🔍</button>
-                <input type="text" id="search-input" placeholder="search movies...">
-            </div>
-        </div>
+        <div class="search-container"><div class="search-box"><button id="search-btn">🔍</button><input type="text" id="search-input" placeholder="search movies..."></div></div>
         <ul class="nav-menu">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="game.html">Game</a></li>
-            <li><a href="anime.html">Anime</a></li>
-            <li><span class="active">Movie</span></li>
-            <li><a href="space.html">Space</a></li>
-            <li><a href="animals.html">Animals</a></li>
-            <li><a href="nature.html">Nature</a></li>
+            <li><a href="index.html">Home</a></li><li><a href="game.html">Game</a></li><li><a href="anime.html">Anime</a></li><li><span class="active">Movie</span></li><li><a href="space.html">Space</a></li><li><a href="animals.html">Animals</a></li><li><a href="nature.html">Nature</a></li>
         </ul>
     </div>
-
     <div class="wallpapers-section">
-        <div class="image-card">
-            <div class="image-text">Skull Storm</div>
-            <div class="download-icon">⬇</div>
-            <img src="https://z-cdn-media.chatglm.cn/files/96ef606e-682e-49d8-8925-b04248cda98f.jpg?auth_key=1876849356-e193db6fe91f498b86a4a401310edd50-0-201260f1e55aa040e27b73c83d2b7364" alt="Skull Storm Movie">
-        </div>
-        <div class="image-card">
-            <div class="image-text">Shadow Blade</div>
-            <div class="download-icon">⬇</div>
-            <img src="https://z-cdn-media.chatglm.cn/files/783c4b2b-5f6c-4eeb-98aa-886129f56925.jpg?auth_key=1876849356-0503f3ea50ac4264b8da420b6e2ceab6-0-6c432d2fc1863563d6d98a100f99afb9" alt="Shadow Blade Movie">
-        </div>
-        <div class="image-card">
-            <div class="image-text">Mario & Yoshi</div>
-            <div class="download-icon">⬇</div>
-            <img src="https://z-cdn-media.chatglm.cn/files/ad385e09-7ac2-41f8-9510-20a11e68ae34.jpg?auth_key=1876849356-ca2a1d4889e5403fad36ad28f10cd0c7-0-5e2e3d18c0a4f33529564dd99f23e87a" alt="Mario & Yoshi Movie">
-        </div>
-        <div class="image-card">
-            <div class="image-text">Space Cabin</div>
-            <div class="download-icon">⬇</div>
-            <img src="https://z-cdn-media.chatglm.cn/files/7f61889a-e624-43ed-af2a-9b319330aeb8.jpg?auth_key=1876849356-d0d5abbfb523477bb5958a87af434ea1-0-c73c88bc76ef30bbaa49040ae8934c34" alt="Space Cabin Movie">
-        </div>
-        <div class="image-card">
-            <div class="image-text">Red Astronaut</div>
-            <div class="download-icon">⬇</div>
-            <img src="https://z-cdn-media.chatglm.cn/files/6d8fdedb-fdb4-449a-94b4-2e26a404e9dc.jpg?auth_key=1876849356-babe1139232344b38936078a4e9663fb-0-ce18108338105bed47f1e756618af5fc" alt="Red Astronaut Movie">
-        </div>
-        <div class="image-card">
-            <div class="image-text">Mario Power</div>
-            <div class="download-icon">⬇</div>
-            <img src="https://z-cdn-media.chatglm.cn/files/d818256b-ef05-4852-b770-32ef2173590a.jpg?auth_key=1876849356-8c980c95d6d64379be1e2fcc6b4efe2c-0-4daf9e0f0cccb91d6efd6f84a7a8bbe7" alt="Mario Power Movie">
-        </div>
-        <div class="image-card">
-            <div class="image-text">Moana</div>
-            <div class="download-icon">⬇</div>
-            <img src="https://z-cdn-media.chatglm.cn/files/0ffffb68-8408-4196-86b7-44d0abc53e6c.jpg?auth_key=1876849356-e09d54f6297546c19a238f5baefb931e-0-a72b3ed951788ca7d03f414e12d7e057" alt="Moana Movie">
-        </div>
-        <div class="image-card">
-            <div class="image-text">Mario & Friends</div>
-            <div class="download-icon">⬇</div>
-            <img src="https://z-cdn-media.chatglm.cn/files/82d04220-8f2e-4939-bda0-eb61cf20a8e6.jpg?auth_key=1876848931-e9161416ae04483d8510157aa56cbf04-0-549380d973a28af7689e9f5c6773031b" alt="Mario & Friends Movie">
-        </div>
-        <div class="image-card">
-            <div class="image-text">Space Explorer</div>
-            <div class="download-icon">⬇</div>
-            <img src="https://z-cdn-media.chatglm.cn/files/28f73b7f-a176-4bb6-80d7-63552353e662.jpg?auth_key=1876848931-09450089199b4bfcbb75847d2a7f743c-0-1e660529e1b2b7c402e3352aa5a69c0a" alt="Space Explorer Movie">
-        </div>
-        <div class="image-card">
-            <div class="image-text">NASA Astronaut</div>
-            <div class="download-icon">⬇</div>
-            <img src="https://z-cdn-media.chatglm.cn/files/654286f7-5217-41ea-a7c1-205c374afebb.jpg?auth_key=1876848931-099c8d0ea6e04326b7a013dd54f05205-0-fe9e11013d675742bcaefec6e963de4a" alt="NASA Astronaut Movie">
-        </div>
-        <div class="image-card">
-            <div class="image-text">Honeycomb Mask</div>
-            <div class="download-icon">⬇</div>
-            <img src="https://z-cdn-media.chatglm.cn/files/1896bb4c-4d89-4b95-87bc-c9eac2c86193.jpg?auth_key=1876849623-ab856b17bb1b428aaae22459d189a25d-0-7ea9eeeb6259a8ef7e5f16f71a3a5156" alt="Honeycomb Mask Movie">
-        </div>
-        <div class="image-card">
-            <div class="image-text">Space Mission</div>
-            <div class="download-icon">⬇</div>
-            <img src="https://z-cdn-media.chatglm.cn/files/6e8277e9-63be-41a9-92a7-89d8a56d1f1c.jpg?auth_key=1876848931-52335ece23ab49f489d089d6ffedd2c8-0-ad5dd9b0977d8c3917fe8565ffc07a6b" alt="Space Mission Movie">
-        </div>
-        <div class="image-card">
-            <div class="image-text">Orbital Rush</div>
-            <div class="download-icon">⬇</div>
-            <img src="https://z-cdn-media.chatglm.cn/files/41cfb4dd-4cfd-4443-9244-a7436b08a5a7.jpg?auth_key=1876848931-30caf829b2b54a5abf7c7ee15e3a37a7-0-d29ed8f54de1369c814846c050ec9f5b" alt="Orbital Rush Movie">
-        </div>
-        <div class="image-card">
-            <div class="image-text">Animal Kingdom</div>
-            <div class="download-icon">⬇</div>
-            <img src="https://z-cdn-media.chatglm.cn/files/b7704965-df19-4cb9-b5bb-91bdac00687c.jpg?auth_key=1876848931-7b02b293f1234c82932872c7e6fedab8-0-1823081b9192d1787803d71ef39b8a70" alt="Animal Kingdom Movie">
-        </div>
-        <div class="image-card">
-            <div class="image-text">F1 Racing</div>
-            <div class="download-icon">⬇</div>
-            <img src="https://z-cdn-media.chatglm.cn/files/fece8b4c-1015-4bd1-8ffd-efe7c4bcca14.jpg?auth_key=1876848931-556c67b170064d0ea80a32406af04d5c-0-89985a283ae754a01b6b9b908e1b6421" alt="F1 Racing Movie">
-        </div>
-        <div class="image-card">
-            <div class="image-text">Super Mario Bros</div>
-            <div class="download-icon">⬇</div>
-            <img src="https://z-cdn-media.chatglm.cn/files/fc8d3820-d5b4-4a1d-ac14-66e77887b1a9.jpg?auth_key=1876848931-2b706c038aae4f929b69eaf14353a7ee-0-c443fca7fc905b271d56ba53dd451b29" alt="Super Mario Bros Movie">
-        </div>
-        <div class="image-card">
-            <div class="image-text">Star Pilot</div>
-            <div class="download-icon">⬇</div>
-            <img src="https://z-cdn-media.chatglm.cn/files/c5bba873-48f6-4187-8207-faac3e3dfb01.jpg?auth_key=1876848931-8af68dfb495e4d63a215cdf1103e93e7-0-3c8eebed1175e548d5e7e11611416bf7" alt="Star Pilot Movie">
-        </div>
+        <div class="image-card" data-added="20260423"><div class="image-text">Skull Storm</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/96ef606e-682e-49d8-8925-b04248cda98f.jpg?auth_key=1876849356-e193db6fe91f498b86a4a401310edd50-0-201260f1e55aa040e27b73c83d2b7364" alt="Skull Storm Movie"></div>
+        <div class="image-card" data-added="20260422"><div class="image-text">Shadow Blade</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/783c4b2b-5f6c-4eeb-98aa-886129f56925.jpg?auth_key=1876849356-0503f3ea50ac4264b8da420b6e2ceab6-0-6c432d2fc1863563d6d98a100f99afb9" alt="Shadow Blade Movie"></div>
+        <div class="image-card" data-added="20260421"><div class="image-text">Mario & Yoshi</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/ad385e09-7ac2-41f8-9510-20a11e68ae34.jpg?auth_key=1876849356-ca2a1d4889e5403fad36ad28f10cd0c7-0-5e2e3d18c0a4f33529564dd99f23e87a" alt="Mario & Yoshi Movie"></div>
+        <div class="image-card" data-added="20260420"><div class="image-text">Space Cabin</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/7f61889a-e624-43ed-af2a-9b319330aeb8.jpg?auth_key=1876849356-d0d5abbfb523477bb5958a87af434ea1-0-c73c88bc76ef30bbaa49040ae8934c34" alt="Space Cabin Movie"></div>
+        <div class="image-card" data-added="20260419"><div class="image-text">Red Astronaut</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/6d8fdedb-fdb4-449a-94b4-2e26a404e9dc.jpg?auth_key=1876849356-babe1139232344b38936078a4e9663fb-0-ce18108338105bed47f1e756618af5fc" alt="Red Astronaut Movie"></div>
+        <div class="image-card" data-added="20260418"><div class="image-text">Mario Power</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/d818256b-ef05-4852-b770-32ef2173590a.jpg?auth_key=1876849356-8c980c95d6d64379be1e2fcc6b4efe2c-0-4daf9e0f0cccb91d6efd6f84a7a8bbe7" alt="Mario Power Movie"></div>
+        <div class="image-card" data-added="20260417"><div class="image-text">Moana</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/0ffffb68-8408-4196-86b7-44d0abc53e6c.jpg?auth_key=1876849356-e09d54f6297546c19a238f5baefb931e-0-a72b3ed951788ca7d03f414e12d7e057" alt="Moana Movie"></div>
+        <div class="image-card" data-added="20260416"><div class="image-text">Mario & Friends</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/82d04220-8f2e-4939-bda0-eb61cf20a8e6.jpg?auth_key=1876848931-e9161416ae04483d8510157aa56cbf04-0-549380d973a28af7689e9f5c6773031b" alt="Mario & Friends Movie"></div>
+        <div class="image-card" data-added="20260415"><div class="image-text">Space Explorer</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/28f73b7f-a176-4bb6-80d7-63552353e662.jpg?auth_key=1876848931-09450089199b4bfcbb75847d2a7f743c-0-1e660529e1b2b7c402e3352aa5a69c0a" alt="Space Explorer Movie"></div>
+        <div class="image-card" data-added="20260414"><div class="image-text">NASA Astronaut</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/654286f7-5217-41ea-a7c1-205c374afebb.jpg?auth_key=1876848931-099c8d0ea6e04326b7a013dd54f05205-0-fe9e11013d675742bcaefec6e963de4a" alt="NASA Astronaut Movie"></div>
+        <div class="image-card" data-added="20260413"><div class="image-text">Honeycomb Mask</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/1896bb4c-4d89-4b95-87bc-c9eac2c86193.jpg?auth_key=1876849623-ab856b17bb1b428aaae22459d189a25d-0-7ea9eeeb6259a8ef7e5f16f71a3a5156" alt="Honeycomb Mask Movie"></div>
+        <div class="image-card" data-added="20260412"><div class="image-text">Space Mission</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/6e8277e9-63be-41a9-92a7-89d8a56d1f1c.jpg?auth_key=1876848931-52335ece23ab49f489d089d6ffedd2c8-0-ad5dd9b0977d8c3917fe8565ffc07a6b" alt="Space Mission Movie"></div>
+        <div class="image-card" data-added="20260411"><div class="image-text">Orbital Rush</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/41cfb4dd-4cfd-4443-9244-a7436b08a5a7.jpg?auth_key=1876848931-30caf829b2b54a5abf7c7ee15e3a37a7-0-d29ed8f54de1369c814846c050ec9f5b" alt="Orbital Rush Movie"></div>
+        <div class="image-card" data-added="20260410"><div class="image-text">Animal Kingdom</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/b7704965-df19-4cb9-b5bb-91bdac00687c.jpg?auth_key=1876848931-7b02b293f1234c82932872c7e6fedab8-0-1823081b9192d1787803d71ef39b8a70" alt="Animal Kingdom Movie"></div>
+        <div class="image-card" data-added="20260409"><div class="image-text">F1 Racing</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/fece8b4c-1015-4bd1-8ffd-efe7c4bcca14.jpg?auth_key=1876848931-556c67b170064d0ea80a32406af04d5c-0-89985a283ae754a01b6b9b908e1b6421" alt="F1 Racing Movie"></div>
+        <div class="image-card" data-added="20260408"><div class="image-text">Super Mario Bros</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/fc8d3820-d5b4-4a1d-ac14-66e77887b1a9.jpg?auth_key=1876848931-2b706c038aae4f929b69eaf14353a7ee-0-c443fca7fc905b271d56ba53dd451b29" alt="Super Mario Bros Movie"></div>
+        <div class="image-card" data-added="20260407"><div class="image-text">Star Pilot</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/c5bba873-48f6-4187-8207-faac3e3dfb01.jpg?auth_key=1876848931-8af68dfb495e4d63a215cdf1103e93e7-0-3c8eebed1175e548d5e7e11611416bf7" alt="Star Pilot Movie"></div>
     </div>
-
     <div class="footer">CKS Wallpaper powered by SFOGO.SCHNEIDER. All rights reserved © 2026</div>
-
     <script>
-        const searchInput = document.getElementById('search-input');
-        const searchBtn = document.getElementById('search-btn');
-        const imageCards = document.querySelectorAll('.image-card');
-        const toast = document.getElementById('toast');
-
-        function showToast(msg) {
-            toast.textContent = msg;
-            toast.classList.add('show');
-            setTimeout(() => toast.classList.remove('show'), 2500);
-        }
-
-        function performSearch() {
-            const query = searchInput.value.trim().toLowerCase();
-            let found = 0;
-            imageCards.forEach(card => {
-                const img = card.querySelector('img');
-                const text = card.querySelector('.image-text');
-                if (img) {
-                    const imageName = img.alt.toLowerCase();
-                    const textName = text ? text.textContent.toLowerCase() : '';
-                    const match = (query === '' || imageName.includes(query) || textName.includes(query));
-                    card.style.display = match ? 'block' : 'none';
-                    if (match) found++;
-                }
-            });
-            if (query !== '' && found === 0) {
-                showToast('No results found for "' + query + '"');
-            }
-        }
-
-        searchBtn.addEventListener('click', performSearch);
-        searchInput.addEventListener('keyup', function(event) {
-            if (event.key === 'Enter') performSearch();
-        });
-
-        document.querySelectorAll('.download-icon').forEach(icon => {
-            icon.addEventListener('click', async function(e) {
-                e.preventDefault(); e.stopPropagation(); 
-                const imgElement = this.closest('.image-card').querySelector('img');
-                const textEl = this.closest('.image-card').querySelector('.image-text');
-                const imgSrc = imgElement.src;
-                const imgAlt = textEl ? textEl.textContent.trim() : 'CKS-Wallpaper';
-                this.classList.add('loading'); this.innerHTML = ''; 
-
-                try {
-                    const response = await fetch(imgSrc);
-                    const blob = await response.blob();
-                    const blobUrl = window.URL.createObjectURL(blob);
-                    const tempLink = document.createElement('a');
-                    tempLink.href = blobUrl;
-                    tempLink.download = `${imgAlt}.${blob.type.includes('png') ? 'png' : 'jpg'}`;
-                    tempLink.style.display = 'none';
-                    document.body.appendChild(tempLink);
-                    tempLink.click();
-                    setTimeout(() => { document.body.removeChild(tempLink); window.URL.revokeObjectURL(blobUrl); }, 200);
-                    showToast('Downloading "' + imgAlt + '"');
-                } catch (error) {
-                    window.open(imgSrc, '_blank');
-                    showToast('Opened in new tab');
-                } finally {
-                    setTimeout(() => { this.classList.remove('loading'); this.innerHTML = '⬇'; }, 800);
-                }
-            });
-        });
+        const searchInput = document.getElementById('search-input'); const searchBtn = document.getElementById('search-btn'); const imageCards = document.querySelectorAll('.image-card'); const toast = document.getElementById('toast');
+        function showToast(msg) { toast.textContent = msg; toast.classList.add('show'); setTimeout(() => toast.classList.remove('show'), 2500); }
+        function performSearch() { const query = searchInput.value.trim().toLowerCase(); let found = 0; imageCards.forEach(card => { const img = card.querySelector('img'); const text = card.querySelector('.image-text'); if (img) { const imageName = img.alt.toLowerCase(); const textName = text ? text.textContent.toLowerCase() : ''; const match = (query === '' || imageName.includes(query) || textName.includes(query)); card.style.display = match ? 'block' : 'none'; if (match) found++; } }); if (query !== '' && found === 0) { showToast('No results found for "' + query + '"'); } }
+        searchBtn.addEventListener('click', performSearch); searchInput.addEventListener('keyup', function(event) { if (event.key === 'Enter') performSearch(); });
+        document.querySelectorAll('.download-icon').forEach(icon => { icon.addEventListener('click', async function(e) { e.preventDefault(); e.stopPropagation(); const imgElement = this.closest('.image-card').querySelector('img'); const textEl = this.closest('.image-card').querySelector('.image-text'); const imgSrc = imgElement.src; const imgAlt = textEl ? textEl.textContent.trim() : 'CKS-Wallpaper'; this.classList.add('loading'); this.innerHTML = ''; try { const response = await fetch(imgSrc); const blob = await response.blob(); const blobUrl = window.URL.createObjectURL(blob); const tempLink = document.createElement('a'); tempLink.href = blobUrl; tempLink.download = `${imgAlt}.${blob.type.includes('png') ? 'png' : 'jpg'}`; tempLink.style.display = 'none'; document.body.appendChild(tempLink); tempLink.click(); setTimeout(() => { document.body.removeChild(tempLink); window.URL.revokeObjectURL(blobUrl); }, 200); showToast('Downloading "' + imgAlt + '"'); } catch (error) { window.open(imgSrc, '_blank'); showToast('Opened in new tab'); } finally { setTimeout(() => { this.classList.remove('loading'); this.innerHTML = '⬇'; }, 800); } }); });
     </script>
 </body>
 </html>

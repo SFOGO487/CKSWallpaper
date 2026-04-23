@@ -5,90 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CKS Wallpaper - Games</title>
     <style>
-        body {
-            font-size: 16px;
-            text-align: center;
-            /* تغيير لون الخلفية ليكون داكن */
-            background-color: #050511;
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            position: relative;
-            overflow-x: hidden;
-            /* لضمان تغطية الشاشة بالكامل */
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* --- كود الخلفية المتحركة (Mesh Gradient) --- */
-        .animated-bg {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100vw; height: 100vh;
-            z-index: -1;
-            overflow: hidden;
-            background: #0b0b15;
-        }
-
-        .blob {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.6;
-            animation: moveBlob 25s infinite alternate ease-in-out;
-        }
-
-        .blob-1 {
-            width: 500px; height: 500px;
-            background: radial-gradient(circle, #a855f7, #7c3aed);
-            top: -100px; left: -100px;
-            animation-duration: 20s;
-        }
-
-        .blob-2 {
-            width: 600px; height: 600px;
-            background: radial-gradient(circle, #3b82f6, #2563eb);
-            bottom: -150px; right: -100px;
-            animation: moveBlob 22s infinite alternate-reverse ease-in-out;
-            animation-delay: -5s;
-        }
-
-        .blob-3 {
-            width: 400px; height: 400px;
-            background: radial-gradient(circle, #ec4899, #db2777);
-            top: 40%; left: 60%;
-            filter: blur(100px);
-            animation: pulseBlob 18s infinite ease-in-out;
-        }
-
-        @keyframes moveBlob {
-            0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(100px, 50px) scale(1.3); }
-        }
-
-        @keyframes pulseBlob {
-            0%, 100% { transform: translate(-50%, -50%) scale(1) translate(0, 0); }
-            50% { transform: translate(-50%, -50%) scale(1.5) translate(-50px, -50px); }
-        }
-        /* -------------------------------------------------- */
-
-        .top-section {
-            /* جعل الخلفية شبه شفافة لرؤية الحركة */
-            background-color: rgba(26, 26, 46, 0.9);
-            backdrop-filter: blur(5px);
-            padding: 15px;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-        }
+        /* ... نفس الستايل بدون تغيير ... */
+        body { font-size: 16px; text-align: center; background-color: #050511; margin: 0; padding: 0; font-family: Arial, sans-serif; position: relative; overflow-x: hidden; min-height: 100vh; display: flex; flex-direction: column; }
+        .animated-bg { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; overflow: hidden; background: #0b0b15; }
+        .blob { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.6; animation: moveBlob 25s infinite alternate ease-in-out; }
+        .blob-1 { width: 500px; height: 500px; background: radial-gradient(circle, #a855f7, #7c3aed); top: -100px; left: -100px; animation-duration: 20s; }
+        .blob-2 { width: 600px; height: 600px; background: radial-gradient(circle, #3b82f6, #2563eb); bottom: -150px; right: -100px; animation: moveBlob 22s infinite alternate-reverse ease-in-out; animation-delay: -5s; }
+        .blob-3 { width: 400px; height: 400px; background: radial-gradient(circle, #ec4899, #db2777); top: 40%; left: 60%; filter: blur(100px); animation: pulseBlob 18s infinite ease-in-out; }
+        @keyframes moveBlob { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(100px, 50px) scale(1.3); } }
+        @keyframes pulseBlob { 0%, 100% { transform: translate(-50%, -50%) scale(1) translate(0, 0); } 50% { transform: translate(-50%, -50%) scale(1.5) translate(-50px, -50px); } }
+        .top-section { background-color: rgba(26, 26, 46, 0.9); backdrop-filter: blur(5px); padding: 15px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
         .main-title { text-align: center; color: #e755f7; font-family: Arial, sans-serif; font-size: 28px; text-shadow: 0 0 10px #a855f7, 0 0 20px #a855f7; margin: 0 auto 15px auto; animation: fadeUp 1s ease forwards; }
         .main-title a { color: #e755f7; text-decoration: none; transition: text-shadow 0.3s ease; }
         .main-title a:hover { text-shadow: 0 0 20px #fff, 0 0 30px #a855f7; }
         .search-container { display: flex; justify-content: center; align-items: center; }
         .search-box { display: flex; align-items: center; background-color: #ffffff; border-radius: 25px; width: 90%; max-width: 800px; overflow: hidden; animation: fadeUp 1s ease 0.3s forwards; opacity: 0; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-        .search-box input { flex: 1; padding: 10px 15px; font-size: 14px; border: none; outline: none; background-color: transparent; color: #333; text-align: center; } 
+        .search-box input { flex: 1; padding: 10px 15px; font-size: 14px; border: none; outline: none; background-color: transparent; color: #333; text-align: center; }
         .search-box button { padding: 10px 15px; font-size: 16px; border: none; background-color: transparent; color: #4a90e2; cursor: pointer; }
         .nav-menu { display: flex; list-style: none; padding: 10px 0 5px 0; margin: 0; justify-content: flex-start; overflow-x: auto; animation: fadeUp 1s ease 0.6s forwards; opacity: 0; }
         .nav-menu::-webkit-scrollbar { display: none; }
@@ -115,87 +47,27 @@
     </style>
 </head>
 <body>
-    <!-- كود الخلفية المتحركة -->
-    <div class="animated-bg">
-        <div class="blob blob-1"></div>
-        <div class="blob blob-2"></div>
-        <div class="blob blob-3"></div>
-    </div>
-
+    <div class="animated-bg"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div></div>
     <div class="top-section">
         <h1 class="main-title"><a href="index.html">CKS Wallpaper</a></h1>
-        <div class="search-container">
-            <div class="search-box">
-                <button id="search-btn">🔍</button>
-                <input type="text" id="search-input" placeholder="search games...">
-            </div>
-        </div>
+        <div class="search-container"><div class="search-box"><button id="search-btn">🔍</button><input type="text" id="search-input" placeholder="search games..."></div></div>
         <ul class="nav-menu">
-            <li><a href="index.html">Home</a></li>
-            <li><span class="active">Game</span></li>
-            <li><a href="anime.html">Anime</a></li>
-            <li><a href="movie.html">Movie</a></li>
-            <li><a href="space.html">Space</a></li>
-            <li><a href="animals.html">Animals</a></li>
-            <li><a href="nature.html">Nature</a></li>
+            <li><a href="index.html">Home</a></li><li><span class="active">Game</span></li><li><a href="anime.html">Anime</a></li><li><a href="movie.html">Movie</a></li><li><a href="space.html">Space</a></li><li><a href="animals.html">Animals</a></li><li><a href="nature.html">Nature</a></li>
         </ul>
     </div>
-
     <div class="wallpapers-section">
-        <div class="image-card">
-            <div class="image-text">Crimson Desert Landscape</div>
-            <div class="download-icon">⬇</div>
-            <img src="https://z-cdn-media.chatglm.cn/files/34ae9d82-4b88-4470-b5c9-a83cca2ae774.jpg?auth_key=1876728749-137f0d9383c74b2782ec9411eed4cbbb-0-0a32d921e09f09ce935c88e0fcd02465" alt="Crimson Desert Landscape">
-        </div>
-        <div class="image-card">
-            <div class="image-text">Crimson Desert Dragon</div>
-            <div class="download-icon">⬇</div>
-            <img src="https://z-cdn-media.chatglm.cn/files/349c45fe-f8aa-421b-aa63-9ef4341f4814.jpg?auth_key=1876728749-cd4c7198512e4826afbe52e539db0128-0-e1f6ad8c64b4b8459052634bbb8f2977" alt="Crimson Desert Flying Dragon">
-        </div>
-        <div class="image-card">
-            <div class="image-text">Crimson Desert Knight</div>
-            <div class="download-icon">⬇</div>
-            <img src="https://z-cdn-media.chatglm.cn/files/e2e478d5-89f5-4007-8298-2d85c039da48.jpg?auth_key=1876728749-a166ad7082714fca80c1fbf27560e458-0-fe967156aae09ced3fc23823741212f2" alt="Crimson Desert Knight Horse">
-        </div>
-        <div class="image-card">
-            <div class="image-text">Crimson Desert Forest</div>
-            <div class="download-icon">⬇</div>
-            <img src="https://z-cdn-media.chatglm.cn/files/8b39ac7b-cbce-4d9e-97ef-77ac8e78a09d.jpg?auth_key=1876728749-e75d649896ac4d2e8ed98e86b496d52d-0-67d00ba36b1b44b43e7d7d75228c05a4" alt="Crimson Desert Forest">
-        </div>
-        <div class="image-card">
-            <div class="image-text">Life is Strange Autumn</div>
-            <div class="download-icon">⬇</div>
-            <img src="https://z-cdn-media.chatglm.cn/files/b62f4ecd-377c-4ad4-b1dd-dd3c64385634.jpg?auth_key=1876728749-9d4e7e6824754728bb32f1965443ef0e-0-6e90571d4132dfa840cd439a33c91054" alt="Life is Strange Reunion">
-        </div>
-        <div class="image-card">
-            <div class="image-text">Life is Strange Fire</div>
-            <div class="download-icon">⬇</div>
-            <img src="https://z-cdn-media.chatglm.cn/files/d20f035b-508e-4225-8db3-bd46dd19d51a.jpg?auth_key=1876728749-5ce0c52c7059485e976a59b30a41a7ac-0-b8b3433f3da9c05bb45e8ee7f50bbf00" alt="Life is Strange Fire">
-        </div>
-        <div class="image-card">
-            <div class="image-text">Ready or Not Swat</div>
-            <div class="download-icon">⬇</div>
-            <img src="https://z-cdn-media.chatglm.cn/files/6fe4f446-7638-491d-b0e6-ac90b9629d80.jpg?auth_key=1876729314-1efa343a867945b68f3ba7baba0757a7-0-856094a24cefec85b846bbeb4208f782" alt="Ready or Not Swat">
-        </div>
-        <div class="image-card">
-            <div class="image-text">Sekiro Samurai</div>
-            <div class="download-icon">⬇</div>
-            <img src="https://z-cdn-media.chatglm.cn/files/58b8d1c3-9631-4f07-9979-225d31671dc3.jpg?auth_key=1876729314-0674af0d05c74168a0b24afc5e7e74ff-0-682df4894a2d1458378c20dd3772610f" alt="Sekiro Shadow Die Twice">
-        </div>
-        <div class="image-card">
-            <div class="image-text">Wuthering Waves Chisa</div>
-            <div class="download-icon">⬇</div>
-            <img src="https://z-cdn-media.chatglm.cn/files/81059def-82cf-4c07-9397-a93621d9f760.png?auth_key=1876632803-3bffdc2875214d9e91a9ccaf926f2e01-0-3f18763581be74f757c74689b0d9b3a7" alt="Wuthering Waves Chisa">
-        </div>
-        <div class="image-card">
-            <div class="image-text">Honkai Star Rail</div>
-            <div class="download-icon">⬇</div>
-            <img src="https://z-cdn-media.chatglm.cn/files/a3a04380-8708-46bc-a39b-7b1458e2cb26.jpg?auth_key=1876622908-6ca2e54b13ca414ebdd81b8094a92bbe-0-88a4e9b622634cf501288ec4937f6d4c" alt="Honkai Star Rail">
-        </div>
+        <div class="image-card" data-added="20260423"><div class="image-text">Crimson Desert Landscape</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/34ae9d82-4b88-4470-b5c9-a83cca2ae774.jpg?auth_key=1876728749-137f0d9383c74b2782ec9411eed4cbbb-0-0a32d921e09f09ce935c88e0fcd02465" alt="Crimson Desert Landscape"></div>
+        <div class="image-card" data-added="20260422"><div class="image-text">Crimson Desert Dragon</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/349c45fe-f8aa-421b-aa63-9ef4341f4814.jpg?auth_key=1876728749-cd4c7198512e4826afbe52e539db0128-0-e1f6ad8c64b4b8459052634bbb8f2977" alt="Crimson Desert Flying Dragon"></div>
+        <div class="image-card" data-added="20260421"><div class="image-text">Crimson Desert Knight</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/e2e478d5-89f5-4007-8298-2d85c039da48.jpg?auth_key=1876728749-a166ad7082714fca80c1fbf27560e458-0-fe967156aae09ced3fc23823741212f2" alt="Crimson Desert Knight Horse"></div>
+        <div class="image-card" data-added="20260420"><div class="image-text">Crimson Desert Forest</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/8b39ac7b-cbce-4d9e-97ef-77ac8e78a09d.jpg?auth_key=1876728749-e75d649896ac4d2e8ed98e86b496d52d-0-67d00ba36b1b44b43e7d7d75228c05a4" alt="Crimson Desert Forest"></div>
+        <div class="image-card" data-added="20260419"><div class="image-text">Life is Strange Autumn</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/b62f4ecd-377c-4ad4-b1dd-dd3c64385634.jpg?auth_key=1876728749-9d4e7e6824754728bb32f1965443ef0e-0-6e90571d4132dfa840cd439a33c91054" alt="Life is Strange Reunion"></div>
+        <div class="image-card" data-added="20260418"><div class="image-text">Life is Strange Fire</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/d20f035b-508e-4225-8db3-bd46dd19d51a.jpg?auth_key=1876728749-5ce0c52c7059485e976a59b30a41a7ac-0-b8b3433f3da9c05bb45e8ee7f50bbf00" alt="Life is Strange Fire"></div>
+        <div class="image-card" data-added="20260417"><div class="image-text">Ready or Not Swat</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/6fe4f446-7638-491d-b0e6-ac90b9629d80.jpg?auth_key=1876729314-1efa343a867945b68f3ba7baba0757a7-0-856094a24cefec85b846bbeb4208f782" alt="Ready or Not Swat"></div>
+        <div class="image-card" data-added="20260416"><div class="image-text">Sekiro Samurai</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/58b8d1c3-9631-4f07-9979-225d31671dc3.jpg?auth_key=1876729314-0674af0d05c74168a0b24afc5e7e74ff-0-682df4894a2d1458378c20dd3772610f" alt="Sekiro Shadow Die Twice"></div>
+        <div class="image-card" data-added="20260415"><div class="image-text">Wuthering Waves Chisa</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/81059def-82cf-4c07-9397-a93621d9f760.png?auth_key=1876632803-3bffdc2875214d9e91a9ccaf926f2e01-0-3f18763581be74f757c74689b0d9b3a7" alt="Wuthering Waves Chisa"></div>
+        <div class="image-card" data-added="20260414"><div class="image-text">Honkai Star Rail</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/a3a04380-8708-46bc-a39b-7b1458e2cb26.jpg?auth_key=1876622908-6ca2e54b13ca414ebdd81b8094a92bbe-0-88a4e9b622634cf501288ec4937f6d4c" alt="Honkai Star Rail"></div>
     </div>
-
     <div class="footer">CKS Wallpaper powered by SFOGO.SCHNEIDER. All rights reserved © 2026</div>
-
     <script>
         const searchInput = document.getElementById('search-input'); const searchBtn = document.getElementById('search-btn'); const imageCards = document.querySelectorAll('.image-card');
         function performSearch() { const query = searchInput.value.trim().toLowerCase(); imageCards.forEach(card => { const imageName = card.querySelector('img').alt.toLowerCase(); card.style.display = (query === '' || imageName.includes(query)) ? 'block' : 'none'; }); }
