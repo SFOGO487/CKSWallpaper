@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CKS Wallpaper - Games</title>
     <style>
-        /* ... نفس الستايل بدون تغيير ... */
         body { font-size: 16px; text-align: center; background-color: #050511; margin: 0; padding: 0; font-family: Arial, sans-serif; position: relative; overflow-x: hidden; min-height: 100vh; display: flex; flex-direction: column; }
         .animated-bg { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; overflow: hidden; background: #0b0b15; }
         .blob { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.6; animation: moveBlob 25s infinite alternate ease-in-out; }
@@ -31,7 +30,39 @@
         @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         .wallpapers-section { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 15px; max-width: 100%; flex: 1; }
         .image-card { border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); transition: all 0.4s ease; background-color: #000; aspect-ratio: 16 / 9; position: relative; opacity: 0; animation: fadeUpImages 0.5s ease forwards; }
-        .image-card:nth-child(1) { animation-delay: 0.1s; } .image-card:nth-child(2) { animation-delay: 0.2s; } .image-card:nth-child(3) { animation-delay: 0.3s; } .image-card:nth-child(4) { animation-delay: 0.4s; } .image-card:nth-child(5) { animation-delay: 0.5s; } .image-card:nth-child(6) { animation-delay: 0.6s; } .image-card:nth-child(7) { animation-delay: 0.7s; } .image-card:nth-child(8) { animation-delay: 0.8s; } .image-card:nth-child(n+9) { animation-delay: 0.9s; }
+        
+        /* Animation Delays for 30 images */
+        .image-card:nth-child(1) { animation-delay: 0.05s; }
+        .image-card:nth-child(2) { animation-delay: 0.1s; }
+        .image-card:nth-child(3) { animation-delay: 0.15s; }
+        .image-card:nth-child(4) { animation-delay: 0.2s; }
+        .image-card:nth-child(5) { animation-delay: 0.25s; }
+        .image-card:nth-child(6) { animation-delay: 0.3s; }
+        .image-card:nth-child(7) { animation-delay: 0.35s; }
+        .image-card:nth-child(8) { animation-delay: 0.4s; }
+        .image-card:nth-child(9) { animation-delay: 0.45s; }
+        .image-card:nth-child(10) { animation-delay: 0.5s; }
+        .image-card:nth-child(11) { animation-delay: 0.55s; }
+        .image-card:nth-child(12) { animation-delay: 0.6s; }
+        .image-card:nth-child(13) { animation-delay: 0.65s; }
+        .image-card:nth-child(14) { animation-delay: 0.7s; }
+        .image-card:nth-child(15) { animation-delay: 0.75s; }
+        .image-card:nth-child(16) { animation-delay: 0.8s; }
+        .image-card:nth-child(17) { animation-delay: 0.85s; }
+        .image-card:nth-child(18) { animation-delay: 0.9s; }
+        .image-card:nth-child(19) { animation-delay: 0.95s; }
+        .image-card:nth-child(20) { animation-delay: 1.0s; }
+        .image-card:nth-child(21) { animation-delay: 1.05s; }
+        .image-card:nth-child(22) { animation-delay: 1.1s; }
+        .image-card:nth-child(23) { animation-delay: 1.15s; }
+        .image-card:nth-child(24) { animation-delay: 1.2s; }
+        .image-card:nth-child(25) { animation-delay: 1.25s; }
+        .image-card:nth-child(26) { animation-delay: 1.3s; }
+        .image-card:nth-child(27) { animation-delay: 1.35s; }
+        .image-card:nth-child(28) { animation-delay: 1.4s; }
+        .image-card:nth-child(29) { animation-delay: 1.45s; }
+        .image-card:nth-child(30) { animation-delay: 1.5s; }
+
         .image-card img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
         .image-text { position: absolute; top: 8px; right: 8px; background-color: rgba(0, 0, 0, 0.6); color: #ffffff; padding: 4px 10px; border-radius: 20px; font-size: 10px; font-weight: bold; pointer-events: none; z-index: 10; }
         .download-icon { position: absolute; bottom: 8px; right: 8px; background-color: rgba(168, 85, 247, 0.8); color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; z-index: 10; transition: all 0.3s ease; box-shadow: 0 2px 5px rgba(0,0,0,0.3); cursor: pointer; }
@@ -42,12 +73,17 @@
         .image-card:hover { transform: translateY(-4px); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); z-index: 10; }
         .image-card:hover img { transform: scale(1.05); }
         @keyframes fadeUpImages { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(80px); background: rgba(168, 85, 247, 0.95); color: #fff; padding: 12px 24px; border-radius: 25px; font-size: 13px; font-weight: bold; z-index: 9999; box-shadow: 0 6px 20px rgba(168, 85, 247, 0.4); opacity: 0; transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1); pointer-events: none; }
+        .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
         .footer { background-color: #1a1a2e; color: #a855f7; text-align: center; padding: 15px; font-size: 12px; font-family: 'Courier New', Courier, monospace; letter-spacing: 1px; text-transform: uppercase; text-shadow: 0 0 8px rgba(168, 85, 247, 0.6); position: relative; z-index: 1; }
         @media (min-width: 769px) { .top-section { padding: 20px; } .main-title { font-size: 35px; margin: 0 auto 20px auto; } .search-box input { font-size: 16px; padding: 12px 15px; } .nav-menu { justify-content: center; padding: 15px 0 10px 0; } .nav-menu li { margin-right: 20px; } .nav-menu li a, .nav-menu li span { font-size: 14px; padding: 8px 16px; } .wallpapers-section { grid-template-columns: repeat(4, 1fr); gap: 15px; padding: 25px; } .image-text { top: 10px; right: 10px; font-size: 12px; padding: 5px 12px; } .download-icon { width: 35px; height: 35px; font-size: 16px; bottom: 10px; right: 10px; } .image-card:hover { transform: translateY(-6px); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3); } .image-card:hover img { transform: scale(1.1); } .footer { padding: 20px; font-size: 14px; } }
     </style>
 </head>
 <body>
     <div class="animated-bg"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div></div>
+
+    <div class="toast" id="toast"></div>
+
     <div class="top-section">
         <h1 class="main-title"><a href="index.html">CKS Wallpaper</a></h1>
         <div class="search-container"><div class="search-box"><button id="search-btn">🔍</button><input type="text" id="search-input" placeholder="search games..."></div></div>
@@ -55,7 +91,19 @@
             <li><a href="index.html">Home</a></li><li><span class="active">Game</span></li><li><a href="anime.html">Anime</a></li><li><a href="movie.html">Movie</a></li><li><a href="space.html">Space</a></li><li><a href="animals.html">Animals</a></li><li><a href="nature.html">Nature</a></li>
         </ul>
     </div>
+
     <div class="wallpapers-section">
+        <!-- Original Items (1-20) -->
+        <div class="image-card" data-added="20260424"><div class="image-text">Void Reaver Kassadin</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/a04f0122-a111-49e5-b3fd-ee03706837a5.jpg?auth_key=1877031879-c8d3b21832474857b57a69d45b8b1ceb-0-531e0d5a28ec86a2c4137eb971315b50" alt="League of Legends Kassadin Void Reaver"></div>
+        <div class="image-card" data-added="20260424"><div class="image-text">Sci-Fi Hologram Girl</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/6b6131ed-fdec-4d7b-86dc-c5c9e8f2abe5.jpg?auth_key=1877031879-d1ac2911100b4626ba7dd58a731f3705-0-72d13c6eadfc064d57badab51745e693" alt="Sci-Fi Hologram Interface Girl"></div>
+        <div class="image-card" data-added="20260424"><div class="image-text">Winter War Soldier</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/0849df16-c48b-4d4e-b392-c35df87f0a71.jpg?auth_key=1877031879-eee1a838e1624ac08209f60d67e05353-0-3a0b99b8fdbce21a2b4f910228c040a4" alt="Apocalyptic Winter War Soldier Explosions"></div>
+        <div class="image-card" data-added="20260424"><div class="image-text">Railway Wanderer</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/0546147f-fc6b-4a8e-b6a4-5f16d307bc60.jpg?auth_key=1877031879-6199c117b15d4aeca81a6c8136629831-0-a1c205c2c51c5a0e0b29f45c2786ee4e" alt="Post Apocalyptic Railway Wanderer Lightning"></div>
+        <div class="image-card" data-added="20260424"><div class="image-text">Fallout City Ruins</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/b5e6ea23-a518-45f1-82b9-75ceda764d11.jpg?auth_key=1877031879-4b7b367650334ead8eee8427f7971096-0-710df96815250aea1b453eb3b60ba119" alt="Post Apocalyptic Abandoned City Overgrown"></div>
+        <div class="image-card" data-added="20260424"><div class="image-text">Sunset Bridge Ruins</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/7df7c0ad-525d-4fea-a236-0e03feaebf8c.jpg?auth_key=1877031879-848d3e0e11434a2ca4db67061a21a320-0-bcfe8be87ed234e84e17a32b08bbbe6c" alt="Collapsed Bridge Sunset Post Apocalypse"></div>
+        <div class="image-card" data-added="20260424"><div class="image-text">Gas Mask Survivor</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/5b774b87-7b60-4069-ac8d-8d87cb7b1178.jpg?auth_key=1877031879-ab4d41b284684e8b820fab46d90be70d-0-3619e8f9d390ef66d96c707391a2c899" alt="Gas Mask Soldier Foggy Ruins Apocalypse"></div>
+        <div class="image-card" data-added="20260424"><div class="image-text">Battle Shatter Soldier</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/83ca83af-c98d-4b29-9349-01a22f440756.jpg?auth_key=1877031879-d8761a522a61487080343a067e3dc6e0-0-3a5f8a68aac1a30be741d4e7aea4ef2a" alt="Shattered Soldier War Ruins Battlefield"></div>
+        <div class="image-card" data-added="20260424"><div class="image-text">Apocalypse Squad</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/88bc53ef-9eb4-4a15-8a76-7efdfc858031.jpg?auth_key=1877031879-265b9fdabdd04c4a9cb72b97b655ab51-0-524fe474452dc3f7ecba4f6c99458747" alt="Gas Mask Squad Post Apocalyptic Tower"></div>
+        <div class="image-card" data-added="20260424"><div class="image-text">Red Blade Warrior</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/05d2eb3e-2064-4732-a669-8650e298593b.jpg?auth_key=1877031879-89318981aaec44d0830d4f0f4f0be2bb-0-155eb1f4b54eb47d018d3701208d8b83" alt="Red Black Warrior Energy Blade Battle"></div>
         <div class="image-card" data-added="20260423"><div class="image-text">Crimson Desert Landscape</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/34ae9d82-4b88-4470-b5c9-a83cca2ae774.jpg?auth_key=1876728749-137f0d9383c74b2782ec9411eed4cbbb-0-0a32d921e09f09ce935c88e0fcd02465" alt="Crimson Desert Landscape"></div>
         <div class="image-card" data-added="20260422"><div class="image-text">Crimson Desert Dragon</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/349c45fe-f8aa-421b-aa63-9ef4341f4814.jpg?auth_key=1876728749-cd4c7198512e4826afbe52e539db0128-0-e1f6ad8c64b4b8459052634bbb8f2977" alt="Crimson Desert Flying Dragon"></div>
         <div class="image-card" data-added="20260421"><div class="image-text">Crimson Desert Knight</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/e2e478d5-89f5-4007-8298-2d85c039da48.jpg?auth_key=1876728749-a166ad7082714fca80c1fbf27560e458-0-fe967156aae09ced3fc23823741212f2" alt="Crimson Desert Knight Horse"></div>
@@ -66,13 +114,86 @@
         <div class="image-card" data-added="20260416"><div class="image-text">Sekiro Samurai</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/58b8d1c3-9631-4f07-9979-225d31671dc3.jpg?auth_key=1876729314-0674af0d05c74168a0b24afc5e7e74ff-0-682df4894a2d1458378c20dd3772610f" alt="Sekiro Shadow Die Twice"></div>
         <div class="image-card" data-added="20260415"><div class="image-text">Wuthering Waves Chisa</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/81059def-82cf-4c07-9397-a93621d9f760.png?auth_key=1876632803-3bffdc2875214d9e91a9ccaf926f2e01-0-3f18763581be74f757c74689b0d9b3a7" alt="Wuthering Waves Chisa"></div>
         <div class="image-card" data-added="20260414"><div class="image-text">Honkai Star Rail</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/a3a04380-8708-46bc-a39b-7b1458e2cb26.jpg?auth_key=1876622908-6ca2e54b13ca414ebdd81b8094a92bbe-0-88a4e9b622634cf501288ec4937f6d4c" alt="Honkai Star Rail"></div>
+
+        <!-- New Images 21-30 (Date 20260424) -->
+        <div class="image-card" data-added="20260424"><div class="image-text">Forest Archer Warrior</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/10c06b47-e21d-4a4a-8d5d-06e48fdee354.jpg?auth_key=1877038836-b501bfbf99f74281932d922ec82410f2-0-f77fefcb148efa89741d3a385330a2d5" alt="Fantasy Archer with Blue Face Tattoos"></div>
+        <div class="image-card" data-added="20260424"><div class="image-text">Ancient Armored Warrior</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/4bf59190-2d06-431a-a9cd-600b78b74c4f.jpg?auth_key=1877038836-8f86754bb3dd4c0fad5518839a354459-0-b87effd3d55bc42bbe4a8ea6b0b4fa30" alt="Close up of Fantasy Warrior Armor"></div>
+        <div class="image-card" data-added="20260424"><div class="image-text">Black Knight Plains</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/62905a9a-4fef-4ee0-8355-52468cffa9c8.jpg?auth_key=1877038836-433f4a6396c44df6a5164eccd11a1f94-0-3e8d66ff1f9b9b99c1784598e3696a80" alt="Black Knight on Grassland Hill"></div>
+        <div class="image-card" data-added="20260424"><div class="image-text">Antler Helmet Knight</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/b5c49d7a-8958-42bd-885d-f6f058e9d879.jpg?auth_key=1877038836-27f60774fa6045c3ab4f273de0b360ea-0-35ac7eb7f2281e631f4eae722cdcbd2c" alt="Knight with Antler Helmet and Red Cape"></div>
+        <div class="image-card" data-added="20260424"><div class="image-text">Chain Duel Warriors</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/7a5b7d75-5b94-449c-b0c4-dbde605117c9.jpg?auth_key=1877038836-29e4abe83ea3410aa18d07357f1623a5-0-9b6ffb0023e1eb3bd326ca3dad4b44e7" alt="Silver Armor vs Spiked Warrior Duel"></div>
+        <div class="image-card" data-added="20260424"><div class="image-text">Dark Orc Warlock</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/d074e510-a94f-4c5c-b64a-601f574e8a99.jpg?auth_key=1877038836-b42f1d474e964f79bb6c51edcd5972e8-0-38356d03ba48465defcea2b09df149c8" alt="Green Skinned Orc in Black Armor Fire"></div>
+        <div class="image-card" data-added="20260424"><div class="image-text">Orc Shaman Magic</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/2e3b093e-76de-4a35-8e7b-12a040dc069a.jpg?auth_key=1877038836-4c0ab233f708465b96d3a202f59e109e-0-bf6e8b69db8faa4845cac41119a69490" alt="Green Skinned Orc Casting Blue Spell"></div>
+        <div class="image-card" data-added="20260424"><div class="image-text">Purple Demon Wing</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/b23524e4-dc71-47ba-9d1b-c853d7c7fb24.jpg?auth_key=1877038836-fcd8954c39c0496e9a5b82354f1b6443-0-73e520b222196a23c90ee5787b4e905a" alt="Purple Skinned Demon with Blue Wings"></div>
+        <div class="image-card" data-added="20260424"><div class="image-text">Fire vs Ice Battle</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/0b715909-77ea-46df-8540-1d71624166eb.jpg?auth_key=1877038836-28947f0978a3424492e7383310a719a3-0-435709f9edcaf0337ac34daafbbfa343" alt="Red Fire Warrior vs Blue Energy Fighter"></div>
+        <div class="image-card" data-added="20260424"><div class="image-text">FPS Abandoned Ruins</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/d85cbc92-9628-43a2-8963-269c66e8b70e.jpg?auth_key=1877038836-9e3c780ae10e4825996dcda78a44eca5-0-e4a514f610cff8717d9d82afe30d88a7" alt="FPS View Ruined Building Stairs"></div>
     </div>
+
     <div class="footer">CKS Wallpaper powered by SFOGO.SCHNEIDER. All rights reserved © 2026</div>
+
     <script>
-        const searchInput = document.getElementById('search-input'); const searchBtn = document.getElementById('search-btn'); const imageCards = document.querySelectorAll('.image-card');
-        function performSearch() { const query = searchInput.value.trim().toLowerCase(); imageCards.forEach(card => { const imageName = card.querySelector('img').alt.toLowerCase(); card.style.display = (query === '' || imageName.includes(query)) ? 'block' : 'none'; }); }
-        searchBtn.addEventListener('click', performSearch); searchInput.addEventListener('keyup', function(event) { if (event.key === 'Enter') performSearch(); });
-        document.querySelectorAll('.download-icon').forEach(icon => { icon.addEventListener('click', async function(e) { e.preventDefault(); e.stopPropagation(); const imgElement = this.closest('.image-card').querySelector('img'); const imgSrc = imgElement.src; const imgAlt = imgElement.alt || 'CK4-Wallpaper'; this.classList.add('loading'); this.innerHTML = ''; try { const response = await fetch(imgSrc); const blob = await response.blob(); const blobUrl = window.URL.createObjectURL(blob); const tempLink = document.createElement('a'); tempLink.href = blobUrl; tempLink.download = `${imgAlt}.${blob.type.includes('png') ? 'png' : 'jpg'}`; tempLink.style.display = 'none'; document.body.appendChild(tempLink); tempLink.click(); setTimeout(() => { document.body.removeChild(tempLink); window.URL.revokeObjectURL(blobUrl); }, 200); } catch (error) { window.open(imgSrc, '_blank'); } finally { setTimeout(() => { this.classList.remove('loading'); this.innerHTML = '⬇'; }, 800); } }); });
+        const searchInput = document.getElementById('search-input');
+        const searchBtn = document.getElementById('search-btn');
+        const imageCards = document.querySelectorAll('.image-card');
+        const toast = document.getElementById('toast');
+
+        function showToast(msg) {
+            toast.textContent = msg;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2500);
+        }
+
+        function performSearch() {
+            const query = searchInput.value.trim().toLowerCase();
+            let found = 0;
+            imageCards.forEach(card => {
+                const img = card.querySelector('img');
+                const text = card.querySelector('.image-text');
+                if (img) {
+                    const imageName = img.alt.toLowerCase();
+                    const textName = text ? text.textContent.toLowerCase() : '';
+                    const match = (query === '' || imageName.includes(query) || textName.includes(query));
+                    card.style.display = match ? 'block' : 'none';
+                    if (match) found++;
+                }
+            });
+            if (query !== '' && found === 0) {
+                showToast('No results found for "' + query + '"');
+            }
+        }
+
+        searchBtn.addEventListener('click', performSearch);
+        searchInput.addEventListener('keyup', function(event) {
+            if (event.key === 'Enter') performSearch();
+        });
+
+        document.querySelectorAll('.download-icon').forEach(icon => {
+            icon.addEventListener('click', async function(e) {
+                e.preventDefault(); e.stopPropagation();
+                const imgElement = this.closest('.image-card').querySelector('img');
+                const textEl = this.closest('.image-card').querySelector('.image-text');
+                const imgSrc = imgElement.src;
+                const imgAlt = textEl ? textEl.textContent.trim() : 'CKS-Wallpaper';
+                this.classList.add('loading'); this.innerHTML = '';
+                try {
+                    const response = await fetch(imgSrc);
+                    const blob = await response.blob();
+                    const blobUrl = window.URL.createObjectURL(blob);
+                    const tempLink = document.createElement('a');
+                    tempLink.href = blobUrl;
+                    tempLink.download = `${imgAlt}.${blob.type.includes('png') ? 'png' : 'jpg'}`;
+                    tempLink.style.display = 'none';
+                    document.body.appendChild(tempLink);
+                    tempLink.click();
+                    setTimeout(() => { document.body.removeChild(tempLink); window.URL.revokeObjectURL(blobUrl); }, 200);
+                    showToast('Downloading "' + imgAlt + '"');
+                } catch (error) {
+                    window.open(imgSrc, '_blank');
+                    showToast('Opened in new tab');
+                } finally {
+                    setTimeout(() => { this.classList.remove('loading'); this.innerHTML = '⬇'; }, 800);
+                }
+            });
+        });
     </script>
 </body>
 </html>
