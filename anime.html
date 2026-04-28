@@ -5,101 +5,795 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CKS Wallpaper - Anime</title>
     <style>
-        /* الأنماط كما هي دون تغيير */
-        body { font-size: 16px; text-align: center; background-color: #050511; margin: 0; padding: 0; font-family: Arial, sans-serif; position: relative; overflow-x: hidden; min-height: 100vh; display: flex; flex-direction: column; }
-        .animated-bg { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; overflow: hidden; background: #0b0b15; }
-        .blob { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.6; animation: moveBlob 25s infinite alternate ease-in-out; }
-        .blob-1 { width: 500px; height: 500px; background: radial-gradient(circle, #a855f7, #7c3aed); top: -100px; left: -100px; animation-duration: 20s; }
-        .blob-2 { width: 600px; height: 600px; background: radial-gradient(circle, #3b82f6, #2563eb); bottom: -150px; right: -100px; animation: moveBlob 22s infinite alternate-reverse ease-in-out; animation-delay: -5s; }
-        .blob-3 { width: 400px; height: 400px; background: radial-gradient(circle, #ec4899, #db2777); top: 40%; left: 60%; filter: blur(100px); animation: pulseBlob 18s infinite ease-in-out; }
-        @keyframes moveBlob { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(100px, 50px) scale(1.3); } }
-        @keyframes pulseBlob { 0%, 100% { transform: translate(-50%, -50%) scale(1) translate(0, 0); } 50% { transform: translate(-50%, -50%) scale(1.5) translate(-50px, -50px); } }
-        .top-section { background-color: rgba(26, 26, 46, 0.9); backdrop-filter: blur(5px); padding: 15px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
-        .main-title { text-align: center; color: #e755f7; font-family: Arial, sans-serif; font-size: 28px; text-shadow: 0 0 10px #a855f7, 0 0 20px #a855f7; margin: 0 auto 15px auto; animation: fadeUp 1s ease forwards; }
-        .main-title a { color: #e755f7; text-decoration: none; transition: text-shadow 0.3s ease; } .main-title a:hover { text-shadow: 0 0 20px #fff, 0 0 30px #a855f7; }
-        .search-container { display: flex; justify-content: center; align-items: center; }
-        .search-box { display: flex; align-items: center; background-color: #ffffff; border-radius: 25px; width: 90%; max-width: 800px; overflow: hidden; animation: fadeUp 1s ease 0.3s forwards; opacity: 0; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-        .search-box input { flex: 1; padding: 10px 15px; font-size: 14px; border: none; outline: none; background-color: transparent; color: #333; text-align: center; }
-        .search-box button { padding: 10px 15px; font-size: 16px; border: none; background-color: transparent; color: #4a90e2; cursor: pointer; }
-        .nav-menu { display: flex; list-style: none; padding: 10px 0 5px 0; margin: 0; justify-content: flex-start; overflow-x: auto; animation: fadeUp 1s ease 0.6s forwards; opacity: 0; }
-        .nav-menu::-webkit-scrollbar { display: none; } .nav-menu li { margin-right: 15px; flex-shrink: 0; }
-        .nav-menu li a, .nav-menu li span { color: white; text-decoration: none; font-size: 13px; padding: 6px 12px; border-radius: 20px; transition: all 0.3s ease; white-space: nowrap; display: inline-block; cursor: pointer; }
-        .nav-menu li a:hover, .nav-menu li span:hover { background-color: #ffffff; color: #1a1a2e; box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2); }
-        .nav-menu li span.active { background-color: #a855f7; color: white; font-weight: bold; pointer-events: none; }
-        @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        .wallpapers-section { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 15px; max-width: 100%; min-height: 50vh; flex: 1; }
-        .image-card { border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); transition: all 0.4s ease; background-color: #000; aspect-ratio: 16 / 9; position: relative; opacity: 0; animation: fadeUpImages 0.5s ease forwards; }
-        .image-card img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
-        .image-text { position: absolute; top: 8px; right: 8px; background-color: rgba(0, 0, 0, 0.6); color: #ffffff; padding: 4px 10px; border-radius: 20px; font-size: 10px; font-weight: bold; pointer-events: none; z-index: 10; }
-        .download-icon { position: absolute; bottom: 8px; right: 8px; background-color: rgba(168, 85, 247, 0.8); color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; z-index: 10; transition: all 0.3s ease; box-shadow: 0 2px 5px rgba(0,0,0,0.3); cursor: pointer; }
-        .download-icon:hover { background-color: #a855f7; transform: scale(1.1); }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        .download-icon.loading { pointer-events: none; background-color: rgba(255, 255, 255, 0.3); }
-        .download-icon.loading::after { content: ""; width: 14px; height: 14px; border: 2px solid rgba(255,255,255,0.3); border-top-color: white; border-radius: 50%; animation: spin 0.6s linear infinite; }
-        .image-card:hover { transform: translateY(-4px); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); z-index: 10; } .image-card:hover img { transform: scale(1.05); }
-        @keyframes fadeUpImages { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        .footer { background-color: #1a1a2e; color: #a855f7; text-align: center; padding: 15px; font-size: 12px; font-family: 'Courier New', Courier, monospace; letter-spacing: 1px; text-transform: uppercase; text-shadow: 0 0 8px rgba(168, 85, 247, 0.6); position: relative; z-index: 1; }
-        @media (min-width: 769px) { .top-section { padding: 20px; } .main-title { font-size: 35px; margin: 0 auto 20px auto; } .search-box input { font-size: 16px; padding: 12px 15px; } .nav-menu { justify-content: center; padding: 15px 0 10px 0; } .nav-menu li { margin-right: 20px; } .nav-menu li a, .nav-menu li span { font-size: 14px; padding: 8px 16px; } .wallpapers-section { grid-template-columns: repeat(4, 1fr); gap: 15px; padding: 25px; } .image-text { top: 10px; right: 10px; font-size: 12px; padding: 5px 12px; } .download-icon { width: 35px; height: 35px; font-size: 16px; bottom: 10px; right: 10px; } .image-card:hover { transform: translateY(-6px); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3); } .image-card:hover img { transform: scale(1.1); } .footer { padding: 20px; font-size: 14px; } }
+        body {
+            font-size: 16px;
+            text-align: center;
+            background-color: #050511;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            position: relative;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            overflow: hidden;
+            background: #0b0b15;
+        }
+
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.6;
+            animation: moveBlob 25s infinite alternate ease-in-out;
+        }
+
+        .blob-1 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, #a855f7, #7c3aed);
+            top: -100px;
+            left: -100px;
+            animation-duration: 20s;
+        }
+
+        .blob-2 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, #3b82f6, #2563eb);
+            bottom: -150px;
+            right: -100px;
+            animation: moveBlob 22s infinite alternate-reverse ease-in-out;
+            animation-delay: -5s;
+        }
+
+        .blob-3 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, #ec4899, #db2777);
+            top: 40%;
+            left: 60%;
+            filter: blur(100px);
+            animation: pulseBlob 18s infinite ease-in-out;
+        }
+
+        @keyframes moveBlob {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+            100% {
+                transform: translate(100px, 50px) scale(1.3);
+            }
+        }
+
+        @keyframes pulseBlob {
+            0%, 100% {
+                transform: translate(-50%, -50%) scale(1) translate(0, 0);
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.5) translate(-50px, -50px);
+            }
+        }
+
+        .top-section {
+            background-color: rgba(26, 26, 46, 0.9);
+            backdrop-filter: blur(5px);
+            padding: 15px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .main-title {
+            text-align: center;
+            color: #e755f7;
+            font-family: Arial, sans-serif;
+            font-size: 28px;
+            text-shadow: 0 0 10px #a855f7, 0 0 20px #a855f7;
+            margin: 0 auto 15px auto;
+            animation: fadeUp 1s ease forwards;
+        }
+
+        .main-title a {
+            color: #e755f7;
+            text-decoration: none;
+            transition: text-shadow 0.3s ease;
+        }
+
+        .main-title a:hover {
+            text-shadow: 0 0 20px #fff, 0 0 30px #a855f7;
+        }
+
+        .search-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            background-color: #ffffff;
+            border-radius: 25px;
+            width: 90%;
+            max-width: 800px;
+            overflow: hidden;
+            animation: fadeUp 1s ease 0.3s forwards;
+            opacity: 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-box input {
+            flex: 1;
+            padding: 10px 15px;
+            font-size: 14px;
+            border: none;
+            outline: none;
+            background-color: transparent;
+            color: #333;
+            text-align: center;
+        }
+
+        .search-box button {
+            padding: 10px 15px;
+            font-size: 16px;
+            border: none;
+            background-color: transparent;
+            color: #4a90e2;
+            cursor: pointer;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            padding: 10px 0 5px 0;
+            margin: 0;
+            justify-content: flex-start;
+            overflow-x: auto;
+            animation: fadeUp 1s ease 0.6s forwards;
+            opacity: 0;
+        }
+
+        .nav-menu::-webkit-scrollbar {
+            display: none;
+        }
+
+        .nav-menu li {
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .nav-menu li a, .nav-menu li span {
+            color: white;
+            text-decoration: none;
+            font-size: 13px;
+            padding: 6px 12px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .nav-menu li a:hover, .nav-menu li span:hover {
+            background-color: #ffffff;
+            color: #1a1a2e;
+            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
+        }
+
+        .nav-menu li span.active {
+            background-color: #a855f7;
+            color: white;
+            font-weight: bold;
+            pointer-events: none;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .wallpapers-section {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            padding: 15px;
+            max-width: 100%;
+            min-height: 50vh;
+            flex: 1;
+        }
+
+        .image-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            background-color: #000;
+            aspect-ratio: 16 / 9;
+            position: relative;
+            opacity: 0;
+            animation: fadeUpImages 0.5s ease forwards;
+        }
+
+        .image-card img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .image-text {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: #ffffff;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: bold;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .download-icon {
+            position: absolute;
+            bottom: 8px;
+            right: 8px;
+            background-color: rgba(168, 85, 247, 0.8);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            z-index: 10;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+        }
+
+        .download-icon:hover {
+            background-color: #a855f7;
+            transform: scale(1.1);
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .download-icon.loading {
+            pointer-events: none;
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .download-icon.loading::after {
+            content: "";
+            width: 14px;
+            height: 14px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 0.6s linear infinite;
+        }
+
+        .image-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+        }
+
+        .image-card:hover img {
+            transform: scale(1.05);
+        }
+
+        @keyframes fadeUpImages {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .footer {
+            background-color: #1a1a2e;
+            color: #a855f7;
+            text-align: center;
+            padding: 15px;
+            font-size: 12px;
+            font-family: 'Courier New', Courier, monospace;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-shadow: 0 0 8px rgba(168, 85, 247, 0.6);
+            position: relative;
+            z-index: 1;
+        }
+
+        @media (min-width: 769px) {
+            .top-section {
+                padding: 20px;
+            }
+            .main-title {
+                font-size: 35px;
+                margin: 0 auto 20px auto;
+            }
+            .search-box input {
+                font-size: 16px;
+                padding: 12px 15px;
+            }
+            .nav-menu {
+                justify-content: center;
+                padding: 15px 0 10px 0;
+            }
+            .nav-menu li {
+                margin-right: 20px;
+            }
+            .nav-menu li a, .nav-menu li span {
+                font-size: 14px;
+                padding: 8px 16px;
+            }
+            .wallpapers-section {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 15px;
+                padding: 25px;
+            }
+            .image-text {
+                top: 10px;
+                right: 10px;
+                font-size: 12px;
+                padding: 5px 12px;
+            }
+            .download-icon {
+                width: 35px;
+                height: 35px;
+                font-size: 16px;
+                bottom: 10px;
+                right: 10px;
+            }
+            .image-card:hover {
+                transform: translateY(-6px);
+                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            }
+            .image-card:hover img {
+                transform: scale(1.1);
+            }
+            .footer {
+                padding: 20px;
+                font-size: 14px;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="animated-bg"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div></div>
+    <div class="animated-bg">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
     <div class="top-section">
         <h1 class="main-title"><a href="index.html">CKS Wallpaper</a></h1>
-        <div class="search-container"><div class="search-box"><button id="search-btn">🔍</button><input type="text" id="search-input" placeholder="search anime..."></div></div>
+        <div class="search-container">
+            <div class="search-box">
+                <button id="search-btn">🔍</button>
+                <input type="text" id="search-input" placeholder="search anime...">
+            </div>
+        </div>
         <ul class="nav-menu">
-            <li><a href="index.html">Home</a></li><li><a href="game.html">Game</a></li><li><span class="active">Anime</span></li><li><a href="movie.html">Movie</a></li><li><a href="space.html">Space</a></li><li><a href="animals.html">Animals</a></li><li><a href="nature.html">Nature</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="game.html">Game</a></li>
+            <li><span class="active">Anime</span></li>
+            <li><a href="movie.html">Movie</a></li>
+            <li><a href="space.html">Space</a></li>
+            <li><a href="animals.html">Animals</a></li>
+            <li><a href="nature.html">Nature</a></li>
         </ul>
     </div>
+
     <div class="wallpapers-section">
-        <div class="image-card" data-added="20260423"><div class="image-text">Chibi Blue Hair Headphones</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/67143a50-cab7-4b9f-81b8-9f26cb709902.jpg?auth_key=1876788981-39369bdffa6d4f92a2c5f15e20e6378a-0-a127ce2e33ade0885654a4029827b6d1" alt="Chibi Blue Hair Headphones Anime"></div>
-        <div class="image-card" data-added="20260422"><div class="image-text">Cute Deer Horn Animal</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/9c271e38-6027-4c83-8162-a901e5070700.jpg?auth_key=1876788981-515bac8297fa4a34a04c723b2d7ca72d-0-a45651a81e2c48053f5d7512778af083" alt="Cute Deer Horn Animal Anime"></div>
-        <div class="image-card" data-added="20260421"><div class="image-text">Couple Ring Box Anime</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/7504e836-333c-4210-8410-e78790fa84cf.jpg?auth_key=1876788981-dd46b827356b4a91b3cbd4970bb39433-0-424048a33cc299d080fdc8d433cfd068" alt="Couple Ring Box Anime"></div>
-        <div class="image-card" data-added="20260420"><div class="image-text">Group Flower Field Back View</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/d62482c3-c407-4fcc-a537-ba59967d46a8.jpg?auth_key=1876788981-2e6b917eb13c4e57ae76980c77d1b029-0-53c2a13016e4e4ff4ca29d1a47310a31" alt="Group Flower Field Back View Anime"></div>
-        <div class="image-card" data-added="20260419"><div class="image-text">Blonde Archer Red Scarf</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/d3730fe0-49aa-42c3-bc9d-ba9adf559558.jpg?auth_key=1876788981-5ca905a1b4584de0a59c4307e7b7487e-0-0dc8c8ac8c10292a8df4bf4941b28947" alt="Blonde Archer Red Scarf Anime"></div>
-        <div class="image-card" data-added="20260418"><div class="image-text">Green White Hair Red Scarf</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/2a53fc7a-d6d2-4377-95de-4ccea687772d.jpg?auth_key=1876788981-1e3e6367aee54fd881d330d5d2ad84d1-0-9313708f1943eec477e61d0783a33086" alt="Green White Hair Red Scarf Anime"></div>
-        <div class="image-card" data-added="20260417"><div class="image-text">Black Hair Purple Liquid</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/63e9d6be-926b-4e6f-99d6-bc63d044f280.jpg?auth_key=1876788981-6d117376c6af45c49a540f0a44f07eb9-0-9d1b5baf5dba7676c06b7dbecfd10312" alt="Black Hair Purple Liquid Anime"></div>
-        <div class="image-card" data-added="20260416"><div class="image-text">Chainsaw Battle Scene</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/31721b4c-35e7-4198-8787-68fe5586acba.jpg?auth_key=1876788981-1ad735291a01452c9303cba9cf77a7fe-0-274e70c156e40a3d51b48142dcd5518f" alt="Chainsaw Battle Scene Anime"></div>
-        <div class="image-card" data-added="20260415"><div class="image-text">Orange Background Couple</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/d7a72f63-c67b-448b-b3b8-f0718f766c73.jpg?auth_key=1876788981-5016d8bfe0504fc39b59600c70c6bf9b-0-f1e3dcacfa264bba4f0107ada7bffdce" alt="Orange Background Couple Anime"></div>
-        <div class="image-card" data-added="20260414"><div class="image-text">Huge Weapon Warrior Ruins</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/52d0e1e1-acc4-49ff-9e3c-2df05e41da8a.jpg?auth_key=1876788981-92cbcd5c0f884fe6a13d2046ffb1fd50-0-6684fdcb95dc8bd67d6256e0aacf9af2" alt="Huge Weapon Warrior Ruins Anime"></div>
-        <div class="image-card" data-added="20260413"><div class="image-text">Gothic Red Hair Eyepatch</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/86545bdb-ece1-4ef1-9620-26f24d886517.jpg?auth_key=1876784149-594cbb19e2c04535a52383e97233d69b-0-081bea5d3c3a2f6edf893e14f551cd1d" alt="Gothic Red Hair Eyepatch Anime"></div>
-        <div class="image-card" data-added="20260412"><div class="image-text">Silver Hair Traditional Tattoos</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/3971a0a4-1b9f-4d74-9015-57055c528e30.jpg?auth_key=1876784149-596c158ba19940758dcd1cbe4a88ad86-0-db01bbc70fb5959cefeca21916bdf06e" alt="Silver Hair Traditional Tattoos Anime"></div>
-        <div class="image-card" data-added="20260411"><div class="image-text">Blue Hair Rose Cigarette</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/336a8bcd-a282-46f7-a71d-94d17febd954.jpg?auth_key=1876784149-77607025947b455a8ee8bcce1180f500-0-076804876ddb611c067c858e45580fbc" alt="Blue Hair Rose Cigarette Anime"></div>
-        <div class="image-card" data-added="20260410"><div class="image-text">Neon Cat Girl Wings</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/c838c92f-69e3-4ecd-8504-c0c0556ec93e.jpg?auth_key=1876784149-d66d24f00b7746c9b5713260a4ad5c3a-0-32d71acd991ff65370a8c4cb329a90df" alt="Neon Cat Girl Crystal Wings Anime"></div>
-        <div class="image-card" data-added="20260409"><div class="image-text">Black White Hair Katana</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/6e4e28f0-c788-43bc-a38d-c3512b471e0b.jpg?auth_key=1876784149-32100882a0af47d5a8469bd16e5402e3-0-d903be7092ed9ca2d878594f434c502f" alt="Black White Hair Katana Anime"></div>
-        <div class="image-card" data-added="20260408"><div class="image-text">Gothic Witch Hat</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/117ed9ae-c08b-4fc7-ba92-63fa4fea4365.jpg?auth_key=1876784149-7cb51fcd9ff342b0901ebf1572698fc7-0-1f5bf2a28281473dd653b4415230d5a7" alt="Gothic Witch Hat Anime"></div>
-        <div class="image-card" data-added="20260407"><div class="image-text">Girl Graffiti Wall</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/179e0770-b9ed-4479-afb9-ce19162f49ca.jpg?auth_key=1876784149-1e4e2dee95e14e5fae7bc36b64ea2038-0-c535b6664e58dbd01d04c3ad9854a232" alt="Anime Girl Graffiti Wall"></div>
-        <div class="image-card" data-added="20260406"><div class="image-text">Black Hair Mechanical Eyes</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/21084d8f-ea70-42c3-aef1-9c4c6aa9aaa5.jpg?auth_key=1876784149-be5e3883866e41dd96b2c93c79d89e8f-0-a02fa94fba524f54f15dc2e7f98e25ee" alt="Black Hair Mechanical Eyes Anime"></div>
-        <div class="image-card" data-added="20260405"><div class="image-text">Traditional Headphones</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/ae24be8c-ce23-44f8-bcb2-16543903675c.jpg?auth_key=1876784149-c111f7e1596a46c1a512327cbd4e7f96-0-de5c45d99e5873d58489f15a962b91b4" alt="Traditional Headphones Girl Anime"></div>
-        <div class="image-card" data-added="20260404"><div class="image-text">Demon Horns Green Wings</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/c3b3f7ba-2971-4ad0-a1a3-0b695b06273c.jpg?auth_key=1876784149-51bba6a570134f85b351f57592ecabd0-0-f75e9ccbbd7e470afad793a6a60d2b14" alt="Demon Horns Green Wings Anime"></div>
-        <div class="image-card" data-added="20260403"><div class="image-text">White Hair Katana Horns</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/46f0d75c-b7ee-4025-bb14-9d649ae3146f.jpg?auth_key=1876785010-3686e90259f2495fbca61498a52f37f7-0-3fcb91d817b813537de4d25cb1d5c9c2" alt="White Hair Katana Horns Anime"></div>
-        <div class="image-card" data-added="20260402"><div class="image-text">Dark Red Ribbons Girl</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/5fca7feb-595b-4071-87b7-7d1bb28979a9.jpg?auth_key=1876785010-5df348405ef04d158eaa2d4c2afa7ef1-0-f705709c2a5c55e636cfe74d22c733b6" alt="Dark Red Ribbons Girl Anime"></div>
-        <div class="image-card" data-added="20260401"><div class="image-text">White Cat Ears Samurai</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/d1400bc2-c6fe-4b96-9058-ca5f7ea8c8b2.jpg?auth_key=1876785010-a5d0cd2acff4468bb0e117d1426e0fff-0-13f039f6279be459951737c0bbb3950c" alt="White Cat Ears Samurai Anime"></div>
-        <div class="image-card" data-added="20260331"><div class="image-text">Pink Wings Glasses Girl</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/80e87439-6218-4690-9228-0cc0dadbca6f.jpg?auth_key=1876785010-9dec17c33a70454ab4ec6b0f82ec38c3-0-c5472244605ec7bca65ee31d52362003" alt="Pink Wings Glasses Girl Anime"></div>
-        <div class="image-card" data-added="20260330"><div class="image-text">Mechanical Wings School Girl</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/04f3f8dd-c913-4773-be92-ec7d7176c78f.jpg?auth_key=1876785010-354f867333b44c0f8423ca2316a748a2-0-4d75128d432b7fc37c8a35a728a772e3" alt="Mechanical Wings School Girl Anime"></div>
-        <div class="image-card" data-added="20260329"><div class="image-text">Green Hair Cyborg</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/d5dab6c7-a0ae-4a35-bf90-739b6f8d0c10.jpg?auth_key=1876785010-b48d71152ee644a7b665f0d110399db1-0-df7d5a482341fb55b93ba58bb7dde40a" alt="Green Hair Cyborg Anime"></div>
-        <div class="image-card" data-added="20260328"><div class="image-text">Hatsune Miku City Night</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/a980af92-b2c7-4a58-a88d-bd542afc7a9d.jpg?auth_key=1876785010-8263f28588d4409fa40c360386da0bc1-0-f4d87c24317ed4ba550aec000898f717" alt="Hatsune Miku City Night Anime"></div>
-        <div class="image-card" data-added="20260327"><div class="image-text">Demon Mask Smiley</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/2bc34797-758d-43f4-b3be-697be315f141.jpg?auth_key=1876785010-d4e0d370bcaf4261a1b6a55ad9478a65-0-57128af70e4e96182a522d076c754d05" alt="Demon Mask Smiley Anime"></div>
-        <div class="image-card" data-added="20260326"><div class="image-text">Gold Mechanical Wings</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/db3ec6ba-5509-4052-9297-d570f3c97545.jpg?auth_key=1876785010-8ebce81ab8db4d1fbf147eea22d7fb20-0-1123126dc980eb3ab085b45683c9e54f" alt="Gold Mechanical Wings Anime"></div>
-        <div class="image-card" data-added="20260325"><div class="image-text">Green Hair Tattoo Weapon</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/2d334cfd-ab1c-46af-a8ea-46da5502f1ed.jpg?auth_key=1876785010-89cab0af96a04226979b34b109aaadea-0-28ca482523ce2b69bb6762b1a0ab405e" alt="Green Hair Tattoo Weapon Anime"></div>
-        <div class="image-card" data-added="20260324"><div class="image-text">Cute Cartoon Animal</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/d4318016-cef3-4a19-a336-1805fa5373c6.jpg?auth_key=1876787774-29bd0e30c2704fe9a3af33113128425e-0-7ef465680160d6ad55e10e20517ee3f4" alt="Cute Cartoon Animal Anime"></div>
-        <div class="image-card" data-added="20260323"><div class="image-text">Cute Skull Top Hat</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/f21593b6-bd4a-4dd8-bc19-dfd1ce1ffc23.jpg?auth_key=1876787774-e1a5080af01b4de0ad0d860dc9aa52be-0-2992ecad9320c1eec46e7fe35a2e69f0" alt="Cute Skull Top Hat Anime"></div>
-        <div class="image-card" data-added="20260322"><div class="image-text">Pink Hair Cartoon Girl</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/274c630a-cc01-48ec-900e-1d45f94cb971.jpg?auth_key=1876787774-255d1cf6f2f74a179c93b2e152b6c750-0-4ad037624064f9c5cad08056280f2d9d" alt="Pink Hair Cartoon Girl"></div>
-        <div class="image-card" data-added="20260321"><div class="image-text">Blue Hair Glasses Group</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/1255e712-73f5-43bc-8f7b-82f9a292efec.jpg?auth_key=1876787774-1567fd251368492e80bff28b1c529531-0-a7c00f4fef9604898964f444f1b65a5e" alt="Blue Hair Glasses Group Anime"></div>
-        <div class="image-card" data-added="20260320"><div class="image-text">Poison Anime Art</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/a4a440b3-e17b-4e47-b97a-9784b6f5ffd2.jpg?auth_key=1876787774-6d523b9589fd42d2a56c2a2f17086237-0-f44f093fb08da2a03e2a8cc10c74b757" alt="Poison Anime Art"></div>
-        <div class="image-card" data-added="20260319"><div class="image-text">White Green Hair Cracked</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/55872307-962f-4805-ac36-936723c00e75.jpg?auth_key=1876787774-b9b235f62b9642b0a5351cd621b49dd7-0-eb3401dad7834553493fbf083bfefdd8" alt="White Green Hair Cracked Anime"></div>
-        <div class="image-card" data-added="20260318"><div class="image-text">Red White Hair Sunset</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/ad22e097-9d58-4e87-9e5e-e64b44694b37.jpg?auth_key=1876787774-9f754335f99044a6975cda835b146de7-0-c63fc96e53503da0fc397782261ce2b0" alt="Red White Hair Sunset Anime"></div>
-        <div class="image-card" data-added="20260317"><div class="image-text">Red Horns Fire</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/38c08feb-5734-44dd-82d1-20c1e3acf203.jpg?auth_key=1876787774-6665898200ef45dd81af75ae273f7a55-0-56445ee6b91ada758f28dfcbe16a98d2" alt="Red Horns Fire Anime"></div>
-        <div class="image-card" data-added="20260316"><div class="image-text">Purple Bandaged Weapon</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/b4c16770-6326-4a1e-bfc4-f4038f4e3d73.jpg?auth_key=1876787774-358daa8ccef84181b11cf19d91f24cf2-0-b8fe627b3b681fc37b986268070005f3" alt="Purple Bandaged Weapon Anime"></div>
-        <div class="image-card" data-added="20260315"><div class="image-text">Red Hair Shirtless</div><div class="download-icon">⬇</div><img src="https://z-cdn-media.chatglm.cn/files/b0dab6bf-4312-4ae9-84aa-f3167c3178af.jpg?auth_key=1876787774-c602c19173e9490ba2edd8d615f83be7-0-b148bdb4a29c724502c8931a5eb6c354" alt="Red Hair Shirtless Anime"></div>
+        <div class="image-card" data-added="20260428">
+            <div class="image-text">Black Hair Horns Wings Desert Planet</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/ff6956c7-b382-4018-ab3b-458f5ed7e130.jpg?auth_key=1877396138-023ac1ebfe6e456f92a145a5f80cdf27-0-9354ba3372d3b71d39faa0d5a5981ed8" alt="Black Hair Horns Wings Desert Planet Anime">
+        </div>
+        <div class="image-card" data-added="20260428">
+            <div class="image-text">Moon Surface Earth Starry Sky</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/8f7fc13d-e56c-4943-8864-54e05fda539a.jpg?auth_key=1877396138-1641910ed83e43a8a001577fef356bd1-0-e6acf4ce714f8f0e562dbe3f506f2a37" alt="Moon Surface Earth Starry Sky Anime">
+        </div>
+        <div class="image-card" data-added="20260428">
+            <div class="image-text">Calico Cat Garden Flowers</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/5a639fd4-5ff2-4081-a35c-543cf0896063.jpg?auth_key=1877396138-2d49bf42000f4db5ada68b1e6e0658c5-0-3efb044910516269d010d8a45ebb19ee" alt="Calico Cat Garden Flowers Anime">
+        </div>
+        <div class="image-card" data-added="20260428">
+            <div class="image-text">Goku Super Saiyan Gold Energy</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/25430331-608a-44a7-8704-c49fc9f7578e.jpg?auth_key=1877396138-7dabec74fc0344d3a7dfb0ec3fc13974-0-bfd02b10a3b464e7a3752fe346ba826d" alt="Goku Super Saiyan Gold Energy Anime">
+        </div>
+        <div class="image-card" data-added="20260428">
+            <div class="image-text">Goku Super Saiyan Blue Form</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/e4fce6ac-a0e0-404b-8873-f035b6896831.jpg?auth_key=1877396138-fb304452535c430abae3f7b4998e998e-0-cddc5dd5af577b501156fd2e70b8b0d6" alt="Goku Super Saiyan Blue Form Anime">
+        </div>
+        <div class="image-card" data-added="20260428">
+            <div class="image-text">Blue Hair Muscular Energy Battle</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/a5792fa3-edf0-47e0-95df-81ea05ec012a.jpg?auth_key=1877396138-d6532d914932419bbbe9d96c33594b31-0-0124739d1a91280aba2f83f9d37a85c3" alt="Blue Hair Muscular Energy Battle Anime">
+        </div>
+        <div class="image-card" data-added="20260428">
+            <div class="image-text">White Hair Demon Horns Blue Wings</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/0e8f44d0-66e3-4e35-a244-123857800a0e.jpg?auth_key=1877396138-74217c5bb2a84efd86670c00d71a9eaa-0-22d85b307c4d62a895666a98db4c0819" alt="White Hair Demon Horns Blue Wings Anime">
+        </div>
+        <div class="image-card" data-added="20260428">
+            <div class="image-text">Blue Eyes Black Hair Red Fan</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/e63b9bc1-cccb-4719-a637-ff8566fad7a0.jpg?auth_key=1877396138-2ae34cfc7d4c4f0684d022d727244555-0-a48a5d4d19c7e0dc2bb74bfd6dfdbfbc" alt="Blue Eyes Black Hair Red Fan Anime">
+        </div>
+        <div class="image-card" data-added="20260428">
+            <div class="image-text">Black Hair Girl Black Cat Flowers</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/31940482-400e-4b56-8081-aead961375a5.jpg?auth_key=1877396138-81d9e5d5939f47babd9b5913852d3472-0-2751a110ef36132c10b9fde6fd221313" alt="Black Hair Girl Black Cat Flowers Anime">
+        </div>
+        <div class="image-card" data-added="20260428">
+            <div class="image-text">Goku Silver Hair Blue Lightning</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/5987224d-77c0-47c8-8cad-6ed8f9d83dbf.jpg?auth_key=1877396138-80d7d36917bf4a399d16bdbca173b8e3-0-de5517c05434a8f4413866d4d260aafd" alt="Goku Silver Hair Blue Lightning Anime">
+        </div>
+        <div class="image-card" data-added="20260428">
+            <div class="image-text">Red Mechanical Horns Energy Burst</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/e1632c71-8b0c-4d61-a7af-3fec4a68ac41.jpg?auth_key=1877393026-be964c1151fe4daf8983fd45235d36df-0-41353c7aa92f884b6934dddc90d4b4ef" alt="Red Mechanical Horns Energy Burst Anime">
+        </div>
+        <div class="image-card" data-added="20260428">
+            <div class="image-text">Armored Warrior Giant Sword Battle</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/bb85dce6-4906-4a6c-ae97-126c59d48a23.jpg?auth_key=1877393026-c4e59fd7676b42d8b38b84da7f1585f2-0-0c7d26a6f7814994253c291f0c57832e" alt="Armored Warrior Giant Sword Battle Anime">
+        </div>
+        <div class="image-card" data-added="20260428">
+            <div class="image-text">Spiked Helmet Blue Gold Combat</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/a4bbff12-7674-4008-a1d0-6f2ae3761e26.jpg?auth_key=1877393026-2c865a10523a44a68b6e785d1437d9e6-0-f790b3f742d680f7e7906bd03fec9c0a" alt="Spiked Helmet Blue Gold Combat Anime">
+        </div>
+        <div class="image-card" data-added="20260428">
+            <div class="image-text">Red Mechanical Monster Horns Teeth</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/1f7d8bcc-3c61-4bcf-ad34-0e38f55b8e0f.jpg?auth_key=1877393026-ea915b3ef8a44459a7b779e2d2cdbe6f-0-db62ff518925031ab4ceb5faf87e9889" alt="Red Mechanical Monster Horns Teeth Anime">
+        </div>
+        <div class="image-card" data-added="20260428">
+            <div class="image-text">Blue Hair Half Mechanical Rain</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/a5c20330-cb6d-47d0-a5a1-e40c884e11e7.jpg?auth_key=1877393026-52f9a157ecaa407d8f03268723f4e81b-0-771f641ae5193f3027fb3693a98e6d68" alt="Blue Hair Half Mechanical Rain Anime">
+        </div>
+        <div class="image-card" data-added="20260428">
+            <div class="image-text">Fantasy Battle Fire Storm Skills</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/d7c0fdb5-6ae3-4276-b67c-37baba7e7617.jpg?auth_key=1877393026-3bf81e58aa41475a87acd293ba56d3dd-0-de7666910992a09962bd0d251a5f82ec" alt="Fantasy Battle Fire Storm Skills Anime">
+        </div>
+        <div class="image-card" data-added="20260428">
+            <div class="image-text">Skull Monster Laser Energy Clash</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/04c52952-bfca-4da5-948a-9fa201695cbd.jpg?auth_key=1877393026-545c2912787741d5973fa88ffe9da458-0-42a5fc2797ec2f69eeacb026bab954a7" alt="Skull Monster Laser Energy Clash Anime">
+        </div>
+        <div class="image-card" data-added="20260428">
+            <div class="image-text">Multi Character Fight Dynamic Lines</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/d0ad8dba-5489-420b-8752-b6aba5cfce9b.jpg?auth_key=1877393026-146e23ac48034cfcb07f1607648431a7-0-330882c9c5f2f78d888f1571157421e2" alt="Multi Character Fight Dynamic Lines Anime">
+        </div>
+        <div class="image-card" data-added="20260428">
+            <div class="image-text">Saw Weapon Giant Monster City</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/c047a67d-4037-46c7-9b02-58e759c165e1.jpg?auth_key=1877393026-b781aca868cc4ab3894e43de0e615aa3-0-1af3ea13dcccb9b918992898af5316fa" alt="Saw Weapon Giant Monster City Anime">
+        </div>
+        <div class="image-card" data-added="20260428">
+            <div class="image-text">Multi Eye Dog Mask Weapon Genius</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/c4db0db8-c1dc-44f8-af89-e87241e4b55f.jpg?auth_key=1877393026-88d9b54306f24b99ba59a562a159d636-0-858717c070314de81e52acf4c9beac0c" alt="Multi Eye Dog Mask Weapon Genius Anime">
+        </div>
+        <div class="image-card" data-added="20260423">
+            <div class="image-text">Chibi Blue Hair Headphones</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/67143a50-cab7-4b9f-81b8-9f26cb709902.jpg?auth_key=1876788981-39369bdffa6d4f92a2c5f15e20e6378a-0-a127ce2e33ade0885654a4029827b6d1" alt="Chibi Blue Hair Headphones Anime">
+        </div>
+        <div class="image-card" data-added="20260422">
+            <div class="image-text">Cute Deer Horn Animal</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/9c271e38-6027-4c83-8162-a901e5070700.jpg?auth_key=1876788981-515bac8297fa4a34a04c723b2d7ca72d-0-a45651a81e2c48053f5d7512778af083" alt="Cute Deer Horn Animal Anime">
+        </div>
+        <div class="image-card" data-added="20260421">
+            <div class="image-text">Couple Ring Box Anime</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/7504e836-333c-4210-8410-e78790fa84cf.jpg?auth_key=1876788981-dd46b827356b4a91b3cbd4970bb39433-0-424048a33cc299d080fdc8d433cfd068" alt="Couple Ring Box Anime">
+        </div>
+        <div class="image-card" data-added="20260420">
+            <div class="image-text">Group Flower Field Back View</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/d62482c3-c407-4fcc-a537-ba59967d46a8.jpg?auth_key=1876788981-2e6b917eb13c4e57ae76980c77d1b029-0-53c2a13016e4e4ff4ca29d1a47310a31" alt="Group Flower Field Back View Anime">
+        </div>
+        <div class="image-card" data-added="20260419">
+            <div class="image-text">Blonde Archer Red Scarf</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/d3730fe0-49aa-42c3-bc9d-ba9adf559558.jpg?auth_key=1876788981-5ca905a1b4584de0a59c4307e7b7487e-0-0dc8c8ac8c10292a8df4bf4941b28947" alt="Blonde Archer Red Scarf Anime">
+        </div>
+        <div class="image-card" data-added="20260418">
+            <div class="image-text">Green White Hair Red Scarf</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/2a53fc7a-d6d2-4377-95de-4ccea687772d.jpg?auth_key=1876788981-1e3e6367aee54fd881d330d5d2ad84d1-0-9313708f1943eec477e61d0783a33086" alt="Green White Hair Red Scarf Anime">
+        </div>
+        <div class="image-card" data-added="20260417">
+            <div class="image-text">Black Hair Purple Liquid</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/63e9d6be-926b-4e6f-99d6-bc63d044f280.jpg?auth_key=1876788981-6d117376c6af45c49a540f0a44f07eb9-0-9d1b5baf5dba7676c06b7dbecfd10312" alt="Black Hair Purple Liquid Anime">
+        </div>
+        <div class="image-card" data-added="20260416">
+            <div class="image-text">Chainsaw Battle Scene</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/31721b4c-35e7-4198-8787-68fe5586acba.jpg?auth_key=1876788981-1ad735291a01452c9303cba9cf77a7fe-0-274e70c156e40a3d51b48142dcd5518f" alt="Chainsaw Battle Scene Anime">
+        </div>
+        <div class="image-card" data-added="20260415">
+            <div class="image-text">Orange Background Couple</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/d7a72f63-c67b-448b-b3b8-f0718f766c73.jpg?auth_key=1876788981-5016d8bfe0504fc39b59600c70c6bf9b-0-f1e3dcacfa264bba4f0107ada7bffdce" alt="Orange Background Couple Anime">
+        </div>
+        <div class="image-card" data-added="20260414">
+            <div class="image-text">Huge Weapon Warrior Ruins</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/52d0e1e1-acc4-49ff-9e3c-2df05e41da8a.jpg?auth_key=1876788981-92cbcd5c0f884fe6a13d2046ffb1fd50-0-6684fdcb95dc8bd67d6256e0aacf9af2" alt="Huge Weapon Warrior Ruins Anime">
+        </div>
+        <div class="image-card" data-added="20260413">
+            <div class="image-text">Gothic Red Hair Eyepatch</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/86545bdb-ece1-4ef1-9620-26f24d886517.jpg?auth_key=1876784149-594cbb19e2c04535a52383e97233d69b-0-081bea5d3c3a2f6edf893e14f551cd1d" alt="Gothic Red Hair Eyepatch Anime">
+        </div>
+        <div class="image-card" data-added="20260412">
+            <div class="image-text">Silver Hair Traditional Tattoos</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/3971a0a4-1b9f-4d74-9015-57055c528e30.jpg?auth_key=1876784149-596c158ba19940758dcd1cbe4a88ad86-0-db01bbc70fb5959cefeca21916bdf06e" alt="Silver Hair Traditional Tattoos Anime">
+        </div>
+        <div class="image-card" data-added="20260411">
+            <div class="image-text">Blue Hair Rose Cigarette</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/336a8bcd-a282-46f7-a71d-94d17febd954.jpg?auth_key=1876784149-77607025947b455a8ee8bcce1180f500-0-076804876ddb611c067c858e45580fbc" alt="Blue Hair Rose Cigarette Anime">
+        </div>
+        <div class="image-card" data-added="20260410">
+            <div class="image-text">Neon Cat Girl Wings</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/c838c92f-69e3-4ecd-8504-c0c0556ec93e.jpg?auth_key=1876784149-d66d24f00b7746c9b5713260a4ad5c3a-0-32d71acd991ff65370a8c4cb329a90df" alt="Neon Cat Girl Crystal Wings Anime">
+        </div>
+        <div class="image-card" data-added="20260409">
+            <div class="image-text">Black White Hair Katana</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/6e4e28f0-c788-43bc-a38d-c3512b471e0b.jpg?auth_key=1876784149-32100882a0af47d5a8469bd16e5402e3-0-d903be7092ed9ca2d878594f434c502f" alt="Black White Hair Katana Anime">
+        </div>
+        <div class="image-card" data-added="20260408">
+            <div class="image-text">Gothic Witch Hat</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/117ed9ae-c08b-4fc7-ba92-63fa4fea4365.jpg?auth_key=1876784149-7cb51fcd9ff342b0901ebf1572698fc7-0-1f5bf2a28281473dd653b4415230d5a7" alt="Gothic Witch Hat Anime">
+        </div>
+        <div class="image-card" data-added="20260407">
+            <div class="image-text">Girl Graffiti Wall</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/179e0770-b9ed-4479-afb9-ce19162f49ca.jpg?auth_key=1876784149-1e4e2dee95e14e5fae7bc36b64ea2038-0-c535b6664e58dbd01d04c3ad9854a232" alt="Anime Girl Graffiti Wall">
+        </div>
+        <div class="image-card" data-added="20260406">
+            <div class="image-text">Black Hair Mechanical Eyes</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/21084d8f-ea70-42c3-aef1-9c4c6aa9aaa5.jpg?auth_key=1876784149-be5e3883866e41dd96b2c93c79d89e8f-0-a02fa94fba524f54f15dc2e7f98e25ee" alt="Black Hair Mechanical Eyes Anime">
+        </div>
+        <div class="image-card" data-added="20260405">
+            <div class="image-text">Traditional Headphones</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/ae24be8c-ce23-44f8-bcb2-16543903675c.jpg?auth_key=1876784149-c111f7e1596a46c1a512327cbd4e7f96-0-de5c45d99e5873d58489f15a962b91b4" alt="Traditional Headphones Girl Anime">
+        </div>
+        <div class="image-card" data-added="20260404">
+            <div class="image-text">Demon Horns Green Wings</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/c3b3f7ba-2971-4ad0-a1a3-0b695b06273c.jpg?auth_key=1876784149-51bba6a570134f85b351f57592ecabd0-0-f75e9ccbbd7e470afad793a6a60d2b14" alt="Demon Horns Green Wings Anime">
+        </div>
+        <div class="image-card" data-added="20260403">
+            <div class="image-text">White Hair Katana Horns</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/46f0d75c-b7ee-4025-bb14-9d649ae3146f.jpg?auth_key=1876785010-3686e90259f2495fbca61498a52f37f7-0-3fcb91d817b813537de4d25cb1d5c9c2" alt="White Hair Katana Horns Anime">
+        </div>
+        <div class="image-card" data-added="20260402">
+            <div class="image-text">Dark Red Ribbons Girl</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/5fca7feb-595b-4071-87b7-7d1bb28979a9.jpg?auth_key=1876785010-5df348405ef04d158eaa2d4c2afa7ef1-0-f705709c2a5c55e636cfe74d22c733b6" alt="Dark Red Ribbons Girl Anime">
+        </div>
+        <div class="image-card" data-added="20260401">
+            <div class="image-text">White Cat Ears Samurai</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/d1400bc2-c6fe-4b96-9058-ca5f7ea8c8b2.jpg?auth_key=1876785010-a5d0cd2acff4468bb0e117d1426e0fff-0-13f039f6279be459951737c0bbb3950c" alt="White Cat Ears Samurai Anime">
+        </div>
+        <div class="image-card" data-added="20260331">
+            <div class="image-text">Pink Wings Glasses Girl</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/80e87439-6218-4690-9228-0cc0dadbca6f.jpg?auth_key=1876785010-9dec17c33a70454ab4ec6b0f82ec38c3-0-c5472244605ec7bca65ee31d52362003" alt="Pink Wings Glasses Girl Anime">
+        </div>
+        <div class="image-card" data-added="20260330">
+            <div class="image-text">Mechanical Wings School Girl</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/04f3f8dd-c913-4773-be92-ec7d7176c78f.jpg?auth_key=1876785010-354f867333b44c0f8423ca2316a748a2-0-4d75128d432b7fc37c8a35a728a772e3" alt="Mechanical Wings School Girl Anime">
+        </div>
+        <div class="image-card" data-added="20260329">
+            <div class="image-text">Green Hair Cyborg</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/d5dab6c7-a0ae-4a35-bf90-739b6f8d0c10.jpg?auth_key=1876785010-b48d71152ee644a7b665f0d110399db1-0-df7d5a482341fb55b93ba58bb7dde40a" alt="Green Hair Cyborg Anime">
+        </div>
+        <div class="image-card" data-added="20260328">
+            <div class="image-text">Hatsune Miku City Night</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/a980af92-b2c7-4a58-a88d-bd542afc7a9d.jpg?auth_key=1876785010-8263f28588d4409fa40c360386da0bc1-0-f4d87c24317ed4ba550aec000898f717" alt="Hatsune Miku City Night Anime">
+        </div>
+        <div class="image-card" data-added="20260327">
+            <div class="image-text">Demon Mask Smiley</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/2bc34797-758d-43f4-b3be-697be315f141.jpg?auth_key=1876785010-d4e0d370bcaf4261a1b6a55ad9478a65-0-57128af70e4e96182a522d076c754d05" alt="Demon Mask Smiley Anime">
+        </div>
+        <div class="image-card" data-added="20260326">
+            <div class="image-text">Gold Mechanical Wings</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/db3ec6ba-5509-4052-9297-d570f3c97545.jpg?auth_key=1876785010-8ebce81ab8db4d1fbf147eea22d7fb20-0-1123126dc980eb3ab085b45683c9e54f" alt="Gold Mechanical Wings Anime">
+        </div>
+        <div class="image-card" data-added="20260325">
+            <div class="image-text">Green Hair Tattoo Weapon</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/2d334cfd-ab1c-46af-a8ea-46da5502f1ed.jpg?auth_key=1876785010-89cab0af96a04226979b34b109aaadea-0-28ca482523ce2b69bb6762b1a0ab405e" alt="Green Hair Tattoo Weapon Anime">
+        </div>
+        <div class="image-card" data-added="20260324">
+            <div class="image-text">Cute Cartoon Animal</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/d4318016-cef3-4a19-a336-1805fa5373c6.jpg?auth_key=1876787774-29bd0e30c2704fe9a3af33113128425e-0-7ef465680160d6ad55e10e20517ee3f4" alt="Cute Cartoon Animal Anime">
+        </div>
+        <div class="image-card" data-added="20260323">
+            <div class="image-text">Cute Skull Top Hat</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/f21593b6-bd4a-4dd8-bc19-dfd1ce1ffc23.jpg?auth_key=1876787774-e1a5080af01b4de0ad0d860dc9aa52be-0-2992ecad9320c1eec46e7fe35a2e69f0" alt="Cute Skull Top Hat Anime">
+        </div>
+        <div class="image-card" data-added="20260322">
+            <div class="image-text">Pink Hair Cartoon Girl</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/274c630a-cc01-48ec-900e-1d45f94cb971.jpg?auth_key=1876787774-255d1cf6f2f74a179c93b2e152b6c750-0-4ad037624064f9c5cad08056280f2d9d" alt="Pink Hair Cartoon Girl">
+        </div>
+        <div class="image-card" data-added="20260321">
+            <div class="image-text">Blue Hair Glasses Group</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/1255e712-73f5-43bc-8f7b-82f9a292efec.jpg?auth_key=1876787774-1567fd251368492e80bff28b1c529531-0-a7c00f4fef9604898964f444f1b65a5e" alt="Blue Hair Glasses Group Anime">
+        </div>
+        <div class="image-card" data-added="20260320">
+            <div class="image-text">Poison Anime Art</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/a4a440b3-e17b-4e47-b97a-9784b6f5ffd2.jpg?auth_key=1876787774-6d523b9589fd42d2a56c2a2f17086237-0-f44f093fb08da2a03e2a8cc10c74b757" alt="Poison Anime Art">
+        </div>
+        <div class="image-card" data-added="20260319">
+            <div class="image-text">White Green Hair Cracked</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/55872307-962f-4805-ac36-936723c00e75.jpg?auth_key=1876787774-b9b235f62b9642b0a5351cd621b49dd7-0-eb3401dad7834553493fbf083bfefdd8" alt="White Green Hair Cracked Anime">
+        </div>
+        <div class="image-card" data-added="20260318">
+            <div class="image-text">Red White Hair Sunset</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/ad22e097-9d58-4e87-9e5e-e64b44694b37.jpg?auth_key=1876787774-9f754335f99044a6975cda835b146de7-0-c63fc96e53503da0fc397782261ce2b0" alt="Red White Hair Sunset Anime">
+        </div>
+        <div class="image-card" data-added="20260317">
+            <div class="image-text">Red Horns Fire</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/38c08feb-5734-44dd-82d1-20c1e3acf203.jpg?auth_key=1876787774-6665898200ef45dd81af75ae273f7a55-0-56445ee6b91ada758f28dfcbe16a98d2" alt="Red Horns Fire Anime">
+        </div>
+        <div class="image-card" data-added="20260316">
+            <div class="image-text">Purple Bandaged Weapon</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/b4c16770-6326-4a1e-bfc4-f4038f4e3d73.jpg?auth_key=1876787774-358daa8ccef84181b11cf19d91f24cf2-0-b8fe627b3b681fc37b986268070005f3" alt="Purple Bandaged Weapon Anime">
+        </div>
+        <div class="image-card" data-added="20260315">
+            <div class="image-text">Red Hair Shirtless</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/b0dab6bf-4312-4ae9-84aa-f3167c3178af.jpg?auth_key=1876787774-c602c19173e9490ba2edd8d615f83be7-0-b148bdb4a29c724502c8931a5eb6c354" alt="Red Hair Shirtless Anime">
+        </div>
     </div>
+
     <div class="footer">CKS Wallpaper powered by SFOGO.SCHNEIDER. All rights reserved © 2026</div>
+
     <script>
-        const searchInput = document.getElementById('search-input'); const searchBtn = document.getElementById('search-btn');
+        const searchInput = document.getElementById('search-input');
+        const searchBtn = document.getElementById('search-btn');
         const imageCards = document.querySelectorAll('.image-card');
-        function performSearch() { const query = searchInput.value.trim().toLowerCase(); imageCards.forEach(card => { const img = card.querySelector('img'); if (!img) return; const imageName = img.alt.toLowerCase(); card.style.display = (query === '' || imageName.includes(query)) ? 'block' : 'none'; }); }
-        searchBtn.addEventListener('click', performSearch); searchInput.addEventListener('keyup', function(event) { if (event.key === 'Enter') performSearch(); });
-        document.querySelectorAll('.download-icon').forEach(icon => { icon.addEventListener('click', async function(e) { e.preventDefault(); e.stopPropagation(); const imgElement = this.closest('.image-card').querySelector('img'); const imgSrc = imgElement.src; const imgAlt = imgElement.alt || 'CK4-Wallpaper'; this.classList.add('loading'); this.innerHTML = ''; try { const response = await fetch(imgSrc); const blob = await response.blob(); const blobUrl = window.URL.createObjectURL(blob); const tempLink = document.createElement('a'); tempLink.href = blobUrl; tempLink.download = `${imgAlt}.${blob.type.includes('png') ? 'png' : 'jpg'}`; tempLink.style.display = 'none'; document.body.appendChild(tempLink); tempLink.click(); setTimeout(() => { document.body.removeChild(tempLink); window.URL.revokeObjectURL(blobUrl); }, 200); } catch (error) { window.open(imgSrc, '_blank'); } finally { setTimeout(() => { this.classList.remove('loading'); this.innerHTML = '⬇'; }, 800); } }); });
+
+        /* تطبيق تأخير الانيميشن لكل كارت */
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    const card = entry.target;
+                    const allCards = Array.from(document.querySelectorAll('.image-card'));
+                    const i = allCards.indexOf(card);
+                    card.style.animationDelay = `${i * 0.04}s`;
+                    card.style.animationPlayState = 'running';
+                    observer.unobserve(card);
+                }
+            });
+        }, { threshold: 0.05 });
+
+        imageCards.forEach(card => {
+            card.style.animationPlayState = 'paused';
+            observer.observe(card);
+        });
+
+        function performSearch() {
+            const query = searchInput.value.trim().toLowerCase();
+            imageCards.forEach(card => {
+                const img = card.querySelector('img');
+                if (!img) return;
+                const imageName = img.alt.toLowerCase();
+                const textLabel = card.querySelector('.image-text');
+                const textContent = textLabel ? textLabel.textContent.toLowerCase() : '';
+                const match = query === '' || imageName.includes(query) || textContent.includes(query);
+                card.style.display = match ? 'block' : 'none';
+            });
+        }
+
+        searchBtn.addEventListener('click', performSearch);
+        searchInput.addEventListener('keyup', function(event) {
+            if (event.key === 'Enter') performSearch();
+        });
+
+        document.querySelectorAll('.download-icon').forEach(icon => {
+            icon.addEventListener('click', async function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                const imgElement = this.closest('.image-card').querySelector('img');
+                const imgSrc = imgElement.src;
+                const imgAlt = imgElement.alt || 'CKS-Wallpaper';
+                this.classList.add('loading');
+                this.innerHTML = '';
+                try {
+                    const response = await fetch(imgSrc);
+                    const blob = await response.blob();
+                    const blobUrl = window.URL.createObjectURL(blob);
+                    const tempLink = document.createElement('a');
+                    tempLink.href = blobUrl;
+                    tempLink.download = `${imgAlt}.${blob.type.includes('png') ? 'png' : 'jpg'}`;
+                    tempLink.style.display = 'none';
+                    document.body.appendChild(tempLink);
+                    tempLink.click();
+                    setTimeout(() => {
+                        document.body.removeChild(tempLink);
+                        window.URL.revokeObjectURL(blobUrl);
+                    }, 200);
+                } catch (error) {
+                    window.open(imgSrc, '_blank');
+                } finally {
+                    setTimeout(() => {
+                        this.classList.remove('loading');
+                        this.innerHTML = '⬇';
+                    }, 800);
+                }
+            });
+        });
     </script>
 </body>
 </html>

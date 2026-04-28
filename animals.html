@@ -21,8 +21,10 @@
 
         .animated-bg {
             position: fixed;
-            top: 0; left: 0;
-            width: 100vw; height: 100vh;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
             z-index: -1;
             overflow: hidden;
             background: #0b0b15;
@@ -37,36 +39,50 @@
         }
 
         .blob-1 {
-            width: 500px; height: 500px;
+            width: 500px;
+            height: 500px;
             background: radial-gradient(circle, #a855f7, #7c3aed);
-            top: -100px; left: -100px;
+            top: -100px;
+            left: -100px;
             animation-duration: 20s;
         }
 
         .blob-2 {
-            width: 600px; height: 600px;
+            width: 600px;
+            height: 600px;
             background: radial-gradient(circle, #3b82f6, #2563eb);
-            bottom: -150px; right: -100px;
+            bottom: -150px;
+            right: -100px;
             animation: moveBlob 22s infinite alternate-reverse ease-in-out;
             animation-delay: -5s;
         }
 
         .blob-3 {
-            width: 400px; height: 400px;
+            width: 400px;
+            height: 400px;
             background: radial-gradient(circle, #ec4899, #db2777);
-            top: 40%; left: 60%;
+            top: 40%;
+            left: 60%;
             filter: blur(100px);
             animation: pulseBlob 18s infinite ease-in-out;
         }
 
         @keyframes moveBlob {
-            0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(100px, 50px) scale(1.3); }
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+            100% {
+                transform: translate(100px, 50px) scale(1.3);
+            }
         }
 
         @keyframes pulseBlob {
-            0%, 100% { transform: translate(-50%, -50%) scale(1) translate(0, 0); }
-            50% { transform: translate(-50%, -50%) scale(1.5) translate(-50px, -50px); }
+            0%, 100% {
+                transform: translate(-50%, -50%) scale(1) translate(0, 0);
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.5) translate(-50px, -50px);
+            }
         }
 
         .top-section {
@@ -76,24 +92,145 @@
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
         }
-        .main-title { text-align: center; color: #e755f7; font-family: Arial, sans-serif; font-size: 28px; text-shadow: 0 0 10px #a855f7, 0 0 20px #a855f7; margin: 0 auto 15px auto; animation: fadeUp 1s ease forwards; }
-        .main-title a { color: #e755f7; text-decoration: none; transition: text-shadow 0.3s ease; }
-        .main-title a:hover { text-shadow: 0 0 20px #fff, 0 0 30px #a855f7; }
-        .search-container { display: flex; justify-content: center; align-items: center; }
-        .search-box { display: flex; align-items: center; background-color: #ffffff; border-radius: 25px; width: 90%; max-width: 800px; overflow: hidden; animation: fadeUp 1s ease 0.3s forwards; opacity: 0; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-        .search-box input { flex: 1; padding: 10px 15px; font-size: 14px; border: none; outline: none; background-color: transparent; color: #333; text-align: center; }
-        .search-box button { padding: 10px 15px; font-size: 16px; border: none; background-color: transparent; color: #4a90e2; cursor: pointer; }
-        .nav-menu { display: flex; list-style: none; padding: 10px 0 5px 0; margin: 0; justify-content: flex-start; overflow-x: auto; animation: fadeUp 1s ease 0.6s forwards; opacity: 0; }
-        .nav-menu::-webkit-scrollbar { display: none; }
-        .nav-menu li { margin-right: 15px; flex-shrink: 0; }
-        .nav-menu li a, .nav-menu li span { color: white; text-decoration: none; font-size: 13px; padding: 6px 12px; border-radius: 20px; transition: all 0.3s ease; white-space: nowrap; display: inline-block; cursor: pointer; }
-        .nav-menu li a:hover, .nav-menu li span:hover { background-color: #ffffff; color: #1a1a2e; box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2); }
-        .nav-menu li span.active { background-color: #a855f7; color: white; font-weight: bold; pointer-events: none; }
-        @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        .wallpapers-section { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 15px; max-width: 100%; flex: 1; }
-        .image-card { border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); transition: all 0.4s ease; background-color: #000; aspect-ratio: 16 / 9; position: relative; opacity: 0; animation: fadeUpImages 0.5s ease forwards; }
+
+        .main-title {
+            text-align: center;
+            color: #e755f7;
+            font-family: Arial, sans-serif;
+            font-size: 28px;
+            text-shadow: 0 0 10px #a855f7, 0 0 20px #a855f7;
+            margin: 0 auto 15px auto;
+            animation: fadeUp 1s ease forwards;
+        }
+
+        .main-title a {
+            color: #e755f7;
+            text-decoration: none;
+            transition: text-shadow 0.3s ease;
+        }
+
+        .main-title a:hover {
+            text-shadow: 0 0 20px #fff, 0 0 30px #a855f7;
+        }
+
+        .search-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            background-color: #ffffff;
+            border-radius: 25px;
+            width: 90%;
+            max-width: 800px;
+            overflow: hidden;
+            animation: fadeUp 1s ease 0.3s forwards;
+            opacity: 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-box input {
+            flex: 1;
+            padding: 10px 15px;
+            font-size: 14px;
+            border: none;
+            outline: none;
+            background-color: transparent;
+            color: #333;
+            text-align: center;
+        }
+
+        .search-box button {
+            padding: 10px 15px;
+            font-size: 16px;
+            border: none;
+            background-color: transparent;
+            color: #4a90e2;
+            cursor: pointer;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            padding: 10px 0 5px 0;
+            margin: 0;
+            justify-content: flex-start;
+            overflow-x: auto;
+            animation: fadeUp 1s ease 0.6s forwards;
+            opacity: 0;
+        }
+
+        .nav-menu::-webkit-scrollbar {
+            display: none;
+        }
+
+        .nav-menu li {
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .nav-menu li a, .nav-menu li span {
+            color: white;
+            text-decoration: none;
+            font-size: 13px;
+            padding: 6px 12px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .nav-menu li a:hover, .nav-menu li span:hover {
+            background-color: #ffffff;
+            color: #1a1a2e;
+            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
+        }
+
+        .nav-menu li span.active {
+            background-color: #a855f7;
+            color: white;
+            font-weight: bold;
+            pointer-events: none;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .wallpapers-section {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            padding: 15px;
+            max-width: 100%;
+            flex: 1;
+        }
+
+        .image-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            background-color: #000;
+            aspect-ratio: 16 / 9;
+            position: relative;
+            opacity: 0;
+            animation: fadeUpImages 0.5s ease forwards;
+        }
+
         .image-card:nth-child(1) { animation-delay: 0.05s; }
         .image-card:nth-child(2) { animation-delay: 0.1s; }
         .image-card:nth-child(3) { animation-delay: 0.15s; }
@@ -112,31 +249,184 @@
         .image-card:nth-child(16) { animation-delay: 0.8s; }
         .image-card:nth-child(17) { animation-delay: 0.85s; }
         .image-card:nth-child(18) { animation-delay: 0.9s; }
-        .image-card img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
-        .image-text { position: absolute; top: 8px; right: 8px; background-color: rgba(0, 0, 0, 0.6); color: #ffffff; padding: 4px 10px; border-radius: 20px; font-size: 10px; font-weight: bold; pointer-events: none; z-index: 10; }
-        .download-icon { position: absolute; bottom: 8px; right: 8px; background-color: rgba(168, 85, 247, 0.8); color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; z-index: 10; transition: all 0.3s ease; box-shadow: 0 2px 5px rgba(0,0,0,0.3); cursor: pointer; }
-        .download-icon:hover { background-color: #a855f7; transform: scale(1.1); }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        .download-icon.loading { pointer-events: none; background-color: rgba(255, 255, 255, 0.3); }
-        .download-icon.loading::after { content: ""; width: 14px; height: 14px; border: 2px solid rgba(255,255,255,0.3); border-top-color: white; border-radius: 50%; animation: spin 0.6s linear infinite; }
-        .image-card:hover { transform: translateY(-4px); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); z-index: 10; }
-        .image-card:hover img { transform: scale(1.05); }
-        @keyframes fadeUpImages { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+        .image-card img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .image-text {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: #ffffff;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: bold;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .download-icon {
+            position: absolute;
+            bottom: 8px;
+            right: 8px;
+            background-color: rgba(168, 85, 247, 0.8);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            z-index: 10;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+        }
+
+        .download-icon:hover {
+            background-color: #a855f7;
+            transform: scale(1.1);
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .download-icon.loading {
+            pointer-events: none;
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .download-icon.loading::after {
+            content: "";
+            width: 14px;
+            height: 14px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 0.6s linear infinite;
+        }
+
+        .image-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+        }
+
+        .image-card:hover img {
+            transform: scale(1.05);
+        }
+
+        @keyframes fadeUpImages {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
         .toast {
-            position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(80px);
-            background: rgba(168, 85, 247, 0.95); color: #fff; padding: 12px 24px;
-            border-radius: 25px; font-size: 13px; font-weight: bold; z-index: 9999;
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(80px);
+            background: rgba(168, 85, 247, 0.95);
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 13px;
+            font-weight: bold;
+            z-index: 9999;
             box-shadow: 0 6px 20px rgba(168, 85, 247, 0.4);
-            opacity: 0; transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
             pointer-events: none;
         }
+
         .toast.show {
-            opacity: 1; transform: translateX(-50%) translateY(0);
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
         }
 
-        .footer { background-color: #1a1a2e; color: #a855f7; text-align: center; padding: 15px; font-size: 12px; font-family: 'Courier New', Courier, monospace; letter-spacing: 1px; text-transform: uppercase; text-shadow: 0 0 8px rgba(168, 85, 247, 0.6); position: relative; z-index: 1; }
-        @media (min-width: 769px) { .top-section { padding: 20px; } .main-title { font-size: 35px; margin: 0 auto 20px auto; } .search-box input { font-size: 16px; padding: 12px 15px; } .nav-menu { justify-content: center; padding: 15px 0 10px 0; } .nav-menu li { margin-right: 20px; } .nav-menu li a, .nav-menu li span { font-size: 14px; padding: 8px 16px; } .wallpapers-section { grid-template-columns: repeat(4, 1fr); gap: 15px; padding: 25px; } .image-text { top: 10px; right: 10px; font-size: 12px; padding: 5px 12px; } .download-icon { width: 35px; height: 35px; font-size: 16px; bottom: 10px; right: 10px; } .image-card:hover { transform: translateY(-6px); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3); } .image-card:hover img { transform: scale(1.1); } .footer { padding: 20px; font-size: 14px; } }
+        .footer {
+            background-color: #1a1a2e;
+            color: #a855f7;
+            text-align: center;
+            padding: 15px;
+            font-size: 12px;
+            font-family: 'Courier New', Courier, monospace;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-shadow: 0 0 8px rgba(168, 85, 247, 0.6);
+            position: relative;
+            z-index: 1;
+        }
+
+        @media (min-width: 769px) {
+            .top-section {
+                padding: 20px;
+            }
+            .main-title {
+                font-size: 35px;
+                margin: 0 auto 20px auto;
+            }
+            .search-box input {
+                font-size: 16px;
+                padding: 12px 15px;
+            }
+            .nav-menu {
+                justify-content: center;
+                padding: 15px 0 10px 0;
+            }
+            .nav-menu li {
+                margin-right: 20px;
+            }
+            .nav-menu li a, .nav-menu li span {
+                font-size: 14px;
+                padding: 8px 16px;
+            }
+            .wallpapers-section {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 15px;
+                padding: 25px;
+            }
+            .image-text {
+                top: 10px;
+                right: 10px;
+                font-size: 12px;
+                padding: 5px 12px;
+            }
+            .download-icon {
+                width: 35px;
+                height: 35px;
+                font-size: 16px;
+                bottom: 10px;
+                right: 10px;
+            }
+            .image-card:hover {
+                transform: translateY(-6px);
+                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            }
+            .image-card:hover img {
+                transform: scale(1.1);
+            }
+            .footer {
+                padding: 20px;
+                font-size: 14px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -166,9 +456,8 @@
             <li><a href="nature.html">Nature</a></li>
         </ul>
     </div>
-    
+
     <div class="wallpapers-section">
-        <!-- أحدث الصور (قسم Predators) -->
         <div class="image-card" data-added="20260423">
             <div class="image-text">Falcon</div>
             <div class="download-icon">⬇</div>
@@ -199,8 +488,6 @@
             <div class="download-icon">⬇</div>
             <img src="https://z-cdn-media.chatglm.cn/files/5d1bebb0-3952-43c4-9242-1426915ef658.jpg?auth_key=1876851092-a0a8c68d49bc4fab8e7b79f047cb7476-0-c74c3981f2821f8db79d89abc8fa25c6" alt="Crystal Tiger Sci-Fi">
         </div>
-        
-        <!-- صور الأسبوع الماضي -->
         <div class="image-card" data-added="20260328">
             <div class="image-text">Black Cat</div>
             <div class="download-icon">⬇</div>
@@ -264,7 +551,7 @@
     </div>
 
     <div class="footer">CKS Wallpaper powered by SFOGO.SCHNEIDER. All rights reserved © 2026</div>
-    
+
     <script>
         const searchInput = document.getElementById('search-input');
         const searchBtn = document.getElementById('search-btn');
@@ -303,12 +590,14 @@
 
         document.querySelectorAll('.download-icon').forEach(icon => {
             icon.addEventListener('click', async function(e) {
-                e.preventDefault(); e.stopPropagation(); 
+                e.preventDefault();
+                e.stopPropagation();
                 const imgElement = this.closest('.image-card').querySelector('img');
                 const textEl = this.closest('.image-card').querySelector('.image-text');
                 const imgSrc = imgElement.src;
                 const imgAlt = textEl ? textEl.textContent.trim() : 'CKS-Wallpaper';
-                this.classList.add('loading'); this.innerHTML = ''; 
+                this.classList.add('loading');
+                this.innerHTML = '';
                 try {
                     const response = await fetch(imgSrc);
                     const blob = await response.blob();
@@ -319,13 +608,19 @@
                     tempLink.style.display = 'none';
                     document.body.appendChild(tempLink);
                     tempLink.click();
-                    setTimeout(() => { document.body.removeChild(tempLink); window.URL.revokeObjectURL(blobUrl); }, 200);
+                    setTimeout(() => {
+                        document.body.removeChild(tempLink);
+                        window.URL.revokeObjectURL(blobUrl);
+                    }, 200);
                     showToast('Downloading "' + imgAlt + '"');
                 } catch (error) {
                     window.open(imgSrc, '_blank');
                     showToast('Opened in new tab');
                 } finally {
-                    setTimeout(() => { this.classList.remove('loading'); this.innerHTML = '⬇'; }, 800);
+                    setTimeout(() => {
+                        this.classList.remove('loading');
+                        this.innerHTML = '⬇';
+                    }, 800);
                 }
             });
         });
