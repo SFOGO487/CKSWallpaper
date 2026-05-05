@@ -319,6 +319,25 @@
             }
         }
 
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(80px);
+            background: rgba(168, 85, 247, 0.95);
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 13px;
+            font-weight: bold;
+            z-index: 9999;
+            box-shadow: 0 6px 20px rgba(168, 85, 247, 0.4);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+            pointer-events: none;
+        }
+        .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
         .footer {
             background-color: #1a1a2e;
             color: #a855f7;
@@ -395,6 +414,8 @@
         <div class="blob blob-3"></div>
     </div>
 
+    <div class="toast" id="toast"></div>
+
     <div class="top-section">
         <h1 class="main-title"><a href="index.html">CKS Wallpaper</a></h1>
         <div class="search-container">
@@ -415,6 +436,54 @@
     </div>
 
     <div class="wallpapers-section">
+        <!-- New Items (Date 20260429) -->
+        <div class="image-card" data-added="20260429">
+            <div class="image-text">Mechanical Hat Smoke</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/fcfb6387-6835-4db4-84e7-b1822e9c5cee.jpg?auth_key=1877904639-2e8322ffbc054b999da808299dc01c56-0-d4acb52865a009dfb366dafc130ef26d" alt="Mechanical Hat Smoke Anime">
+        </div>
+        <div class="image-card" data-added="20260429">
+            <div class="image-text">Blonde Starry Night</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/c4d2ad46-94df-4e4a-818e-153d0edf61d1.jpg?auth_key=1877904639-778ee99993eb4930b9b6290a2370ef02-0-d8a1358209b472ef2d31e0ad49e392ec" alt="Blonde Starry Night Anime">
+        </div>
+        <div class="image-card" data-added="20260429">
+            <div class="image-text">White Hair Red Structure</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/42f9837f-0ab8-4182-9123-d3152bc10b76.jpg?auth_key=1877904639-edca264973ca47a29462d580cc1b445d-0-ca85552a6c7486515ae93564cefe25a2" alt="White Hair Red Structure Anime">
+        </div>
+        <div class="image-card" data-added="20260429">
+            <div class="image-text">Crown Smile Glow</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/8e0cbe73-5123-4f9b-8bb3-5553e5dde1c5.jpg?auth_key=1877904639-020551c331b442d2b18a24a3b02b6782-0-55026aec6ad0dfb08d8c2194232fc578" alt="Crown Smile Glow Anime">
+        </div>
+        <div class="image-card" data-added="20260429">
+            <div class="image-text">Black Hair Red Eyes Fire</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/8c4e61d0-1389-4d5d-af47-9c012f5b0eab.jpg?auth_key=1877904639-acbe0a08ccba4ab3a9baae97dc2530d4-0-5e6f8ab7040123d4e3145d98f9927c92" alt="Black Hair Red Eyes Fire Anime">
+        </div>
+        <div class="image-card" data-added="20260429">
+            <div class="image-text">Split Face Red Blue</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/53ea7f79-a376-43ab-95ec-f122b6214bb5.jpg?auth_key=1877904639-9e6d09951f0e46a7b6a74ade7879bcf1-0-312cee2b442170ba9ea622dcdcf42162" alt="Split Face Red Blue Anime">
+        </div>
+        <div class="image-card" data-added="20260429">
+            <div class="image-text">Black Hair Gold Flame</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/025e671f-fc02-40af-b3e0-6a190fd4c27f.jpg?auth_key=1877904639-9659e34a49d74d0aa9ab49b016d155ae-0-33f0d2560fb466610a2930772a684e3b" alt="Black Hair Gold Flame Anime">
+        </div>
+        <div class="image-card" data-added="20260429">
+            <div class="image-text">Blue Helmet Skill Burst</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/d6941cb6-7f56-4fe6-9f98-17b76d0a69b6.jpg?auth_key=1877904639-27ab6446c963451aa4d5379fa4388114-0-392a52582e590db3282d703ab2b93640" alt="Blue Helmet Skill Burst Anime">
+        </div>
+        <div class="image-card" data-added="20260429">
+            <div class="image-text">Night City Red Eyes</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/274644c7-6763-49ec-bfea-874011afc1ac.jpg?auth_key=1877904639-81f3bb7eb8034c51953b60908e16b091-0-9a90546bb8df21392348fdb3d261635d" alt="Night City Red Eyes Anime">
+        </div>
+
+        <!-- Original Items (Dates 20260428 to 20260315) -->
         <div class="image-card" data-added="20260428">
             <div class="image-text">Black Hair Horns Wings Desert Planet</div>
             <div class="download-icon">⬇</div>
@@ -723,6 +792,13 @@
         const searchInput = document.getElementById('search-input');
         const searchBtn = document.getElementById('search-btn');
         const imageCards = document.querySelectorAll('.image-card');
+        const toast = document.getElementById('toast');
+
+        function showToast(msg) {
+            toast.textContent = msg;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2500);
+        }
 
         /* تطبيق تأخير الانيميشن لكل كارت */
         const observer = new IntersectionObserver((entries) => {
@@ -766,8 +842,9 @@
                 e.preventDefault();
                 e.stopPropagation();
                 const imgElement = this.closest('.image-card').querySelector('img');
+                const textEl = this.closest('.image-card').querySelector('.image-text');
                 const imgSrc = imgElement.src;
-                const imgAlt = imgElement.alt || 'CKS-Wallpaper';
+                const imgAlt = textEl ? textEl.textContent.trim() : 'CKS-Wallpaper';
                 this.classList.add('loading');
                 this.innerHTML = '';
                 try {
@@ -784,8 +861,10 @@
                         document.body.removeChild(tempLink);
                         window.URL.revokeObjectURL(blobUrl);
                     }, 200);
+                    showToast('Downloading "' + imgAlt + '"');
                 } catch (error) {
                     window.open(imgSrc, '_blank');
+                    showToast('Opened in new tab');
                 } finally {
                     setTimeout(() => {
                         this.classList.remove('loading');
