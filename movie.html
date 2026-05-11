@@ -68,21 +68,13 @@
         }
 
         @keyframes moveBlob {
-            0% {
-                transform: translate(0, 0) scale(1);
-            }
-            100% {
-                transform: translate(100px, 50px) scale(1.3);
-            }
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(100px, 50px) scale(1.3); }
         }
 
         @keyframes pulseBlob {
-            0%, 100% {
-                transform: translate(-50%, -50%) scale(1) translate(0, 0);
-            }
-            50% {
-                transform: translate(-50%, -50%) scale(1.5) translate(-50px, -50px);
-            }
+            0%, 100% { transform: translate(-50%, -50%) scale(1) translate(0, 0); }
+            50% { transform: translate(-50%, -50%) scale(1.5) translate(-50px, -50px); }
         }
 
         .top-section {
@@ -165,9 +157,7 @@
             opacity: 0;
         }
 
-        .nav-menu::-webkit-scrollbar {
-            display: none;
-        }
+        .nav-menu::-webkit-scrollbar { display: none; }
 
         .nav-menu li {
             margin-right: 15px;
@@ -200,14 +190,8 @@
         }
 
         @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .wallpapers-section {
@@ -248,6 +232,10 @@
         .image-card:nth-child(15) { animation-delay: 0.75s; }
         .image-card:nth-child(16) { animation-delay: 0.8s; }
         .image-card:nth-child(17) { animation-delay: 0.85s; }
+        .image-card:nth-child(18) { animation-delay: 0.9s; }
+        .image-card:nth-child(19) { animation-delay: 0.95s; }
+        .image-card:nth-child(20) { animation-delay: 1.0s; }
+        .image-card:nth-child(n+21) { animation-delay: 1.05s; }
 
         .image-card img {
             display: block;
@@ -326,14 +314,8 @@
         }
 
         @keyframes fadeUpImages {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .toast {
@@ -373,66 +355,31 @@
             z-index: 1;
         }
 
+        /* التعديل هنا: الهواتف الصغيرة تبقى عمودين، والشاشات المتوسطة والكبيرة 4 أعمدة */
         @media (min-width: 769px) {
-            .top-section {
-                padding: 20px;
+            .top-section { padding: 20px; }
+            .main-title { font-size: 35px; margin: 0 auto 20px auto; }
+            .search-box input { font-size: 16px; padding: 12px 15px; }
+            .nav-menu { justify-content: center; padding: 15px 0 10px 0; }
+            .nav-menu li { margin-right: 20px; }
+            .nav-menu li a, .nav-menu li span { font-size: 14px; padding: 8px 16px; }
+            
+            .wallpapers-section { 
+                grid-template-columns: repeat(4, 1fr); /* تغيير من 3 إلى 4 */
+                gap: 15px; 
+                padding: 25px; 
+                max-width: 1600px; /* توسيع الشاشة قليلاً لتناسب الأربعة */
+                margin: 0 auto; 
             }
-            .main-title {
-                font-size: 35px;
-                margin: 0 auto 20px auto;
-            }
-            .search-box input {
-                font-size: 16px;
-                padding: 12px 15px;
-            }
-            .nav-menu {
-                justify-content: center;
-                padding: 15px 0 10px 0;
-            }
-            .nav-menu li {
-                margin-right: 20px;
-            }
-            .nav-menu li a, .nav-menu li span {
-                font-size: 14px;
-                padding: 8px 16px;
-            }
-            .wallpapers-section {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 15px;
-                padding: 25px;
-                max-width: 1400px;
-                margin: 0 auto;
-            }
-            .image-text {
-                top: 10px;
-                right: 10px;
-                font-size: 12px;
-                padding: 5px 12px;
-            }
-            .download-icon {
-                width: 35px;
-                height: 35px;
-                font-size: 16px;
-                bottom: 10px;
-                right: 10px;
-            }
-            .image-card:hover {
-                transform: translateY(-6px);
-                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-            }
-            .image-card:hover img {
-                transform: scale(1.1);
-            }
-            .footer {
-                padding: 20px;
-                font-size: 14px;
-            }
+            .image-text { top: 10px; right: 10px; font-size: 11px; padding: 4px 8px; }
+            .download-icon { width: 30px; height: 30px; font-size: 14px; bottom: 8px; right: 8px; }
+            .image-card:hover { transform: translateY(-4px); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); }
+            .image-card:hover img { transform: scale(1.1); }
+            .footer { padding: 20px; font-size: 14px; }
         }
 
         @media (min-width: 1200px) {
-            .wallpapers-section {
-                grid-template-columns: repeat(3, 1fr);
-            }
+            .wallpapers-section { grid-template-columns: repeat(4, 1fr); /* تغيير من 3 إلى 4 */ }
         }
     </style>
 </head>
@@ -465,6 +412,371 @@
     </div>
 
     <div class="wallpapers-section">
+        <!-- New Batch 2026/5/11 (Part 2) -->
+        <div class="image-card" data-added="20260511">
+            <div class="image-text">Cyberpunk Arcade Fighter</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/95963502-44e0-423c-882c-950cd8935047.jpg?auth_key=1878466173-1655b79096144e2c8b5d78f342929491-0-db4abdb00a46e48b035cd6629f511074" alt="Cyberpunk Arcade Fighter Movie">
+        </div>
+        <div class="image-card" data-added="20260511">
+            <div class="image-text">Star Destroyer Ice Battle</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/07c73faa-0caa-48fd-ad3e-2f3c9f42ab5c.jpg?auth_key=1878466173-9af87bb424a44c74815288788b162571-0-3f442ca1d5e990242c241feef67bb729" alt="Star Destroyer Ice Battle Movie">
+        </div>
+        <div class="image-card" data-added="20260511">
+            <div class="image-text">Mandalorian Baby Yoda Dunes</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/f2f7e292-29e4-4743-96aa-7c88851ed8e4.jpg?auth_key=1878466173-43af41d045fb43b59aa595052947986b-0-8afdf19a1b449f00b674320ac7d5eaf7" alt="Mandalorian Baby Yoda Dunes Movie">
+        </div>
+        <div class="image-card" data-added="20260511">
+            <div class="image-text">Millennium Falcon Space</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/755e442a-5f9f-468c-8d6b-4f6bc203982a.jpg?auth_key=1878466173-c753127d132547b3af4ace276ec05203-0-c48a4bc9a877c2d1663c5c99be72f415" alt="Millennium Falcon Space Movie">
+        </div>
+        <div class="image-card" data-added="20260511">
+            <div class="image-text">Supergirl Plane Moonset</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/2ac62609-a602-497f-b126-76bf57759650.jpg?auth_key=1878466173-3ab61a64a5bd42f09fe3dbeac027fad0-0-e026fcd68ee86738ea4f4c66de8f6694" alt="Supergirl Plane Moonset Movie">
+        </div>
+        <div class="image-card" data-added="20260511">
+            <div class="image-text">Spider-Man Tunnel Beam</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/c57d3ca9-c5f0-4805-980f-f00516c395b8.jpg?auth_key=1878466173-aff2534e2009491d91615862f512cade-0-6f003f159a27faab72707d0fdc13db09" alt="Spider-Man Tunnel Beam Movie">
+        </div>
+        <div class="image-card" data-added="20260511">
+            <div class="image-text">Spider-Man Blue Lightning</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/ed070fed-89ff-41cf-930f-ce33eaeac4bc.jpg?auth_key=1878466173-a59a24f44adb4a6eb6775032b9d22466-0-8a82bb29a1368722e4f46eeee1c5ca6e" alt="Spider-Man Blue Lightning Movie">
+        </div>
+        <div class="image-card" data-added="20260511">
+            <div class="image-text">Retro Horseman Smoke City</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/18960456-e967-4ac0-8093-532e4d078160.jpg?auth_key=1878466173-677f89f5a5614fa0b2d34fab8a15c8bb-0-6a6c5d77e4d41f766862e2275f152ca9" alt="Retro Horseman Smoke City Movie">
+        </div>
+        <div class="image-card" data-added="20260511">
+            <div class="image-text">Fire Ninja Ice Shield</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/b626177d-6684-4ee1-9fea-a06e9607c103.jpg?auth_key=1878466173-d964a724110e43d78dddba172b64422a-0-d08671047ea8773a4506517ee01305e3" alt="Fire Ninja Ice Shield Movie">
+        </div>
+        <div class="image-card" data-added="20260511">
+            <div class="image-text">Fire Ice Mask Confrontation</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/ec525ff7-2074-4bea-b7a9-daeeba36574d.jpg?auth_key=1878466173-2107cb156b744ea6a90fa36fd3ef754e-0-584cef69d448203716e0a7d39e34043c" alt="Fire Ice Mask Confrontation Movie">
+        </div>
+
+        <!-- New Batch 2026/5/11 (Part 1) -->
+        <div class="image-card" data-added="20260511">
+            <div class="image-text">Skull Mask Dark Cult</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/54c7fc29-5c05-490c-95f9-c6c0ea326188.jpg?auth_key=1878461493-8d7149a02a2c451a93c92acafbab1c89-0-60203f637f76871b31710412c1a0abc9" alt="Skull Mask Dark Cult Movie">
+        </div>
+        <div class="image-card" data-added="20260511">
+            <div class="image-text">Blonde Armor Dark War</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/833a8066-71c5-4e4a-bd88-267f24e3ad3b.jpg?auth_key=1878461493-bb1afc1a365b4584b63d7473f2930c42-0-7bd326a768dcf85e3b0f1f141848838d" alt="Blonde Armor Dark War Movie">
+        </div>
+        <div class="image-card" data-added="20260511">
+            <div class="image-text">Fantasy City Lion Man</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/108b2749-738c-442d-a9c5-5411484ba7a6.jpg?auth_key=1878461493-d669711f8ea0415f808b03e2c4aca5ae-0-146ab90a4eebc42860185dab85ec5bf9" alt="Fantasy City Lion Man Movie">
+        </div>
+        <div class="image-card" data-added="20260511">
+            <div class="image-text">Stage Sword Blue Smoke</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/8e1d85d7-21f0-40a3-bf59-ba1da89f57d5.jpg?auth_key=1878461493-299d8c9ca08141ddab14a45684e2b7df-0-62cc67148bd83d077a65de1a5facc90f" alt="Stage Sword Blue Smoke Movie">
+        </div>
+        <div class="image-card" data-added="20260511">
+            <div class="image-text">Mandalorian Baby Yoda Portrait</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/4959b404-516e-4c47-99d2-81bb3583bb69.jpg?auth_key=1878461493-e875f337ba4e4b97b40f02b6f76b5a85-0-7885150167e3d63d87b19a9bffec0440" alt="Mandalorian Baby Yoda Portrait Movie">
+        </div>
+        <div class="image-card" data-added="20260511">
+            <div class="image-text">Baby Yoda Eating Bowl</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/f1428a73-db61-4d40-8c69-aeca485a1f41.jpg?auth_key=1878461493-aa568053adc94feea15a4ab5b44235df-0-0b6bf330d63ff28a14a029f09b34af02" alt="Baby Yoda Eating Bowl Movie">
+        </div>
+        <div class="image-card" data-added="20260511">
+            <div class="image-text">Baby Yoda Desert Aliens</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/fab689ac-210c-4a9a-a6ed-c742472e6015.jpg?auth_key=1878461493-cdadabcb232b46f6b1ad2088b07c5e80-0-c18e305ef261b509487e5354753910f0" alt="Baby Yoda Desert Aliens Movie">
+        </div>
+        <div class="image-card" data-added="20260511">
+            <div class="image-text">Mandalorian Holding Baby Yoda</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/2fa0efe0-df66-45e4-b944-26acddecb47d.jpg?auth_key=1878461493-cc9d2fa9e8c34dbaa565448d1337eca7-0-902ec75ba0fb086eb026dd74476edf0b" alt="Mandalorian Holding Baby Yoda Movie">
+        </div>
+        <div class="image-card" data-added="20260511">
+            <div class="image-text">Mandalorian Baby Yoda Cantina</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/738dffb7-d413-488d-a36e-8a7c08608d58.jpg?auth_key=1878461493-533ac0205f8142cca990aee934096a94-0-880d7ca60266e96649843e557c77326a" alt="Mandalorian Baby Yoda Cantina Movie">
+        </div>
+        <div class="image-card" data-added="20260511">
+            <div class="image-text">Mandalorian Speeder Explosion</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/529b1146-dff0-4063-986b-99e0217f9015.jpg?auth_key=1878461493-d9ee8e537d464fa6b97425d9cd629bb2-0-e467ea7aa0f2c74743fe79e220cfedd8" alt="Mandalorian Speeder Explosion Movie">
+        </div>
+
+        <!-- New Batch 2026/5/10 (Part 5) -->
+        <div class="image-card" data-added="20260510">
+            <div class="image-text">Punk Leather Neon Chains</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/554c855a-4839-431e-bfa2-22a5aa5ab664.jpg?auth_key=1878459762-d524449fdca44ea889dbf0618575f9e1-0-6b50af119559970965c9bc40e510688c" alt="Punk Leather Neon Chains Movie">
+        </div>
+        <div class="image-card" data-added="20260510">
+            <div class="image-text">Purple Hair HUNTRVX Sword</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/f821c985-fa11-4987-a6be-adc70890f518.jpg?auth_key=1878459762-c42a7dbdadf64a0e9c78f0a037b35dbd-0-802bbb1681a1646343099fcbf4edef65" alt="Purple Hair HUNTRVX Sword Movie">
+        </div>
+        <div class="image-card" data-added="20260510">
+            <div class="image-text">Green Top HUNTERX Stage</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/003dced1-d663-449b-a066-b71a418af99d.jpg?auth_key=1878459762-350aca98af5d4193a68c05a7fec01ee7-0-aca8047eef996a37c72fe7b02d237b8b" alt="Green Top HUNTERX Stage Movie">
+        </div>
+        <div class="image-card" data-added="20260510">
+            <div class="image-text">Cartoon Group Pastel Gradient</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/f09f1a8a-e2fd-4997-8561-d61a805cccbc.jpg?auth_key=1878459762-6e114f54758e4550ac55156ce0262ec9-0-c303bc880f8590e4f7805b5df863d71f" alt="Cartoon Group Pastel Gradient Movie">
+        </div>
+        <div class="image-card" data-added="20260510">
+            <div class="image-text">Blue Red Outfit AMY Pose</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/53a45df3-cca1-491d-803e-4d504cf4f7af.jpg?auth_key=1878459762-9b99177e240d4188ab6a8d874fdabb82-0-aec2f77c59b7f3182d4857ac98eebe68" alt="Blue Red Outfit AMY Pose Movie">
+        </div>
+        <div class="image-card" data-added="20260510">
+            <div class="image-text">Bald Red Stripe Earrings</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/ae4b3f22-3f0b-4e09-8ae9-f416fe612027.jpg?auth_key=1878459762-73f1cc0da84e4a48837f2552c0b1eb51-0-9c16c5feb7ec2f574573ebdbf84683b4" alt="Bald Red Stripe Earrings Movie">
+        </div>
+        <div class="image-card" data-added="20260510">
+            <div class="image-text">Beard Red Vest Studs</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/90fe7dfe-7d46-404e-816e-b11d07f0a5b2.jpg?auth_key=1878459762-495b4b8ab0dd4ee9b3a49f93fca39663-0-bf66fc9189f9a705ecc071adeddd2837" alt="Beard Red Vest Studs Movie">
+        </div>
+        <div class="image-card" data-added="20260510">
+            <div class="image-text">Blonde Laughing Graffiti</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/fb083fa8-daf5-48bd-acbc-0c929f56b4ff.jpg?auth_key=1878459762-2ce52388c54e4b2d9d05950ef4b3a7a9-0-bf9d9072927538014c99a55feadd9900" alt="Blonde Laughing Graffiti Movie">
+        </div>
+        <div class="image-card" data-added="20260510">
+            <div class="image-text">Martial Arts Blue White Pose</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/cecf4a32-d52e-4c09-957c-f2d85709a96f.jpg?auth_key=1878459762-29f55daeb51b4b6aa2885a826b6eb7bd-0-44bd6f36f6c4467dd05b1ec2193eb1bd" alt="Martial Arts Blue White Pose Movie">
+        </div>
+        <div class="image-card" data-added="20260510">
+            <div class="image-text">Pink Suit Thumbs Up Text</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/1e3526d9-599a-4b24-9b5c-2d0a7ea0b719.jpg?auth_key=1878459762-281993ba2d12463cbd4880a98fe9c6a4-0-255a6e4820bdf9ba6b190ddaa48092e0" alt="Pink Suit Thumbs Up Text Movie">
+        </div>
+
+        <!-- New Batch 2026/5/10 (Part 4) -->
+        <div class="image-card" data-added="20260510">
+            <div class="image-text">Fantasy Mountain Airships</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/c2919278-1d09-4c59-b55c-2008d3a23193.jpg?auth_key=1878458872-854e01405d244aa0a50e3bf9a45c3068-0-3d109b57f1b8aabb731049ff81617a1a" alt="Fantasy Mountain Airships Movie">
+        </div>
+        <div class="image-card" data-added="20260510">
+            <div class="image-text">Blue Dress Red Gloves</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/4abe8f0b-d0ac-453f-bf6f-acf3a502bf70.jpg?auth_key=1878458872-e228926821114e7fb8e547b5dce050d6-0-2b962b3e75845b517f203b3b6062d15b" alt="Blue Dress Red Gloves Movie">
+        </div>
+        <div class="image-card" data-added="20260510">
+            <div class="image-text">Zootopia Flying Creature</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/3201cc99-7751-43b3-96ef-79e40d186d7a.jpg?auth_key=1878458872-a01b242bc2aa4504bbad5c6b0d479a69-0-cb0b2dc63123f7ff87564b963b6307c0" alt="Zootopia Flying Creature Movie">
+        </div>
+        <div class="image-card" data-added="20260510">
+            <div class="image-text">Orange Epic Double Exposure</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/e5f9e15b-980e-4aab-8fd2-ad8edcb859e7.jpg?auth_key=1878458872-d30462c1d4ef4301bfbcc7544871db7a-0-69db00991628e91b77dc22ba1d7903e8" alt="Orange Epic Double Exposure Movie">
+        </div>
+        <div class="image-card" data-added="20260510">
+            <div class="image-text">Red Green Suit Megaphone</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/961065e0-f8e4-4801-bdf7-cb1d6f0dd64c.jpg?auth_key=1878458872-3d7b9d092cd8462faa28156a6a089f6d-0-25529769e3b2e47913e7648accdc4701" alt="Red Green Suit Megaphone Movie">
+        </div>
+        <div class="image-card" data-added="20260510">
+            <div class="image-text">Fantasy Flying Wing Beast</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/90d4d921-5289-4841-8e22-0243a27c4df8.jpg?auth_key=1878458872-76fcc2f5c69544049d751951332fc663-0-1f0368e02198b10b9e4f0432b0357a45" alt="Fantasy Flying Wing Beast Movie">
+        </div>
+        <div class="image-card" data-added="20260510">
+            <div class="image-text">Ocean Airship Pterosaurs</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/a59809fa-e1e2-4396-b00a-bd831f327118.jpg?auth_key=1878458872-50d8e1d5d94843aaa0613294e565bca2-0-6322db05b797ef43a0d36f2fad63fe79" alt="Ocean Airship Pterosaurs Movie">
+        </div>
+        <div class="image-card" data-added="20260510">
+            <div class="image-text">Zootopia Blue Scales</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/f781f6d2-05b0-470e-9d48-a805816076df.jpg?auth_key=1878458872-c645073d1678470fb7f144c503bd5444-0-ef4144e06ee7d81875a317a8da9460e6" alt="Zootopia Blue Scales Movie">
+        </div>
+        <div class="image-card" data-added="20260510">
+            <div class="image-text">Dragon Bone Camp Fantasy</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/0ba3b8cb-7de1-4c6a-a185-cafae0998910.jpg?auth_key=1878458872-d30b909b66b742bf93fa019c7f5a6f1b-0-267f6dc1431d7cadd7e3ae52c4146f91" alt="Dragon Bone Camp Fantasy Movie">
+        </div>
+        <div class="image-card" data-added="20260510">
+            <div class="image-text">Colorful 3D Character Group</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/5a0d11e2-2000-4856-a0e3-6f84a2be20d7.jpg?auth_key=1878458872-953b6b72cdc940ef83fdc0f3b40acbeb-0-5a3453794b351658b43a81267ec8aec8" alt="Colorful 3D Character Group Movie">
+        </div>
+
+        <!-- New Batch 2026/5/10 (Part 3) -->
+        <div class="image-card" data-added="20260510">
+            <div class="image-text">Purple Mask Metal Claws</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/00a44bde-824d-4694-801a-6b182ba71972.jpg?auth_key=1878458433-b2b80e9ee7214c20bca219841ee19f11-0-9b27c198a7186a10402500a781af900c" alt="Purple Mask Metal Claws Movie">
+        </div>
+        <div class="image-card" data-added="20260510">
+            <div class="image-text">Green Shorts Boxer</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/2aea8eb3-13f0-4802-a798-eb26f10a3ad8.jpg?auth_key=1878458433-3be9448e6c4047378fb9a39250d25aea-0-99cd079ffbe54d172b2af93335fa4024" alt="Green Shorts Boxer Movie">
+        </div>
+        <div class="image-card" data-added="20260510">
+            <div class="image-text">Pink Suit Thumbs Up</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/7584ce39-641d-4ad9-95c0-5b831f0057c9.jpg?auth_key=1878458433-47bf1ae10b5f4922b29b59627b12913f-0-eacadd7005c12be57e60165640f3b06f" alt="Pink Suit Thumbs Up Movie">
+        </div>
+        <div class="image-card" data-added="20260510">
+            <div class="image-text">Sumo Wrestler Stance</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/0499f2e4-2ca8-4996-915e-7d9867cdf8d7.jpg?auth_key=1878458433-ea26ff027ef54799985cd990904f7c7d-0-ff797c6f59caceb19d5f1858a1562ccc" alt="Sumo Wrestler Stance Movie">
+        </div>
+        <div class="image-card" data-added="20260510">
+            <div class="image-text">Blue Hair Martial Arts</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/1af32380-1537-463e-9bf2-9936b00a8247.jpg?auth_key=1878458433-198f1b3c6a0943099989289a2a0113b4-0-fbd9a53d041847b21731cbf83fa8f9ee" alt="Blue Hair Martial Arts Movie">
+        </div>
+        <div class="image-card" data-added="20260510">
+            <div class="image-text">Street Fighter Group</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/e05331a9-8175-4018-8764-c15f702478e1.jpg?auth_key=1878458433-adb1003c1e3b4d0097b6e2ceac34ce56-0-a89f5af438deea50b19f9bc17c3c3b6a" alt="Street Fighter Group Movie">
+        </div>
+        <div class="image-card" data-added="20260510">
+            <div class="image-text">Red Pants Star Belt</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/20b5ead0-b912-43d9-857e-a7cc93418c7e.jpg?auth_key=1878458433-8c565284cd8c4222be020348d3c00a1f-0-78ce84b0de5281b1b454dc55dfd47448" alt="Red Pants Star Belt Movie">
+        </div>
+        <div class="image-card" data-added="20260510">
+            <div class="image-text">Red Headband Fighter</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/1bf42291-63b8-4f27-acce-55aae5f3e671.jpg?auth_key=1878458433-a15c44f33f914b9ca41a5079c44e3622-0-f275a6d144a0084c748d0c4b5c0b7248" alt="Red Headband Fighter Movie">
+        </div>
+        <div class="image-card" data-added="20260510">
+            <div class="image-text">Bald Red Stripe Warrior</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/f1bbdaf5-36dd-49e2-a56d-8fa4a792fafa.jpg?auth_key=1878458433-ee13f607a11d465d950b27f054add69c-0-1237943e6f475ba7233f020bbc1d7c82" alt="Bald Red Stripe Warrior Movie">
+        </div>
+        <div class="image-card" data-added="20260510">
+            <div class="image-text">Red Top Dots Outfit</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/2ecbad9b-4935-4dec-8e10-9d78c1777137.jpg?auth_key=1878458433-7eecc24ce8d9402e876dbf3d0746a998-0-7a44fcb1805dbcedf3f8e1649ee8f5da" alt="Red Top Dots Outfit Movie">
+        </div>
+
+        <!-- New Batch 2026/5/10 (Part 2) -->
+        <div class="image-card" data-added="20260510">
+            <div class="image-text">Military Blonde Haircut</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/3b9c7ed0-88ed-4b2f-8e67-be23e09f7b4f.jpg?auth_key=1878458145-558493db08fa484ebede1c01a4e8ff3d-0-9ad004e211e0c1563b0114edd8e2737f" alt="Military Blonde Haircut Movie">
+        </div>
+        <div class="image-card" data-added="20260510">
+            <div class="image-text">Tribal Blue Face Glowing</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/2d473168-cd35-4acf-984f-cb8ddad2649e.jpg?auth_key=1878458145-8d21512510c74729bfba2e39e24ad29f-0-adaf4e12601c029f7cc4e462f15dce77" alt="Tribal Blue Face Glowing Movie">
+        </div>
+        <div class="image-card" data-added="20260510">
+            <div class="image-text">Avatar Na'Vi Warrior</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/07c4d3fc-2286-4105-9eaf-3f2800db8d2e.jpg?auth_key=1878458145-7f088bf2996840efb7cf25a8097ec18f-0-b64877ca455376f4f0cead794e023aa8" alt="Avatar Na'Vi Warrior Movie">
+        </div>
+        <div class="image-card" data-added="20260510">
+            <div class="image-text">Red Karate Fighter</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/91574d12-844e-4a74-bef7-8d1190a9cf79.jpg?auth_key=1878458145-9d9ac16990e247d79f9c6b028b0fa4d2-0-32ace8352d47cb85bae63bee10dba42c" alt="Red Karate Fighter Movie">
+        </div>
+        <div class="image-card" data-added="20260510">
+            <div class="image-text">White Karate Red Headband</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/e03ee675-b0db-4e3c-9205-649a5e741e73.jpg?auth_key=1878458145-136794feba3740e0a44a5dcaba69433e-0-9b9663a641a5fa0c5af32c648a067e5f" alt="White Karate Red Headband Movie">
+        </div>
+        <div class="image-card" data-added="20260510">
+            <div class="image-text">Multi Character Action</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/b4f77a6a-7283-4f15-a7b5-b43c44913b5c.jpg?auth_key=1878458145-e8a5ba205c0640c4aeb3aa768c1bf105-0-5d834bb58948e77844a74e44bbcbde0f" alt="Multi Character Action Movie">
+        </div>
+        <div class="image-card" data-added="20260510">
+            <div class="image-text">Ice Crystal Wing Woman</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/c3d7c223-fcea-443f-8aa5-943a9413cd9b.jpg?auth_key=1878458145-2392f85025fd40bd848acefc9902a6a4-0-dfe104ad971f05caa68b160d1049200a" alt="Ice Crystal Wing Woman Movie">
+        </div>
+        <div class="image-card" data-added="20260510">
+            <div class="image-text">Zootopia Fox Snake Rabbit</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/75955bb9-9701-44d8-b62a-de9a0c1cf108.jpg?auth_key=1878458145-7eb6e3c8c9cd41ce84d5780951da9c9e-0-717da4bbd968de001fc6ca7511718a14" alt="Zootopia Fox Snake Rabbit Movie">
+        </div>
+        <div class="image-card" data-added="20260510">
+            <div class="image-text">Avatar Red Feather Headdress</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/2583684d-e2b2-4d31-a273-04f22b14c419.jpg?auth_key=1878458145-d1c077a571ef4f7d9971565497d17f25-0-2d9f1d6f2dc1eb899f5a9b5f9b98390f" alt="Avatar Red Feather Headdress Movie">
+        </div>
+        <div class="image-card" data-added="20260510">
+            <div class="image-text">Red Military Uniform Cape</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/3f96b9e9-a3da-4b8d-9b77-fbc5344d6a74.jpg?auth_key=1878458145-ce915c72a4ba4006863f4270b92bccba-0-bb7e432a9c48e8ff4e0425143f25fc9d" alt="Red Military Uniform Cape Movie">
+        </div>
+
+        <!-- New Batch 2026/5/10 (Part 1) -->
+        <div class="image-card" data-added="20260510">
+            <div class="image-text">Supergirl Trench Coat</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/a9ca4395-3068-4a52-92b9-4da8fb6e513f.jpg?auth_key=1878457432-f433b60782fc420fb7d9ad9caea052bc-0-93fcea084357f5c7aa9360b803a53bd3" alt="Supergirl Trench Coat Movie">
+        </div>
+        <div class="image-card" data-added="20260510">
+            <div class="image-text">Avatar Na'Vi Night</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/7b246cc3-5fc1-47af-9a54-0d9cfc160d5b.jpg?auth_key=1878457432-3f42c8634f974791b9f4abc035f5bfda-0-768fa2438f6615520c934513964aab10" alt="Avatar Na'Vi Night Movie">
+        </div>
+        <div class="image-card" data-added="20260510">
+            <div class="image-text">Sci-Fi Purple Warrior</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/3e877740-69bb-4d1c-b24b-088c9fc40d20.jpg?auth_key=1878457432-3a11293ffe424a8fabde1c194ecd1e79-0-22633d2c3580e2d20a84afe1394a26c8" alt="Sci-Fi Purple Warrior Movie">
+        </div>
+        <div class="image-card" data-added="20260510">
+            <div class="image-text">Purple Hair Cyber Sword</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/21226ad0-d26a-4b00-977a-2c152fbf724a.jpg?auth_key=1878457432-008a485bb8d644ca90821286c18d94d2-0-f3399bea99c75b4e152d386c5b0bd1fa" alt="Purple Hair Cyber Sword Movie">
+        </div>
+        <div class="image-card" data-added="20260510">
+            <div class="image-text">Mechanical Wing Angel</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/0664f2ca-24dd-4222-81ed-1d1c1bfba8f9.jpg?auth_key=1878457432-5afd12806efa41ba9839923ddeaf340a-0-394b9fb2de39ad48161865d57bf85bc9" alt="Mechanical Wing Angel Movie">
+        </div>
+        <div class="image-card" data-added="20260510">
+            <div class="image-text">Green Sci-Fi Window</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/ea054b99-c7a3-4543-b611-70165d1b5cdd.jpg?auth_key=1878457432-6c9539840ecc496db93cccf20fbc3f0c-0-cdc1cc0980dfea88ff090970c37ecdbd" alt="Green Sci-Fi Window Movie">
+        </div>
+        <div class="image-card" data-added="20260510">
+            <div class="image-text">Dark Batman Hero</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/59202ac4-e0a9-4559-86dd-0a0fd2211f09.jpg?auth_key=1878457432-16e6c26f12d14c9fb4cb29b57edb8521-0-11a0e75af1f066b0b315e09495558948" alt="Dark Batman Hero Movie">
+        </div>
+        <div class="image-card" data-added="20260510">
+            <div class="image-text">Supergirl Flying Dog</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/1a9aafb5-4822-4e20-84c9-a269f5ed5e82.jpg?auth_key=1878457432-6bb1dfd6f3614e0ba6a6705ea2579821-0-bceac3a2646f9054dcc1a549a3f74e3c" alt="Supergirl Flying Dog Movie">
+        </div>
+        <div class="image-card" data-added="20260510">
+            <div class="image-text">Spider-Man Industrial</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/1401e5d7-a69d-4024-9308-f14b5bc1b9a8.jpg?auth_key=1878457432-31b76f4f407c4226a1922790d36b13ea-0-142308d1fb5b8869ca5cfa0e332ecc71" alt="Spider-Man Industrial Movie">
+        </div>
+        <div class="image-card" data-added="20260510">
+            <div class="image-text">Spider-Man NYPD Lightning</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/dadfda0e-eaa9-4748-99bb-faf5421b0f73.jpg?auth_key=1878457432-56d1237b1ec14d59b933fdfbebb7b0e6-0-71f815e0683bfa689018ae5ab1217513" alt="Spider-Man NYPD Lightning Movie">
+        </div>
+
+        <!-- Original Items -->
         <div class="image-card" data-added="20260423">
             <div class="image-text">Skull Storm</div>
             <div class="download-icon">⬇</div>
