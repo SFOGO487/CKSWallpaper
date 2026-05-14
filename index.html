@@ -85,55 +85,108 @@
             }
         }
 
+        /* --- Top Section / Navbar --- */
         .top-section {
-            background-color: rgba(26, 26, 46, 0.9);
-            backdrop-filter: blur(5px);
-            padding: 15px;
+            background-color: rgba(11, 11, 21, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 0 40px;
+            height: 70px;
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
+        /* تم تعديل هذا الكلاس ليتناسب مع صورة اللوجو بدلاً من النص */
         .main-title {
-            text-align: center;
-            color: #e755f7;
-            font-family: Arial, sans-serif;
-            font-size: 28px;
-            text-shadow: 0 0 10px #a855f7, 0 0 20px #a855f7;
-            margin: 0 auto 15px auto;
+            margin: 0;
             animation: fadeUp 1s ease forwards;
             cursor: pointer;
+            text-align: left;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
         }
 
-        .main-title span {
-            color: #e755f7;
+        .main-title img {
+            width: 220px; /* حجم اللوجو الكبير والعريض */
+            height: auto;
+            object-fit: contain;
+            transition: filter 0.3s ease, transform 0.3s ease;
+        }
+
+        .main-title img:hover {
+            filter: drop-shadow(0 0 12px rgba(168, 85, 247, 0.8));
+            transform: scale(1.03);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            justify-content: center;
+            align-items: center;
+            animation: fadeUp 1s ease 0.3s forwards;
+            opacity: 0;
+            flex: 1;
+        }
+
+        .nav-menu::-webkit-scrollbar {
+            display: none;
+        }
+
+        .nav-menu li {
+            margin: 0 20px;
+            flex-shrink: 0;
+        }
+
+        .nav-menu li a, .nav-menu li span {
+            color: rgba(255, 255, 255, 0.7);
             text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 8px 0;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            display: inline-block;
             cursor: pointer;
-            transition: text-shadow 0.3s ease;
+            border-bottom: 2px solid transparent;
         }
 
-        .main-title span:hover {
-            text-shadow: 0 0 20px #fff, 0 0 30px #a855f7;
+        .nav-menu li a:hover, .nav-menu li span:hover {
+            color: #ffffff;
+            border-bottom: 2px solid #e755f7;
+            background-color: transparent;
+            box-shadow: none;
         }
 
         .search-container {
             display: flex;
-            justify-content: center;
+            justify-content: flex-end;
             align-items: center;
         }
 
         .search-box {
             display: flex;
             align-items: center;
-            background-color: #ffffff;
+            background-color: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
             border-radius: 25px;
-            width: 90%;
-            max-width: 800px;
+            width: 250px;
             overflow: hidden;
-            animation: fadeUp 1s ease 0.3s forwards;
+            animation: fadeUp 1s ease 0.6s forwards;
             opacity: 0;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .search-box:focus-within {
+            border-color: #a855f7;
+            background-color: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 0 15px rgba(168, 85, 247, 0.2);
         }
 
         .search-box input {
@@ -143,8 +196,12 @@
             border: none;
             outline: none;
             background-color: transparent;
-            color: #333;
-            text-align: center;
+            color: #fff;
+            text-align: left;
+        }
+
+        .search-box input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
         }
 
         .search-box button {
@@ -152,46 +209,13 @@
             font-size: 16px;
             border: none;
             background-color: transparent;
-            color: #4a90e2;
+            color: rgba(255, 255, 255, 0.7);
             cursor: pointer;
+            transition: color 0.3s ease;
         }
 
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            padding: 10px 0 5px 0;
-            margin: 0;
-            justify-content: flex-start;
-            overflow-x: auto;
-            animation: fadeUp 1s ease 0.6s forwards;
-            opacity: 0;
-        }
-
-        .nav-menu::-webkit-scrollbar {
-            display: none;
-        }
-
-        .nav-menu li {
-            margin-right: 15px;
-            flex-shrink: 0;
-        }
-
-        .nav-menu li a, .nav-menu li span {
-            color: white;
-            text-decoration: none;
-            font-size: 13px;
-            padding: 6px 12px;
-            border-radius: 20px;
-            transition: all 0.3s ease;
-            white-space: nowrap;
-            display: inline-block;
-            cursor: pointer;
-        }
-
-        .nav-menu li a:hover, .nav-menu li span:hover {
-            background-color: #ffffff;
-            color: #1a1a2e;
-            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
+        .search-box button:hover {
+            color: #e755f7;
         }
 
         @keyframes fadeUp {
@@ -205,6 +229,7 @@
             }
         }
 
+        /* --- Wallpaper Grid --- */
         .wallpapers-section {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -354,29 +379,8 @@
             text-shadow: 0 0 8px rgba(168, 85, 247, 0.6);
         }
 
+        /* --- Responsive Design --- */
         @media (min-width: 769px) {
-            .top-section {
-                padding: 20px;
-            }
-            .main-title {
-                font-size: 35px;
-                margin: 0 auto 20px auto;
-            }
-            .search-box input {
-                font-size: 16px;
-                padding: 12px 15px;
-            }
-            .nav-menu {
-                justify-content: center;
-                padding: 15px 0 10px 0;
-            }
-            .nav-menu li {
-                margin-right: 20px;
-            }
-            .nav-menu li a, .nav-menu li span {
-                font-size: 14px;
-                padding: 8px 16px;
-            }
             .wallpapers-section {
                 grid-template-columns: repeat(4, 1fr);
                 gap: 15px;
@@ -407,6 +411,39 @@
                 font-size: 14px;
             }
         }
+
+        @media (max-width: 900px) {
+            .top-section {
+                flex-direction: column;
+                height: auto;
+                padding: 15px;
+                gap: 15px;
+            }
+            .main-title {
+                text-align: center;
+                justify-content: center;
+            }
+            .main-title img {
+                width: 180px; /* تصغير اللوجو تلقائياً في شاشات الموبايل */
+            }
+            .nav-menu {
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 5px;
+            }
+            .nav-menu li {
+                margin: 0 10px;
+            }
+            .search-container {
+                width: 100%;
+                justify-content: center;
+            }
+            .search-box {
+                width: 100%;
+                max-width: 400px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -417,12 +454,9 @@
     </div>
 
     <div class="top-section">
-        <h1 class="main-title"><span id="home-title">CKS Wallpaper</span></h1>
-        <div class="search-container">
-            <div class="search-box">
-                <button id="search-btn">🔍</button>
-                <input type="text" id="search-input" placeholder="search...">
-            </div>
+        <!-- تم استبدال النص بالوجو -->
+        <div class="main-title" id="home-title">
+            <img src="https://z-cdn-media.chatglm.cn/files/86f0ea5c-d297-458b-9bd0-3bc08763c61d.png?auth_key=1878707557-41ecbe40d1bf4632be7993bdc801675e-0-b901d155ef5df0899c56ced61578e393" alt="CKS WALLPAPER">
         </div>
         <ul class="nav-menu">
             <li><span id="home-link">Home</span></li>
@@ -433,6 +467,12 @@
             <li><a href="animals.html">Animals</a></li>
             <li><a href="nature.html">Nature</a></li>
         </ul>
+        <div class="search-container">
+            <div class="search-box">
+                <button id="search-btn">🔍</button>
+                <input type="text" id="search-input" placeholder="Search wallpapers...">
+            </div>
+        </div>
     </div>
 
     <div class="wallpapers-section" id="wallpapers-grid">
