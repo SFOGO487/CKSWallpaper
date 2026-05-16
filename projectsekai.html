@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CKS Wallpaper - Project Sekai</title>
+    <style>
+        body {
+            font-size: 16px;
+            text-align: center;
+            background-color: #050511;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            position: relative;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            overflow: hidden;
+            background: #0b0b15;
+        }
+
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.6;
+            animation: moveBlob 25s infinite alternate ease-in-out;
+        }
+
+        /* Project Sekai Theme Colors (Pink, Cyan, Yellow) */
+        .blob-1 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, #ec4899, #db2777); /* Miku Pink */
+            top: -100px;
+            left: -100px;
+            animation-duration: 20s;
+        }
+
+        .blob-2 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, #06b6d4, #0891b2); /* Rin/Len Cyan */
+            bottom: -150px;
+            right: -100px;
+            animation: moveBlob 22s infinite alternate-reverse ease-in-out;
+            animation-delay: -5s;
+        }
+
+        .blob-3 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, #f59e0b, #d97706); /* Leo/need Yellow */
+            top: 40%;
+            left: 60%;
+            filter: blur(100px);
+            animation: pulseBlob 18s infinite ease-in-out;
+        }
+
+        @keyframes moveBlob {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(100px, 50px) scale(1.3); }
+        }
+
+        @keyframes pulseBlob {
+            0%, 100% { transform: translate(-50%, -50%) scale(1) translate(0, 0); }
+            50% { transform: translate(-50%, -50%) scale(1.5) translate(-50px, -50px); }
+        }
+
+        /* --- Top Section / Navbar (Consistent Layout) --- */
+        .top-section {
+            background-color: rgba(11, 11, 21, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 0 40px;
+            height: 70px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .main-title {
+            margin: 0;
+            animation: fadeUp 1s ease forwards;
+            cursor: pointer;
+            text-align: left;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+        }
+
+        .main-title a {
+            display: inline-block;
+            transition: filter 0.3s ease, transform 0.3s ease;
+        }
+
+        .main-title a:hover {
+            filter: drop-shadow(0 0 15px #ec4899);
+            transform: scale(1.03);
+        }
+
+        .main-title a img {
+            width: 200px; 
+            height: auto;
+            object-fit: contain;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            justify-content: center;
+            align-items: center;
+            animation: fadeUp 1s ease 0.3s forwards;
+            opacity: 0;
+            flex: 1;
+        }
+
+        .nav-menu::-webkit-scrollbar { display: none; }
+
+        .nav-menu li {
+            margin: 0 15px;
+            flex-shrink: 0;
+        }
+
+        .nav-menu li a, .nav-menu li span {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            padding: 8px 0;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            display: inline-block;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+        }
+
+        .nav-menu li a:hover, .nav-menu li span:hover {
+            color: #ffffff;
+            border-bottom: 2px solid #ec4899;
+            background-color: transparent;
+            box-shadow: none;
+        }
+
+        .nav-menu li span.active {
+            color: #ec4899;
+            font-weight: bold;
+            border-bottom: 2px solid #ec4899;
+            pointer-events: none;
+        }
+
+        .search-container {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 25px;
+            width: 250px;
+            overflow: hidden;
+            animation: fadeUp 1s ease 0.6s forwards;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .search-box:focus-within {
+            border-color: #ec4899;
+            background-color: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 0 15px rgba(236, 72, 153, 0.2);
+        }
+
+        .search-box input {
+            flex: 1;
+            padding: 10px 15px;
+            font-size: 14px;
+            border: none;
+            outline: none;
+            background-color: transparent;
+            color: #fff;
+            text-align: left;
+        }
+
+        .search-box input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .search-box button {
+            padding: 10px 15px;
+            font-size: 16px;
+            border: none;
+            background-color: transparent;
+            color: rgba(255, 255, 255, 0.7);
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .search-box button:hover { color: #ec4899; }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- Wallpaper Grid --- */
+        .wallpapers-section {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            padding: 15px;
+            max-width: 100%;
+            flex: 1;
+        }
+
+        .image-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            background-color: #000;
+            aspect-ratio: 16 / 9;
+            position: relative;
+            opacity: 0;
+            animation: fadeUpImages 0.5s ease forwards;
+        }
+
+        .image-card img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .image-text {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: #ffffff;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: bold;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .download-icon {
+            position: absolute;
+            bottom: 8px;
+            right: 8px;
+            background-color: rgba(236, 72, 153, 0.8);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            z-index: 10;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+        }
+
+        .download-icon:hover {
+            background-color: #ec4899;
+            transform: scale(1.1);
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .download-icon.loading {
+            pointer-events: none;
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .download-icon.loading::after {
+            content: "";
+            width: 14px;
+            height: 14px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 0.6s linear infinite;
+        }
+
+        .image-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+        }
+
+        .image-card:hover img {
+            transform: scale(1.05);
+        }
+
+        @keyframes fadeUpImages {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(80px);
+            background: rgba(236, 72, 153, 0.95);
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 13px;
+            font-weight: bold;
+            z-index: 9999;
+            box-shadow: 0 6px 20px rgba(236, 72, 153, 0.4);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+            pointer-events: none;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .footer {
+            background-color: #1a1a2e;
+            color: #ec4899;
+            text-align: center;
+            padding: 15px;
+            font-size: 12px;
+            font-family: 'Courier New', Courier, monospace;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-shadow: 0 0 8px rgba(236, 72, 153, 0.6);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* --- Responsive Design --- */
+        @media (min-width: 769px) {
+            .wallpapers-section { 
+                grid-template-columns: repeat(4, 1fr); 
+                gap: 15px; 
+                padding: 25px; 
+                max-width: 100%; 
+            }
+            .image-text {
+                top: 10px;
+                right: 10px;
+                font-size: 12px;
+                padding: 5px 12px;
+            }
+            .download-icon {
+                width: 35px;
+                height: 35px;
+                font-size: 16px;
+                bottom: 10px;
+                right: 10px;
+            }
+            .image-card:hover {
+                transform: translateY(-6px) !important;
+                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            }
+            .image-card:hover img {
+                transform: scale(1.1);
+            }
+            .footer {
+                padding: 20px;
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .top-section {
+                flex-direction: column;
+                height: auto;
+                padding: 15px;
+                gap: 15px;
+            }
+            .main-title {
+                text-align: center;
+                justify-content: center;
+            }
+            .main-title a img {
+                width: 180px; 
+            }
+            .nav-menu {
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 5px;
+                opacity: 1;
+                animation: none;
+            }
+            .nav-menu li {
+                margin: 0 10px;
+            }
+            .search-container {
+                width: 100%;
+                justify-content: center;
+            }
+            .search-box {
+                width: 100%;
+                max-width: 400px;
+                opacity: 1;
+                animation: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="animated-bg">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <!-- Header with Project Sekai Active -->
+    <div class="top-section">
+        <h1 class="main-title">
+            <a href="index.html">
+                <img src="https://z-cdn-media.chatglm.cn/files/86f0ea5c-d297-458b-9bd0-3bc08763c61d.png?auth_key=1878707557-41ecbe40d1bf4632be7993bdc801675e-0-b901d155ef5df0899c56ced61578e393" alt="CKS Wallpaper">
+            </a>
+        </h1>
+        <ul class="nav-menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="game.html">Game</a></li>
+            <li><a href="anime.html">Anime</a></li>
+            <li><a href="movie.html">Movie</a></li>
+            <li><a href="space.html">Space</a></li>
+            <li><a href="animals.html">Animals</a></li>
+            <li><a href="nature.html">Nature</a></li>
+            <li><span class="active">Project Sekai</span></li>
+        </ul>
+        <div class="search-container">
+            <div class="search-box">
+                <button id="search-btn">🔍</button>
+                <input type="text" id="search-input" placeholder="Search Project Sekai...">
+            </div>
+        </div>
+    </div>
+
+    <div class="wallpapers-section">
+        <!-- New Uploads 20260516 -->
+        
+        <!-- Face Forward -> Otori Emu -->
+        <div class="image-card" data-added="20260516">
+            <div class="image-text">Otori Emu</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/35c78bf1-e7cd-436f-b04a-5c13be9749e2.jpeg?auth_key=1878953919-f377116983154ae681cd6ac9e636731c-0-ee2b57486e97764f3ce049d8d2b46392" alt="Otori Emu Project Sekai">
+        </div>
+
+        <!-- The Joy -> Hatsune Miku (Visual: Teal hair) -->
+        <div class="image-card" data-added="20260516">
+            <div class="image-text">Hatsune Miku</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/6ea65f65-2104-414b-b1b2-368ef6f41207.jpeg?auth_key=1878953919-9b1d65a7151f49dfb5be9942074fb679-0-3417d7177925c1a7bb6908d1ebe4a6f3" alt="Hatsune Miku Project Sekai">
+        </div>
+
+        <!-- Four Mikus -> Hatsune Miku -->
+        <div class="image-card" data-added="20260516">
+            <div class="image-text">Hatsune Miku</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/b70c9c58-8e21-4899-a8e9-917ff18f9be8.jpeg?auth_key=1878953919-aff68766956b42daa6f638433ab2d382-0-d64e0ae635bc77e9e190c14c8032cd8f" alt="Hatsune Miku Project Sekai">
+        </div>
+
+        <!-- Four Mikus2 -> Hoshino Ichika (Visual: Megaphone) -->
+        <div class="image-card" data-added="20260516">
+            <div class="image-text">Hoshino Ichika</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/9c7d5818-d82a-4541-93c0-b4c3a1845682.jpeg?auth_key=1878953919-edcc0ca1935e41dbabfd94bb88061925-0-44a288bfafd026bbea87a91c65f598cd" alt="Hoshino Ichika Project Sekai">
+        </div>
+
+        <!-- Face Forward 2 -> Otori Emu -->
+        <div class="image-card" data-added="20260516">
+            <div class="image-text">Otori Emu</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/a94710c5-da98-415b-ba94-4d2a1ec453c6.jpeg?auth_key=1878953919-8b2ced4c571f4893b9e9379344405f6f-0-659dfd014d7f3a1d148e6e4a0033baa6" alt="Otori Emu Project Sekai">
+        </div>
+
+        <!-- Hanasato Minori -> Hanasato Minori -->
+        <div class="image-card" data-added="20260516">
+            <div class="image-text">Hanasato Minori</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/89dcff5f-f9bd-4c38-b169-50906b7eee25.jpeg?auth_key=1878953919-5c8e3bf0890c4f38b59cd1691ee72671-0-9d3fe33456682c42cd05366b0037bf82" alt="Hanasato Minori Project Sekai">
+        </div>
+
+        <!-- To The Light 2 -> Kiritani Haruka (Visual: Wand/Clover) -->
+        <div class="image-card" data-added="20260516">
+            <div class="image-text">Kiritani Haruka</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/a699b9f6-45b1-4af9-a62f-073a95c1daa6.jpeg?auth_key=1878953919-238ec7aa2e7e44ada48de71bb5b3440a-0-b466f7da4218bce323196bba5572f31a" alt="Kiritani Haruka Project Sekai">
+        </div>
+
+        <!-- The Joy 2 -> Hatsune Miku (Visual: Teal Pigtails) -->
+        <div class="image-card" data-added="20260516">
+            <div class="image-text">Hatsune Miku</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/ac6ba64e-4a00-4032-bf24-941cd23fe65b.jpeg?auth_key=1878953919-204d3b65cecf495485e934de39a970ee-0-926debc050cfb60428b62bb1705ae053" alt="Hatsune Miku Project Sekai">
+        </div>
+
+        <!-- To The Light -> Kiritani Haruka (Visual: Crystal Ball) -->
+        <div class="image-card" data-added="20260516">
+            <div class="image-text">Kiritani Haruka</div>
+            <div class="download-icon">⬇</div>
+            <img src="https://z-cdn-media.chatglm.cn/files/77b3a756-dd69-4c23-b358-65d29259d823.jpeg?auth_key=1878953919-52901c99570c4fbf935ae750156e67e6-0-17431b110561cd56c307ef49c383694c" alt="Kiritani Haruka Project Sekai">
+        </div>
+
+    </div>
+
+    <div class="footer">CKS Wallpaper powered by SFOGO.SCHNEIDER. All rights reserved © 2026</div>
+
+    <script>
+        const searchInput = document.getElementById('search-input');
+        const searchBtn = document.getElementById('search-btn');
+        const imageCards = document.querySelectorAll('.image-card');
+        const toast = document.getElementById('toast');
+
+        function showToast(msg) {
+            toast.textContent = msg;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2500);
+        }
+
+        function performSearch() {
+            const query = searchInput.value.trim().toLowerCase();
+            let found = 0;
+            imageCards.forEach(card => {
+                const img = card.querySelector('img');
+                const text = card.querySelector('.image-text');
+                if (img) {
+                    const imageName = img.alt.toLowerCase();
+                    const textName = text ? text.textContent.toLowerCase() : '';
+                    const match = (query === '' || imageName.includes(query) || textName.includes(query));
+                    card.style.display = match ? 'block' : 'none';
+                    if (match) found++;
+                }
+            });
+            if (query !== '' && found === 0) {
+                showToast('No results found for "' + query + '"');
+            }
+        }
+
+        searchBtn.addEventListener('click', performSearch);
+        searchInput.addEventListener('keyup', function(event) {
+            if (event.key === 'Enter') performSearch();
+        });
+
+        document.querySelectorAll('.download-icon').forEach(icon => {
+            icon.addEventListener('click', async function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                const imgElement = this.closest('.image-card').querySelector('img');
+                const textEl = this.closest('.image-card').querySelector('.image-text');
+                const imgSrc = imgElement.src;
+                const imgAlt = textEl ? textEl.textContent.trim() : 'CKS-Wallpaper';
+                this.classList.add('loading');
+                this.innerHTML = '';
+                try {
+                    const response = await fetch(imgSrc);
+                    const blob = await response.blob();
+                    const blobUrl = window.URL.createObjectURL(blob);
+                    const tempLink = document.createElement('a');
+                    tempLink.href = blobUrl;
+                    tempLink.download = `${imgAlt}.${blob.type.includes('png') ? 'png' : 'jpg'}`;
+                    tempLink.style.display = 'none';
+                    document.body.appendChild(tempLink);
+                    tempLink.click();
+                    setTimeout(() => {
+                        document.body.removeChild(tempLink);
+                        window.URL.revokeObjectURL(blobUrl);
+                    }, 200);
+                    showToast('Downloading "' + imgAlt + '"');
+                } catch (error) {
+                    window.open(imgSrc, '_blank');
+                    showToast('Opened in new tab');
+                } finally {
+                    setTimeout(() => {
+                        this.classList.remove('loading');
+                        this.innerHTML = '⬇';
+                    }, 800);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
