@@ -1,0 +1,24 @@
+{
+  "name": "cks-wallpaper",
+  "version": "1.0.0",
+  "description": "CKS Wallpaper - A wallpaper gallery website",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"No tests specified\" && exit 0",
+    "postinstall": "mkdir -p dist && cp node_modules/@vercel/speed-insights/dist/index.mjs dist/speed-insights.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SFOGO487/CKSWallpaper.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SFOGO487/CKSWallpaper/issues"
+  },
+  "homepage": "https://github.com/SFOGO487/CKSWallpaper#readme",
+  "dependencies": {
+    "@vercel/speed-insights": "^2.0.0"
+  }
+}
